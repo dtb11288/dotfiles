@@ -34,6 +34,11 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
+Plugin 'fisadev/vim-ctrlp-cmdpalette'
+Plugin 'majutsushi/tagbar'
+Plugin 'bling/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'flazz/vim-colorschemes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -51,7 +56,8 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 "autocmd vimenter * NERDTree
-autocmd vimenter * NERDTreeTabsToggle
+autocmd VimEnter * NERDTreeTabsToggle
+autocmd VimEnter * wincmd p
 map <leader><F2> :NERDTreeFind<cr>
 map <F2> :NERDTreeTabsToggle<cr>
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
