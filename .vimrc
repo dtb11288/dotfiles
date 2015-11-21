@@ -26,41 +26,47 @@ Plugin 'VundleVim/Vundle.vim'
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
+Plugin 'sidorares/node-vim-debugger'
+Plugin 'KabbAmine/vCoolor.vim'
+"Plugin 'vim-scripts/VIM-Color-Picker'
+"
+" tools
 Plugin 'bling/vim-airline'
+Plugin 'renyard/vim-git-flow-format'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'sidorares/node-vim-debugger'
-Plugin 'digitaltoad/vim-jade'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'fisadev/vim-ctrlp-cmdpalette'
-Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'walm/jshint.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'fholgado/minibufexpl.vim' 
-Plugin 'qpkorr/vim-bufkill'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/syntastic'
-Plugin 'vim-scripts/simple-pairs'
-Plugin 'renyard/vim-git-flow-format'
-Plugin 'gregsexton/gitv'
+Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
+Plugin 'qpkorr/vim-bufkill'
+
+" coding 
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-scripts/simple-pairs'
+Plugin 'walm/jshint.vim'
+Plugin 'digitaltoad/vim-jade'
 Plugin 'nathanaelkane/vim-indent-guides' 
-Plugin 'KabbAmine/vCoolor.vim'
-"Plugin 'vim-scripts/VIM-Color-Picker'
+Plugin 'tpope/vim-surround'
+
+" git
+Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
 
 " incsearch
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'haya14busa/incsearch-fuzzy.vim'
 
 " theme
+Plugin 'flazz/vim-colorschemes'
 Plugin 'mkarmona/colorsbox'
 
 " javascript
@@ -94,7 +100,7 @@ syntax on
 " Put your non-Plugin stuff after this line
 
 " autoload at startup
-"autocmd VimEnter * NERDTreeTabsOpen
+autocmd VimEnter * NERDTreeTabsOpen
 autocmd VimEnter * wincmd p
 
 " maping keys
@@ -104,7 +110,6 @@ map <F3> :NERDTreeFind<cr>
 nmap <F5> :UndotreeToggle<cr>
 
 " configuration
-"colorscheme desert256
 colorscheme colorsbox-material
 set tabstop=4 
 set softtabstop=4 
@@ -113,9 +118,6 @@ set expandtab
 set laststatus=2
 set background=dark
 
-"au FileType javascript call JavaScriptFold()
-
-""""""""""""""""""""""""""""""
 " airline
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
