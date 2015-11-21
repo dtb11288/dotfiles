@@ -55,7 +55,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/simple-pairs'
 Plugin 'walm/jshint.vim'
 Plugin 'digitaltoad/vim-jade'
-Plugin 'nathanaelkane/vim-indent-guides' 
+Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
 
@@ -117,6 +117,7 @@ nnoremap <buffer> j gj
 
 " configuration
 colorscheme colorsbox-material
+set nowrap
 set number
 set tabstop=4 
 set softtabstop=4 
@@ -124,6 +125,7 @@ set shiftwidth=4
 set expandtab
 set laststatus=2
 set background=dark
+set list lcs=tab:\¦\ 
 
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
     set t_Co=256
@@ -151,11 +153,6 @@ let g:syntastic_check_on_wq = 0
 
 " css color
 let g:cssColorVimDoNotMessMyUpdatetime = 1
-
-" indent guides
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 4
-let g:indent_guides_enable_on_vim_startup = 1
 
 " incsearch
 map /  <Plug>(incsearch-forward)
