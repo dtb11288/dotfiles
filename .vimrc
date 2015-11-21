@@ -28,6 +28,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'sidorares/node-vim-debugger'
 Plugin 'digitaltoad/vim-jade'
