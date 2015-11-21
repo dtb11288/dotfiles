@@ -29,7 +29,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'sidorares/node-vim-debugger'
 Plugin 'KabbAmine/vCoolor.vim'
 "Plugin 'vim-scripts/VIM-Color-Picker'
-"
+
 " tools
 Plugin 'bling/vim-airline'
 Plugin 'renyard/vim-git-flow-format'
@@ -40,13 +40,14 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'fisadev/vim-ctrlp-cmdpalette'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'godlygeek/tabular'
 Plugin 'fholgado/minibufexpl.vim' 
 Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
 Plugin 'qpkorr/vim-bufkill'
+Plugin 'severin-lemaignan/vim-minimap'
 
 " coding 
+Plugin 'moll/vim-node'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'scrooloose/syntastic'
@@ -56,6 +57,7 @@ Plugin 'walm/jshint.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'nathanaelkane/vim-indent-guides' 
 Plugin 'tpope/vim-surround'
+Plugin 'godlygeek/tabular'
 
 " git
 Plugin 'tpope/vim-fugitive'
@@ -101,22 +103,31 @@ syntax on
 
 " autoload at startup
 autocmd VimEnter * NERDTreeTabsOpen
+"autocmd VimEnter * Minimap
 autocmd VimEnter * wincmd p
 
 " maping keys
 map <F2> :NERDTreeTabsToggle<cr>
 map <F8> :TagbarToggle<cr>
+map <F9> :MinimapToggle<cr>
 map <F3> :NERDTreeFind<cr>
 nmap <F5> :UndotreeToggle<cr>
+nnoremap <buffer> k gk
+nnoremap <buffer> j gj
 
 " configuration
 colorscheme colorsbox-material
+set number
 set tabstop=4 
 set softtabstop=4 
 set shiftwidth=4 
 set expandtab
 set laststatus=2
 set background=dark
+
+if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+    set t_Co=256
+endif
 
 " airline
 let g:airline#extensions#branch#enabled = 1
