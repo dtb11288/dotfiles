@@ -26,6 +26,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
+Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'sidorares/node-vim-debugger'
@@ -33,16 +34,52 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
 Plugin 'fisadev/vim-ctrlp-cmdpalette'
 Plugin 'majutsushi/tagbar'
-Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'walm/jshint.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'fholgado/minibufexpl.vim' 
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
+Plugin 'vim-scripts/simple-pairs'
+Plugin 'renyard/vim-git-flow-format'
+Plugin 'gregsexton/gitv'
+Plugin 'mbbill/undotree'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'nathanaelkane/vim-indent-guides' 
+Plugin 'KabbAmine/vCoolor.vim'
+"Plugin 'vim-scripts/VIM-Color-Picker'
+
+" incsearch
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
+
+" theme
+Plugin 'mkarmona/colorsbox'
+
+" javascript
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+
+" css 
+Plugin 'ap/vim-css-color'
+Plugin 'hail2u/vim-css3-syntax' 
+
+" Snippets manager (SnipMate), dependencies, and snippets repo
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/vim-snippets'
+Bundle 'garbas/vim-snipmate'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+syntax on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -55,9 +92,73 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-"autocmd vimenter * NERDTree
-autocmd VimEnter * NERDTreeTabsToggle
+" autoload at startup
+"autocmd VimEnter * NERDTreeTabsOpen
 autocmd VimEnter * wincmd p
-map <leader><F2> :NERDTreeFind<cr>
+
+" maping keys
 map <F2> :NERDTreeTabsToggle<cr>
-set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+map <F8> :TagbarToggle<cr>
+map <F3> :NERDTreeFind<cr>
+nmap <F5> :UndotreeToggle<cr>
+
+" configuration
+"colorscheme desert256
+colorscheme colorsbox-material
+set tabstop=4 
+set softtabstop=4 
+set shiftwidth=4 
+set expandtab
+set laststatus=2
+set background=dark
+
+"au FileType javascript call JavaScriptFold()
+
+""""""""""""""""""""""""""""""
+" airline
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#format = 'Git_flow_branch_format'
+
+" tern on vim
+let g:tern_show_argument_hints = 'on_hold'
+let g:tern_map_keys = 1
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" css color
+let g:cssColorVimDoNotMessMyUpdatetime = 1
+
+" indent guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 4
+let g:indent_guides_enable_on_vim_startup = 1
+
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+" :h g:incsearch#auto_nohlsearch
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+" fuzzy incsearch
+map z/ <Plug>(incsearch-fuzzy-/)
+map z? <Plug>(incsearch-fuzzy-?)
+map zg/ <Plug>(incsearch-fuzzy-stay)
