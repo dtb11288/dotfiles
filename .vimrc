@@ -40,11 +40,12 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'fisadev/vim-ctrlp-cmdpalette'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'fholgado/minibufexpl.vim' 
+"Plugin 'fholgado/minibufexpl.vim' 
 Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'severin-lemaignan/vim-minimap'
+Plugin 'vim-scripts/TaskList.vim'
 
 " coding 
 Plugin 'moll/vim-node'
@@ -58,6 +59,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
+Plugin 'kana/vim-textobj-user'
 
 " git
 Plugin 'tpope/vim-fugitive'
@@ -107,11 +109,13 @@ autocmd VimEnter * NERDTreeTabsOpen
 autocmd VimEnter * wincmd p
 
 " maping keys
+let mapleader = "\<Space>"
 map <F2> :NERDTreeTabsToggle<cr>
 map <F8> :TagbarToggle<cr>
 map <F9> :MinimapToggle<cr>
-map <F3> :NERDTreeFind<cr>
-nmap <F5> :UndotreeToggle<cr>
+map <leader><F2> :NERDTreeFind<cr>
+map <F5> :UndotreeToggle<cr>
+map <F4> :TaskList<cr>
 nnoremap <buffer> k gk
 nnoremap <buffer> j gj
 
@@ -136,6 +140,29 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#format = 'Git_flow_branch_format'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" This allows buffers to be hidden if you've modified a buffer.
+" This is almost a must if you wish to use buffers in this way.
+set hidden
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>T :enew<cr>
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
 
 " tern on vim
 let g:tern_show_argument_hints = 'on_hold'
