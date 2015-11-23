@@ -40,10 +40,10 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'fisadev/vim-ctrlp-cmdpalette'
 Plugin 'airblade/vim-gitgutter'
-"Plugin 'fholgado/minibufexpl.vim' 
 Plugin 'majutsushi/tagbar'
 "Plugin 'mbbill/undotree'
-Plugin 'sjl/gundo.vim.git'
+"Plugin 'sjl/gundo.vim.git'
+Plugin 'simnalamburt/vim-mundo'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'vim-scripts/TaskList.vim'
@@ -122,6 +122,7 @@ nnoremap <buffer> j gj
 
 " configuration
 colorscheme colorsbox-material
+set ignorecase
 set nowrap
 set number
 set tabstop=4 
