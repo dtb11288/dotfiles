@@ -45,7 +45,7 @@ Plugin 'majutsushi/tagbar'
 "Plugin 'sjl/gundo.vim.git'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'qpkorr/vim-bufkill'
-Plugin 'severin-lemaignan/vim-minimap'
+"Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'vim-scripts/TaskList.vim'
 
 " coding 
@@ -113,7 +113,7 @@ autocmd VimEnter * wincmd p
 let mapleader = "\<Space>"
 map <F2> :NERDTreeTabsToggle<cr>
 map <F8> :TagbarToggle<cr>
-map <F9> :MinimapToggle<cr>
+"map <F9> :MinimapToggle<cr>
 map <leader><F2> :NERDTreeFind<cr>
 nnoremap <F5> :GundoToggle<CR>
 map <F4> :TaskList<cr>
