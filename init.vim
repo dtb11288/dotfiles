@@ -28,7 +28,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'sidorares/node-vim-debugger'
 Plugin 'KabbAmine/vCoolor.vim'
-Plugin 'vim-scripts/VIM-Color-Picker'
+"Plugin 'vim-scripts/VIM-Color-Picker'
 
 " tools
 Plugin 'bling/vim-airline'
@@ -48,7 +48,7 @@ Plugin 'qpkorr/vim-bufkill'
 "Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'vim-scripts/TaskList.vim'
 
-" coding 
+" coding
 Plugin 'moll/vim-node'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ternjs/tern_for_vim'
@@ -61,6 +61,8 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
 Plugin 'kana/vim-textobj-user'
+Plugin 'vim-scripts/Smart-Tabs'
+Plugin 'ntpeters/vim-better-whitespace'
 
 " git
 Plugin 'tpope/vim-fugitive'
@@ -78,9 +80,9 @@ Plugin 'mkarmona/colorsbox'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 
-" css 
+" css
 Plugin 'ap/vim-css-color'
-Plugin 'hail2u/vim-css3-syntax' 
+Plugin 'hail2u/vim-css3-syntax'
 
 " Snippets manager (SnipMate), dependencies, and snippets repo
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -125,14 +127,15 @@ colorscheme colorsbox-material
 set ignorecase
 set nowrap
 set number
-set tabstop=4 
-set softtabstop=4 
-set shiftwidth=4 
-set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
 set laststatus=2
 set background=dark
-set list lcs=tab:\¦\ 
+set list lcs=tab:\¦\
 
+" set terminal color to 256 bit
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
     set t_Co=256
 endif
@@ -205,3 +208,6 @@ map zg/ <Plug>(incsearch-fuzzy-stay)
 
 " gundo
 let g:gundo_right = 1
+
+" better-whitespaces
+autocmd BufWritePre * StripWhitespace
