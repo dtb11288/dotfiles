@@ -84,11 +84,9 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'ap/vim-css-color'
 Plugin 'hail2u/vim-css3-syntax'
 
-" Snippets manager (SnipMate), dependencies, and snippets repo
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'honza/vim-snippets'
-Bundle 'garbas/vim-snipmate'
+" Snippets manager (ultisnips), dependencies, and snippets repo
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -112,7 +110,8 @@ autocmd VimEnter * NERDTreeTabsOpen
 autocmd VimEnter * wincmd p
 
 " maping keys
-let mapleader = "\<Space>"
+"let mapleader = "\<Space>"
+let mapleader = ","
 map <F2> :NERDTreeTabsToggle<cr>
 map <F8> :TagbarToggle<cr>
 "map <F9> :MinimapToggle<cr>
@@ -133,7 +132,7 @@ set shiftwidth=4
 set noexpandtab
 set laststatus=2
 set background=dark
-set list lcs=tab:\¦\
+set list lcs=tab:\¦\ "need space at the end
 
 " set terminal color to 256 bit
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
@@ -147,6 +146,23 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_left_sep          = '▶'
+  let g:airline_left_alt_sep      = '»'
+  let g:airline_right_sep         = '◀'
+  let g:airline_right_alt_sep     = '«'
+  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+  let g:airline#extensions#readonly#symbol   = '⊘'
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#paste#symbol      = 'ρ'
+  let g:airline_symbols.linenr    = '␊'
+  let g:airline_symbols.branch    = '⎇'
+  let g:airline_symbols.paste     = 'ρ'
+  let g:airline_symbols.paste     = 'Þ'
+  let g:airline_symbols.paste     = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
 
 " This allows buffers to be hidden if you've modified a buffer.
 " This is almost a must if you wish to use buffers in this way.
