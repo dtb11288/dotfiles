@@ -1,11 +1,11 @@
 "" Bundle home
-let s:bundle_home=(expand("~/.vim/bundle"))
-
+let s:vim_home=expand("~/.vim")
 
 "*****************************************************************************
 "" Vim-plug install packages
 "*****************************************************************************
 "" Install Vim-plug
+let s:bundle_home=s:vim_home."/bundle"
 let s:plug_tool_home=s:bundle_home."/vim-plug"
 
 if !isdirectory(s:plug_tool_home."/.git")
@@ -22,27 +22,22 @@ Plug 'jwhitley/vim-plug'
 
 "" Layout
 Plug 'bling/vim-airline'
-Plug 'renyard/vim-git-flow-format'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'kien/ctrlp.vim'
-Plug 'fisadev/vim-ctrlp-cmdpalette'
-Plug 'airblade/vim-gitgutter'
+"Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'majutsushi/tagbar'
 "Plug 'mbbill/undotree'
-"Plug 'sjl/gundo.vim.git'
 Plug 'simnalamburt/vim-mundo'
 Plug 'qpkorr/vim-bufkill'
-"Plug 'severin-lemaignan/vim-minimap'
 Plug 'vim-scripts/TaskList.vim'
 
 "" Auto complete
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'scrooloose/syntastic'
-"Plug 'vim-scripts/simple-pairs'
 Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -50,7 +45,7 @@ Plug 'honza/vim-snippets'
 "" Editor
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
-Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-user'
 Plug 'vim-scripts/Smart-Tabs'
 Plug 'ntpeters/vim-better-whitespace'
@@ -67,13 +62,16 @@ Plug 'walm/jshint.vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 
-"" Css
+"" CSS
 Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
 
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
+Plug 'renyard/vim-git-flow-format'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
 
 "" Incsearch
 Plug 'haya14busa/incsearch.vim'
@@ -109,22 +107,28 @@ set hidden
 set nobackup
 set noswapfile
 
-"" Map leader to ,
+"" Map control keys
 let mapleader=','
+nnoremap ; :
 
 "" Config
 set nocompatible
 set number
 set shell=zsh
 set laststatus=2
-syntax enable
+syntax on
 set t_Co=256
+"set hlsearch
+"set ignorecase
+
+"" Theme
 colorscheme colorsbox-material
 
 "" Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
-nnoremap <silent> <S-t> :tabnew<CR>
+nnoremap <silent> <tab> :bnext<CR>
+nnoremap <silent> <s-tab> :bprevious<CR>
+nnoremap <silent> <leader>q :bp <BAR> bd #<CR>
+nnoremap <silent> <s-t> :enew<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -135,9 +139,19 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
-" mapping keys
+"" Mapping keys
 nnoremap <buffer> k gk
 nnoremap <buffer> j gj
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
 
 "" Whitespace
 set nowrap
@@ -146,7 +160,6 @@ set softtabstop=0
 set shiftwidth=4
 set noexpandtab
 set list
-set ignorecase
 
 " listchars
 set listchars=""                  " Reset the listchars
@@ -159,11 +172,11 @@ set listchars+=precedes:<         " The character to show in the last column whe
 
 
 "*****************************************************************************
-"" Plugins setup
+"" Plugins configuration
 "*****************************************************************************
-"" NERDTree configuration
-autocmd VimEnter * NERDTreeTabsOpen
-autocmd VimEnter * wincmd p
+"" NERDTree
+"autocmd VimEnter * NERDTreeTabsOpen
+"autocmd VimEnter * wincmd p
 nnoremap <silent> <leader><F2> :NERDTreeFind<CR>
 noremap <F2> :NERDTreeToggle<CR>
 let g:NERDTreeChDirMode=2
@@ -172,17 +185,26 @@ let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 50
+let g:NERDTreeWinSize = 30
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
 
-" gundo
-nnoremap <F5> :GundoToggle<CR>
+"" Tagbar
+map <F8> :TagbarToggle<CR>
 
-" tagbar
-map <F8> :TagbarToggle<cr>
-
-" tasklist
-map <F4> :TaskList<cr>
+"" Tasklist
+map <F4> :TaskList<CR>
 
 "" Airline
 let g:airline#extensions#branch#enabled = 1
@@ -192,16 +214,14 @@ let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-"" Ctrlp
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|tox|ico|git|hg|svn))$'
-let g:ctrlp_user_command = "find %s -type f | grep -Ev '"+ g:ctrlp_custom_ignore +"'"
-let g:ctrlp_use_caching = 0
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-noremap <leader>b :CtrlPBuffer<CR>
-"let g:ctrlp_map = '<leader>e'
-let g:ctrlp_open_new_file = 'r'
+"" Unite
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#source('file_rec/async','sorters','sorter_rank')
+nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
+nnoremap f/ :Unite grep:.<cr>
+nnoremap <leader>b :Unite -winheight=10 buffer<CR>
+nnoremap <leader>e :Unite -winheight=10 file_mru<cr>
 
 "" Tern on vim
 let g:tern_show_argument_hints = 'on_hold'
@@ -215,11 +235,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
 
 " css color
@@ -231,7 +246,6 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " :h g:incsearch#auto_nohlsearch
-set hlsearch
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
@@ -241,22 +255,28 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
 " fuzzy incsearch
-map z/ <Plug>(incsearch-fuzzy-/)
-map z? <Plug>(incsearch-fuzzy-?)
+map z/  <Plug>(incsearch-fuzzy-/)
+map z?  <Plug>(incsearch-fuzzy-?)
 map zg/ <Plug>(incsearch-fuzzy-stay)
 
 "" Gundo
+nnoremap <F5> :GundoToggle<CR>
 let g:gundo_right = 1
 
-" better-whitespaces
+"" Better-whitespaces
 autocmd BufWritePre * StripWhitespace
 
 "" Git
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gsh :Gpush<CR>
-noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
+noremap <leader>ga  :Gwrite<CR>
+noremap <leader>gc  :Gcommit<CR>
+noremap <leader>gca :Gcommit --amend<CR>
+noremap <leader>gsh :Gpush<CR>
+noremap <leader>gll :Gpull<CR>
+noremap <leader>gs  :Gstatus<CR>
+noremap <leader>gb  :Gblame<CR>
+noremap <leader>gd  :Gvdiff<CR>
+noremap <leader>gr  :Gremove<CR>
+
+"" Easy align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
