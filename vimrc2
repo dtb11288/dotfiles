@@ -25,9 +25,7 @@ Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'jistr/vim-nerdtree-tabs'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 "Plug 'mbbill/undotree'
 Plug 'simnalamburt/vim-mundo'
@@ -73,9 +71,14 @@ Plug 'renyard/vim-git-flow-format'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 
-"" Incsearch
+"" Search
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'rking/ag.vim'
+Plug 'gabesoft/vim-ags'
 
 "" Theme
 Plug 'flazz/vim-colorschemes'
@@ -118,8 +121,12 @@ set shell=zsh
 set laststatus=2
 syntax on
 set t_Co=256
-"set hlsearch
-"set ignorecase
+set cursorline
+
+"" Search
+set grepprg=ag\ --nogroup\ --nocolor
+set hlsearch
+set ignorecase
 
 "" Theme
 colorscheme colorsbox-material
@@ -127,8 +134,8 @@ colorscheme colorsbox-material
 "" Tabs
 nnoremap <silent> <tab> :bnext<CR>
 nnoremap <silent> <s-tab> :bprevious<CR>
-nnoremap <silent> <leader>q :bp <BAR> bd #<CR>
-nnoremap <silent> <s-t> :enew<CR>
+nnoremap <silent> <leader>bq :bp <BAR> bd #<CR>
+nnoremap <silent> <leader>bn :enew<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -191,13 +198,13 @@ autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
 function! s:CloseIfOnlyNerdTreeLeft()
-  if exists("t:NERDTreeBufName")
-    if bufwinnr(t:NERDTreeBufName) != -1
-      if winnr("$") == 1
-        q
-      endif
-    endif
-  endif
+	if exists("t:NERDTreeBufName")
+		if bufwinnr(t:NERDTreeBufName) != -1
+			if winnr("$") == 1
+				q
+			endif
+		endif
+	endif
 endfunction
 
 "" Tagbar
@@ -214,14 +221,16 @@ let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-"" Unite
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('file_rec/async','sorters','sorter_rank')
-nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
-nnoremap f/ :Unite grep:.<cr>
-nnoremap <leader>b :Unite -winheight=10 buffer<CR>
-nnoremap <leader>e :Unite -winheight=10 file_mru<cr>
+"" Ctrlp
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let g:ctrlp_use_caching = 0
+cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+noremap <leader>bl :CtrlPBuffer<CR>
+noremap <leader>e :CtrlPMRUFiles<CR>
+"let g:ctrlp_map = '<leader>e'
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 "" Tern on vim
 let g:tern_show_argument_hints = 'on_hold'
@@ -236,9 +245,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_aggregate_errors = 1
-
-" css color
-let g:cssColorVimDoNotMessMyUpdatetime = 1
 
 " incsearch
 map /  <Plug>(incsearch-forward)
@@ -255,9 +261,23 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
 " fuzzy incsearch
-map z/  <Plug>(incsearch-fuzzy-/)
-map z?  <Plug>(incsearch-fuzzy-?)
-map zg/ <Plug>(incsearch-fuzzy-stay)
+map z/  <Plug>(incsearch-easymotion-/)
+map z?  <Plug>(incsearch-easymotion-?)
+map zg/ <Plug>(incsearch-easymotion-stay)
+
+" incsearch.vim x fuzzy x vim-easymotion
+
+function! s:config_easyfuzzymotion(...) abort
+	return extend(copy({
+	\	 'converters': [incsearch#config#fuzzy#converter()],
+	\	 'modules': [incsearch#config#easymotion#module()],
+	\	 'keymap': {"\<CR>": '<Over>(easymotion)'},
+	\	 'is_expr': 0,
+	\	 'is_stay': 1
+	\ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 "" Gundo
 nnoremap <F5> :GundoToggle<CR>
@@ -268,6 +288,7 @@ autocmd BufWritePre * StripWhitespace
 
 "" Git
 noremap <leader>ga  :Gwrite<CR>
+noremap <leader>gR  :Gread<CR>
 noremap <leader>gc  :Gcommit<CR>
 noremap <leader>gca :Gcommit --amend<CR>
 noremap <leader>gsh :Gpush<CR>
@@ -280,3 +301,7 @@ noremap <leader>gr  :Gremove<CR>
 "" Easy align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+"" CtrlSF
+nmap f/ <Plug>CtrlSFPrompt
+vmap f/ <Plug>CtrlSFVwordPath
