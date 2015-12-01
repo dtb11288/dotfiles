@@ -70,6 +70,7 @@ Plug 'gregsexton/gitv'
 Plug 'renyard/vim-git-flow-format'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 
 "" Search
 Plug 'haya14busa/incsearch.vim'
