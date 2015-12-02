@@ -21,6 +21,7 @@ call plug#begin(s:bundle_home)
 Plug 'jwhitley/vim-plug'
 
 "" Layout
+Plug 'L9'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
