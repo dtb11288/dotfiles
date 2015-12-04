@@ -270,6 +270,15 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 "" Tern on vim
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_map_keys = 1
+nmap <leader>td :TernDef<cr>
+nmap <leader>tb :TernDocBrowse<cr>
+nmap <leader>tt :TernType<cr>
+nmap <leader>to :TernDoc<cr>
+nmap <leader>tpd :TernDefPreview<cr>
+nmap <leader>tsd :TernDefSplit<cr>
+nmap <leader>ttd :TernDefTab<cr>
+nmap <leader>tr :TernRefs<cr>
+nmap <leader>tR :TernRename<cr>
 
 "" Syntastic
 set statusline+=%#warningmsg#
