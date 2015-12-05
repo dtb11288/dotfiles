@@ -127,6 +127,9 @@ syntax on
 set t_Co=256
 set cursorline
 
+"" Terminal
+tnoremap <Esc> <C-\><C-n>
+
 "" Search
 set grepprg=ag\ --nogroup\ --nocolor
 set hlsearch
