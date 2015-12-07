@@ -239,9 +239,6 @@ endfunction
 "" Tagbar
 map <F8> :TagbarToggle<CR>
 
-"" Tasklist
-map <F4> :TaskList<CR>
-
 "" Airline
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
