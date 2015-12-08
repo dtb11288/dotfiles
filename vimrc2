@@ -48,6 +48,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'vim-scripts/Smart-Tabs'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
+Plug 'djoshea/vim-autoread'
 
 "" Hex
 Plug 'fidian/hexmode'
@@ -127,6 +128,21 @@ set laststatus=2
 syntax on
 set t_Co=256
 set cursorline
+set ttyfast " u got a fast terminal
+set lazyredraw " to avoid scrolling problems
+set showmatch
+
+"" Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+"" Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 "" Terminal
 tnoremap <Esc> <C-\><C-n>
@@ -142,7 +158,8 @@ colorscheme colorsbox-material
 "" Tabs
 nnoremap <silent> <tab> :bnext<CR>
 nnoremap <silent> <s-tab> :bprevious<CR>
-nnoremap <silent> <leader>bq :bp <BAR> bd #<CR>
+"nnoremap <silent> <leader>bq :bp <BAR> bd! #<CR>
+nnoremap <silent> <leader>bq :bp<bar>sp<bar>bn<bar>bd!<CR>
 nnoremap <silent> <leader>bn :enew<CR>
 
 "" Set working directory
