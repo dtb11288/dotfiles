@@ -30,6 +30,8 @@ Plug 'majutsushi/tagbar'
 "Plug 'mbbill/undotree'
 Plug 'simnalamburt/vim-mundo'
 Plug 'qpkorr/vim-bufkill'
+Plug 'vim-scripts/confirm-quit'
+Plug 'tpope/vim-vinegar'
 
 "" Auto complete
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
@@ -75,7 +77,7 @@ Plug 'gregsexton/gitv'
 Plug 'renyard/vim-git-flow-format'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'jreybert/vimagit'
+Plug 'jreybert/vimagit', { 'branch': 'next' }
 
 "" Search
 Plug 'haya14busa/incsearch.vim'
@@ -216,6 +218,52 @@ endfunction
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call MakeSession()
 
+" Toggle Vexplore with Ctrl-E
+fun! VexToggle()
+  if exists("t:vex_buf_nr")
+    call VexClose()
+  else
+    call VexOpen()
+  endif
+endf
+fun! VexOpen()
+  let g:netrw_browse_split=4    " open files in previous window
+  let vex_width = 25
+
+  execute "Vexplore " . getcwd()
+  let t:vex_buf_nr = bufnr("%")
+  wincmd H
+
+  call VexSize(vex_width)
+endf
+fun! VexClose()
+  let cur_win_nr = winnr()
+  let target_nr = ( cur_win_nr == 1 ? winnr("#") : cur_win_nr )
+
+  1wincmd w
+  close
+  unlet t:vex_buf_nr
+
+  execute (target_nr - 1) . "wincmd w"
+  call NormalizeWidths()
+endf
+fun! VexSize(vex_width)
+  execute "vertical resize" . a:vex_width
+  set winfixwidth
+  call NormalizeWidths()
+endf
+fun! NormalizeWidths()
+  let eadir_pref = &eadirection
+  set eadirection=hor
+  set equalalways! equalalways!
+  let &eadirection = eadir_pref
+endf
+map <silent> <C-E> :call VexToggle()<CR>
+let g:netrw_liststyle=3         " thin (change to 3 for tree)
+let g:netrw_banner=0            " no banner
+let g:netrw_altv=1              " open files on right
+let g:netrw_preview=1           " open previews vertically
+
 "" Whitespace
 set nowrap
 set tabstop=4
@@ -274,6 +322,7 @@ noremap <leader>e :CtrlPMRUFiles<CR>
 "let g:ctrlp_map = '<leader>e'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_dont_split = 'NERD_tree_2'
 
 "" Tern on vim
 let g:tern_show_argument_hints = 'on_hold'
@@ -294,7 +343,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_aggregate_errors = 1
 
