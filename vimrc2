@@ -33,6 +33,9 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'vim-scripts/confirm-quit'
 Plug 'tpope/vim-vinegar'
 
+"" REST tool
+Plug 'diepm/vim-rest-console'
+
 "" Auto complete
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
