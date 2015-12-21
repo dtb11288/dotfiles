@@ -258,7 +258,7 @@ fun! NormalizeWidths()
   set equalalways! equalalways!
   let &eadirection = eadir_pref
 endf
-map <silent> <C-E> :call VexToggle()<CR>
+map <silent> <F3> :call VexToggle()<CR>
 let g:netrw_liststyle=3         " thin (change to 3 for tree)
 let g:netrw_banner=0            " no banner
 let g:netrw_altv=1              " open files on right
@@ -346,6 +346,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_aggregate_errors = 1
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 " incsearch
 map /  <Plug>(incsearch-forward)
