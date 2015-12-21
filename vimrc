@@ -415,3 +415,5 @@ vmap f/ <Plug>CtrlSFVwordPath
 "" Indent
 set list lcs=tab:\¦\ "need space at the end
 
+"" Vim REST
+let g:vrc_cookie_jar = '/tmp/vrc_cookie_jar'
