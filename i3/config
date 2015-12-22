@@ -167,7 +167,7 @@ for_window [class="^.*"] border pixel 1
 
 # system mode
 set $Locker $HOME/.i3/lock/lock-i3
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id $Locker "logout", mode "default"
@@ -192,7 +192,8 @@ bar {
     tray_output       primary
 
     #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:Terminus 15px
+    font pango:Terminus 14px
+
     colors {
         background #000000
         statusline #ffffff
