@@ -74,6 +74,10 @@ Plug 'pangloss/vim-javascript'
 Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
 
+"" I3
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'smancill/conky-syntax.vim'
+
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
