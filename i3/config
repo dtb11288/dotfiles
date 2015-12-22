@@ -120,8 +120,6 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
@@ -167,15 +165,27 @@ bindsym $mod+r mode "resize"
 # disable title bar
 for_window [class="^.*"] border pixel 1
 
-# lock screen
-bindsym $mod+Shift+p exec "$HOME/.i3/lock/lock-i3"
-exec --no-startup-id xautolock -time 10 -locker "$HOME/.i3/lock/lock-i3" &
+# system mode
+set $Locker $HOME/.i3/lock/lock-i3
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id $Locker "logout", mode "default"
+    bindsym s exec --no-startup-id $Locker "suspend", mode "default"
+    bindsym r exec --no-startup-id $Locker "reboot", mode "default"
+    bindsym Shift+s exec --no-startup-id $Locker "shutdown", mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Delete mode "$mode_system"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
     #status_command    i3status
-    status_command    "$HOME/.i3/conky-i3bar"
+    status_command    $HOME/.i3/conky-i3bar
     position          top
     #mode              hide
     workspace_buttons yes
@@ -193,3 +203,6 @@ bar {
         urgent_workspace   #ffffff #900000
     }
 }
+
+# auto lock screen
+exec --no-startup-id xautolock -time 10 -locker "$HOME/.i3/lock/lock-i3" &
