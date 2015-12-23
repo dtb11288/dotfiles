@@ -20,9 +20,12 @@ TEXT
 {"full_text":"${else}"},\
 {"full_text":"${endif}${endif}${endif}${endif}"},\
 {"full_text":"°C","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
-# Download:
+# Wifi:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"↓","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${wireless_essid wlp2s0}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
+{"full_text":"${addr wlp2s0}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
+# Download:
+{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${if_match ${downspeedf wlp2s0}<100}${downspeed wlp2s0}","color":"\#AAF096","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
 {"full_text":"${if_match ${downspeedf wlp2s0}<300}${downspeed wlp2s0}","color":"\#68B1E8","separator":false,"separator_block_width":6},\
@@ -34,7 +37,7 @@ TEXT
 {"full_text":"${if_match ${downspeedf wlp2s0}>=1000}${downspeed wlp2s0}","color":"\#FF3333","separator":false,"separator_block_width":6},\
 {"full_text":"${endif}${endif}${endif}${endif}${endif}"},\
 # Upload:
-{"full_text":"↑","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${if_match ${upspeedf wlp2s0}<15}${upspeed wlp2s0}","color":"\#AAF096","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
 {"full_text":"${if_match ${upspeedf wlp2s0}<35}${upspeed wlp2s0}","color":"\#9470DB","separator":false,"separator_block_width":6},\
@@ -63,15 +66,15 @@ TEXT
 {"full_text":"${endif}${endif}${endif}${endif}"},\
 {"full_text":"%","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Weather:
-{"full_text":"☂","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"${execi 300 ~/bin/weather_simple "EUR|UK|UK241|LONDON"}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
+{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${execi 300 ~/.i3/conky/weather "ASI|VN|VM017|HANOI"}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Mail:
-{"full_text":"✉","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"${if_match ${execpi 60 python ~/bin/gmail.py}<=0}${execpi 60 python ~/bin/gmail.py}","color":"\#AAF096","separator":false,"separator_block_width":6},\
+{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}<=0}${execpi 60 ~/.i3/conky/mail}","color":"\#AAF096","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
-{"full_text":"${if_match ${execpi 60 python ~/bin/gmail.py}<2}${execpi 60 python ~/bin/gmail.py}","color":"\#F0DC64","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}<2}${execpi 60 ~/.i3/conky/mail}","color":"\#F0DC64","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
-{"full_text":"${if_match ${execpi 60 python ~/bin/gmail.py}>2}${execpi 60 python ~/bin/gmail.py}","color":"\#FF9933","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}>2}${execpi 60 ~/.i3/conky/mail}","color":"\#FF9933","separator":false,"separator_block_width":6},\
 {"full_text":"${endif}${endif}${endif}"},\
 # Battery:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
@@ -83,6 +86,6 @@ TEXT
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${time %D}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Time:
-{"full_text":"ⓣ","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"${time %R}","color":"\#EEEEEE","separator":false}\
+{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${time %R%P}","color":"\#EEEEEE","separator":false}\
 ],

@@ -185,7 +185,7 @@ bindsym $mod+Delete mode "$mode_system"
 # finds out, if available)
 bar {
     #status_command    i3status
-    status_command    $HOME/.i3/conky-i3bar
+    status_command    $HOME/.i3/conky/conky-i3bar
     position          top
     #mode              hide
     workspace_buttons yes
