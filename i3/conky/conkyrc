@@ -67,15 +67,13 @@ TEXT
 {"full_text":"%","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Weather:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"${execi 300 ~/.i3/conky/weather "ASI|VN|VM017|HANOI"}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
+{"full_text":"${execi 300 ~/.i3/conky/weather "ASI|VN|VM017|HANOI" | sed '$s/C/°C/'}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Mail:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}<=0}${execpi 60 ~/.i3/conky/mail}","color":"\#AAF096","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
-{"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}<2}${execpi 60 ~/.i3/conky/mail}","color":"\#F0DC64","separator":false,"separator_block_width":6},\
-{"full_text":"${else}"},\
-{"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}>2}${execpi 60 ~/.i3/conky/mail}","color":"\#FF9933","separator":false,"separator_block_width":6},\
-{"full_text":"${endif}${endif}${endif}"},\
+{"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}>0}${execpi 60 ~/.i3/conky/mail}","color":"\#FF9933","separator":false,"separator_block_width":6},\
+{"full_text":"${endif}${endif}"},\
 # Battery:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${battery_percent}%","color":"\#EEEEEE","separator":false},\
@@ -84,8 +82,8 @@ TEXT
 {"full_text":"${execi 1 amixer -c 1 get Master,0 | egrep -o '([0-9]+%|\[(on|off)\])' | sed ':a;N;$!ba;s/\n/ /g'}","color":"\#EEEEEE","separator":false},\
 # Date:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"${time %D}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
+{"full_text":"${time %a, %b %d, %Y}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Time:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"${time %R%P}","color":"\#EEEEEE","separator":false}\
+{"full_text":"${time %I:%M%P}","color":"\#EEEEEE","separator":false}\
 ],
