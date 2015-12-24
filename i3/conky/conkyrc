@@ -82,7 +82,7 @@ TEXT
 {"full_text":"${execi 1 amixer -c 1 get Master,0 | egrep -o '([0-9]+%|\[(on|off)\])' | sed ':a;N;$!ba;s/\n/ /g'}","color":"\#EEEEEE","separator":false},\
 # Date:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"${time %a, %b %d, %Y}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
+{"full_text":"${time %a %b %d %Y}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Time:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${time %I:%M%P}","color":"\#EEEEEE","separator":false}\

@@ -30,7 +30,7 @@ Plug 'majutsushi/tagbar'
 "Plug 'mbbill/undotree'
 Plug 'simnalamburt/vim-mundo'
 Plug 'qpkorr/vim-bufkill'
-Plug 'vim-scripts/confirm-quit'
+"Plug 'vim-scripts/confirm-quit'
 Plug 'tpope/vim-vinegar'
 
 "" REST tool

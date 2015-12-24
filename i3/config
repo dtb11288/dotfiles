@@ -227,14 +227,20 @@ client.unfocused        $grey       $grey       $lightgrey  $grey
 client.urgent           $red        $red        $black      $red
 client.background       $back
 
+# change resolution
+exec --no-startup-id xrandr --output eDP1 --primary --mode 1920x1080
+
 # auto lock screen after 10 minutes
 exec --no-startup-id xautolock -time 10 -locker "$HOME/.i3/lock/lock-i3" -lockaftersleep &
 
 # turn off screen after 5 minutes
 exec --no-startup-id xset dpms 300
 
-# conky desktop
-exec --no-startup-id conky -c "$HOME/.i3/conky/Modern1.0/Modern1.1.0" &
-
 # disable touch screen
 exec --no-startup-id xinput disable 10
+
+# wallpaper
+exec --no-startup-id sleep 1 && feh --bg-fill "$HOME/.wallpaper"
+
+# conky desktop
+exec --no-startup-id sleep 1 && conky -c "$HOME/.i3/conky/Modern1.0/Modern1.1.0" &
