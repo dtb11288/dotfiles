@@ -34,5 +34,3 @@ if [[ "$1" == "suspend" ]]; then
 	exit 1;
 fi
 
-# Turn the screen off after a delay.
-sleep 60; pgrep i3lock && xset dpms force off
