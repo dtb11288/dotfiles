@@ -18,6 +18,12 @@ if [[ "$1" == "logout" ]]; then
 	exit 1;
 fi
 
+# off screen
+if [[ "$1" == "off" ]]; then
+	xset dpms force off;
+	exit 1;
+fi
+
 # Take a screenshot
 scrot /tmp/screen_locked.png
 

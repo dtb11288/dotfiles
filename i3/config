@@ -167,9 +167,10 @@ for_window [class="^.*"] border pixel 1
 
 # system mode
 set $Locker $HOME/.i3/lock/lock-i3
-set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+set $mode_system System (o) off, (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym o exec --no-startup-id $Locker "off", mode "default"
     bindsym e exec --no-startup-id $Locker "logout", mode "default"
     bindsym s exec --no-startup-id $Locker "suspend", mode "default"
     bindsym r exec --no-startup-id $Locker "reboot", mode "default"
