@@ -37,7 +37,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'diepm/vim-rest-console'
 
 "" Auto complete
-Plug 'Valloric/YouCompleteMe', {'do': './install.py --tern-completer'}
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'scrooloose/syntastic'
 Plug 'jiangmiao/auto-pairs'
@@ -352,21 +352,19 @@ let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:tern_show_argument_hints = 'on_move'
 let g:tern_show_signature_in_pum = 1
 let g:tern_map_keys = 1
-"nmap <leader>td  :TernDef<cr>
-"nmap <leader>tb  :TernDocBrowse<cr>
-"nmap <leader>tt  :TernType<cr>
-"nmap <leader>to  :TernDoc<cr>
-"nmap <leader>tpd :TernDefPreview<cr>
-"nmap <leader>tsd :TernDefSplit<cr>
-"nmap <leader>ttd :TernDefTab<cr>
-"nmap <leader>tr  :TernRefs<cr>
-"nmap <leader>tR  :TernRename<cr>
+nmap <leader>td  :TernDef<cr>
+nmap <leader>tb  :TernDocBrowse<cr>
+nmap <leader>tt  :TernType<cr>
+nmap <leader>to  :TernDoc<cr>
+nmap <leader>tpd :TernDefPreview<cr>
+nmap <leader>tsd :TernDefSplit<cr>
+nmap <leader>ttd :TernDefTab<cr>
+nmap <leader>tr  :TernRefs<cr>
+nmap <leader>tR  :TernRename<cr>
 
 "" Youcompleteme
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-"let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
 
 "" Syntastic
