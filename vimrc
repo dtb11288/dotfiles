@@ -37,7 +37,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'diepm/vim-rest-console'
 
 "" Auto complete
-Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+Plug 'Valloric/YouCompleteMe', {'do': './install.py --tern-completer'}
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'scrooloose/syntastic'
 Plug 'jiangmiao/auto-pairs'
@@ -69,6 +69,10 @@ Plug 'digitaltoad/vim-jade'
 Plug 'walm/jshint.vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
+
+"" HTML
+Plug 'othree/html5-syntax.vim'
+Plug 'othree/html5.vim'
 
 "" CSS
 Plug 'ap/vim-css-color'
@@ -140,6 +144,7 @@ set cursorline
 set ttyfast " u got a fast terminal
 set lazyredraw " to avoid scrolling problems
 set showmatch
+set noshowmode
 
 "" Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -193,6 +198,18 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+
+"" show preview windows at bottom
+function! PreviewDown()
+   if !&previewwindow
+       silent! wincmd P
+   endif
+   if &previewwindow
+       silent! wincmd J
+       silent! wincmd p
+   endif
+endf
+au BufWinEnter * call PreviewDown()
 
 "" Session
 " automatically load and save session on start/exit.
@@ -332,17 +349,25 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
 
 "" Tern on vim
-let g:tern_show_argument_hints = 'on_hold'
+let g:tern_show_argument_hints = 'on_move'
+let g:tern_show_signature_in_pum = 1
 let g:tern_map_keys = 1
-nmap <leader>td :TernDef<cr>
-nmap <leader>tb :TernDocBrowse<cr>
-nmap <leader>tt :TernType<cr>
-nmap <leader>to :TernDoc<cr>
-nmap <leader>tpd :TernDefPreview<cr>
-nmap <leader>tsd :TernDefSplit<cr>
-nmap <leader>ttd :TernDefTab<cr>
-nmap <leader>tr :TernRefs<cr>
-nmap <leader>tR :TernRename<cr>
+"nmap <leader>td  :TernDef<cr>
+"nmap <leader>tb  :TernDocBrowse<cr>
+"nmap <leader>tt  :TernType<cr>
+"nmap <leader>to  :TernDoc<cr>
+"nmap <leader>tpd :TernDefPreview<cr>
+"nmap <leader>tsd :TernDefSplit<cr>
+"nmap <leader>ttd :TernDefTab<cr>
+"nmap <leader>tr  :TernRefs<cr>
+"nmap <leader>tR  :TernRename<cr>
+
+"" Youcompleteme
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_add_preview_to_completeopt = 0
+set completeopt-=preview
 
 "" Syntastic
 set statusline+=%#warningmsg#
