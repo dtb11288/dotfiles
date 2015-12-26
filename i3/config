@@ -30,7 +30,8 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt -e tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -190,7 +191,7 @@ bar {
     workspace_buttons yes
     tray_output       primary
 
-    font pango:Terminus, FontAwesome 14
+    font pango:FontAwesome 12
 
     colors
     {
@@ -223,6 +224,9 @@ client.focused_inactive $grey       $grey       $lightgrey  $grey
 client.unfocused        $grey       $grey       $lightgrey  $grey
 client.urgent           $red        $red        $black      $red
 client.background       $back
+
+# Xresource
+exec --no-startup-id xrdb "$HOME/.Xresources"
 
 # change resolution
 exec --no-startup-id xrandr --output eDP1 --primary --mode 1920x1080

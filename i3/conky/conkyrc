@@ -67,7 +67,7 @@ TEXT
 {"full_text":"%","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Weather:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"${execi 300 ~/.i3/conky/weather "ASI|VN|VM017|HANOI" | sed '$s/C/°C/'}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
+{"full_text":"${execi 300 ~/.i3/conky/weather "ASI|VN|VM017|HANOI" | sed 's/C$/°C/'}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Mail:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}<=0}${execpi 60 ~/.i3/conky/mail}","color":"\#AAF096","separator":false,"separator_block_width":6},\

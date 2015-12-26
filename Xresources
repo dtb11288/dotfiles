@@ -31,7 +31,7 @@ URxvt*background:Black
 
 ! fonts
 ! run "fc-list" for a list of available fonts
-URxvt*font: xft:Terminus:pixelsize=9
+URxvt*font: xft:Roboto Mono for Powerline:size=10,xft:Dejavu Sans Mono For Powerline:Regular,xft:Awesome:Regular,xft:FreeSerif:style=Regular
 
 URxvt*scrollBar: False
 URxvt*scrollTtyOutput: False
