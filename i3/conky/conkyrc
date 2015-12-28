@@ -76,7 +76,10 @@ TEXT
 {"full_text":"${endif}${endif}"},\
 # Battery:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
-{"full_text":"${battery_percent}%","color":"\#EEEEEE","separator":false},\
+{"full_text":"${if_match ${battery_percent}<=10}${battery_percent}%","color":"\#FF3333","separator":false,"separator_block_width":0},\
+{"full_text":"${else}"},\
+{"full_text":"${if_match ${battery_percent}>10}${battery_percent}%","color":"\#EEEEEE","separator":false,"separator_block_width":0},\
+{"full_text":"${endif}${endif}"},\
 # Volume:
 {"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${execi 1 amixer get Master,0 | egrep -o '([0-9]+%|\[(on|off)\])' | sed ':a;N;$!ba;s/\n/ /g'}","color":"\#EEEEEE","separator":false},\
