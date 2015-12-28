@@ -37,7 +37,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'diepm/vim-rest-console'
 
 "" Auto complete
-Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+Plug 'Valloric/YouCompleteMe', {'do': 'python2 install.py'}
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'scrooloose/syntastic'
 Plug 'jiangmiao/auto-pairs'
