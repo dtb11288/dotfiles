@@ -55,6 +55,9 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
 
+"" CSV
+Plug 'chrisbra/csv.vim'
+
 "" Hex
 Plug 'fidian/hexmode'
 
