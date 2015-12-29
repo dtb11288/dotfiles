@@ -224,6 +224,9 @@ client.unfocused        $grey       $grey       $lightgrey  $grey
 client.urgent           $red        $red        $black      $red
 client.background       $back
 
+# aria2
+exec --no-startup-id aria2c
+
 # Xresource
 exec --no-startup-id xrdb "$HOME/.Xresources"
 
