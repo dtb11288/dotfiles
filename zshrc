@@ -49,7 +49,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow git-extra command-not-found npm sudo vi-mode)
+plugins=(git git-flow git-extra command-not-found npm sudo vi-mode arch cp node tmux systemd)
 
 # User configuration
 
@@ -86,3 +86,5 @@ source $ZSH/oh-my-zsh.sh
 if [[ -r /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
 	source /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
+
+export KEYTIMEOUT=1

@@ -148,6 +148,7 @@ set ttyfast " u got a fast terminal
 set lazyredraw " to avoid scrolling problems
 set showmatch
 set noshowmode
+set updatetime=250
 
 "" Copy to clipboard
 vnoremap  <leader>y  "+y
