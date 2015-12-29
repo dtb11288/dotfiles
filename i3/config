@@ -230,6 +230,9 @@ exec --no-startup-id xrdb "$HOME/.Xresources"
 # change resolution
 exec --no-startup-id xrandr --output eDP1 --primary --mode 1920x1080
 
+# set keyboard speed
+exec --no-startup-id xset r rate 200 25
+
 # filter screen
 exec --no-startup-id redshift &
 
@@ -244,3 +247,4 @@ exec --no-startup-id sleep 1 && feh --bg-fill "$HOME/.wallpaper"
 
 # conky desktop
 exec --no-startup-id sleep 1 && conky -c "$HOME/.i3/conky/Modern1.0/Modern1.1.0" &
+
