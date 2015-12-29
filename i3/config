@@ -239,9 +239,6 @@ exec --no-startup-id xautolock -time 10 -locker "$HOME/.i3/lock/lock-i3" -lockaf
 # turn off screen after 5 minutes
 exec --no-startup-id xset dpms 300
 
-# disable touch screen
-exec --no-startup-id xinput disable 10
-
 # wallpaper
 exec --no-startup-id sleep 1 && feh --bg-fill "$HOME/.wallpaper"
 

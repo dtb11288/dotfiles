@@ -349,7 +349,7 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
 
 "" Tern on vim
-let g:tern_show_argument_hints = 'on_move'
+let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
 let g:tern_map_keys = 1
 nmap <leader>td  :TernDef<cr>
