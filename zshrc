@@ -1,90 +1,49 @@
-# Path to your oh-my-zsh installation.
-  export ZSH=/home/binh/.oh-my-zsh
+# export zplug home
+ZPLUG_HOME="$HOME/.zplug"
+ZPLUG_GIT="b4b4r07/zplug"
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+# clone zplug
+if [[ ! -d $ZPLUG_HOME ]]; then
+	git clone "https://github.com/b4b4r07/zplug.git" "$ZPLUG_HOME/repos/$ZPLUG_GIT";
+	ln -s "$ZPLUG_HOME/repos/$ZPLUG_GIT/zplug" "$ZPLUG_HOME/zplug"
+fi
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+source $ZPLUG_HOME/zplug
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# zplug manage itself
+zplug "$ZPLUG_GIT"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# oh-my-zsh plugins
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/git-flow", from:oh-my-zsh
+zplug "plugins/git-extra", from:oh-my-zsh
+zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "plugins/sudo", from:oh-my-zsh
+zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "plugins/arch", from:oh-my-zsh
+zplug "plugins/tmux", from:oh-my-zsh
+zplug "plugins/systemd", from:oh-my-zsh
+zplug "plugins/cp", from:oh-my-zsh
+zplug "plugins/node", from:oh-my-zsh
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# then, source plugins and add commands to $PATH
+zplug load --verbose
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow git-extra command-not-found npm sudo vi-mode arch cp node tmux systemd)
-
-# User configuration
-
-  export PATH="$HOME/opt/bin:$HOME/opt/mongodb/bin:$HOME/opt/elasticsearch/bin:$HOME/opt/node/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# load powerline
 if [[ -r /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
 	source /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
+# set timeout key for zsh
 export KEYTIMEOUT=1
+
+# export PATH
+export PATH="$PATH:$HOME/opt/bin:$HOME/opt/mongodb/bin:$HOME/opt/elasticsearch/bin:$HOME/opt/node/bin"
