@@ -19,7 +19,7 @@ zplug "plugins/git-flow", from:oh-my-zsh
 zplug "plugins/git-extra", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
-#zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/arch", from:oh-my-zsh
 zplug "plugins/tmux", from:oh-my-zsh
 zplug "plugins/systemd", from:oh-my-zsh
@@ -28,12 +28,6 @@ zplug "plugins/node", from:oh-my-zsh
 
 # after executing compinit command and sourcing other plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice: 10
-
-# vim mode
-zplug "sharat87/zsh-vim-mode"
-
-# zsh completions
-zplug "zsh-users/zsh-completions"
 
 # install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
