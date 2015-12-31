@@ -30,7 +30,8 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal -e tmux
+#bindsym $mod+Return exec i3-sensible-terminal -e tmux
+bindsym $mod+Return exec sakura -e tmux
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -239,11 +240,11 @@ exec --no-startup-id xset r rate 200 25
 # filter screen
 exec --no-startup-id redshift &
 
-# auto lock screen after 10 minutes
-exec --no-startup-id xautolock -time 10 -locker "$HOME/.i3/lock/lock-i3" -lockaftersleep &
-
 # turn off screen after 5 minutes
 exec --no-startup-id xset dpms 300
+
+# auto lock screen after 10 minutes
+exec --no-startup-id xautolock -detectsleep -time 10 -locker "$HOME/.i3/lock/lock-i3" &
 
 # wallpaper
 exec --no-startup-id sleep 1 && feh --bg-fill "$HOME/.wallpaper"

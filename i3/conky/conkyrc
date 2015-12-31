@@ -13,7 +13,7 @@ TEXT
 {"full_text":"${wireless_essid wlp2s0}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 {"full_text":"${addr wlp2s0}","color":"\#EEEEEE","separator":false,"separator_block_width":6},\
 # Download:
-{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${if_match ${downspeedf wlp2s0}<100}${downspeed wlp2s0}","color":"\#AAF096","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
 {"full_text":"${if_match ${downspeedf wlp2s0}<300}${downspeed wlp2s0}","color":"\#68B1E8","separator":false,"separator_block_width":6},\
@@ -25,7 +25,7 @@ TEXT
 {"full_text":"${if_match ${downspeedf wlp2s0}>=1000}${downspeed wlp2s0}","color":"\#FF3333","separator":false,"separator_block_width":6},\
 {"full_text":"${endif}${endif}${endif}${endif}${endif}"},\
 # Upload:
-{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${if_match ${upspeedf wlp2s0}<15}${upspeed wlp2s0}","color":"\#AAF096","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
 {"full_text":"${if_match ${upspeedf wlp2s0}<35}${upspeed wlp2s0}","color":"\#9470DB","separator":false,"separator_block_width":6},\
@@ -75,7 +75,7 @@ TEXT
 {"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}>0}${execpi 60 ~/.i3/conky/mail}","color":"\#FF9933","separator":false,"separator_block_width":6},\
 {"full_text":"${endif}${endif}"},\
 # Battery:
-{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${if_match ${battery_percent}<=10}${battery_percent}%","color":"\#FF3333","separator":false,"separator_block_width":0},\
 {"full_text":"${else}"},\
 {"full_text":"${if_match ${battery_percent}>10}${battery_percent}%","color":"\#EEEEEE","separator":false,"separator_block_width":0},\
