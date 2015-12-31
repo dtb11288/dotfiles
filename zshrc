@@ -4,7 +4,7 @@ ZPLUG_GIT="b4b4r07/zplug"
 
 # clone zplug
 if [[ ! -d $ZPLUG_HOME ]]; then
-	git clone "https://github.com/b4b4r07/zplug.git" "$ZPLUG_HOME/repos/$ZPLUG_GIT";
+	git clone "https://github.com/$ZPLUG_GIT.git" "$ZPLUG_HOME/repos/$ZPLUG_GIT";
 	ln -s "$ZPLUG_HOME/repos/$ZPLUG_GIT/zplug" "$ZPLUG_HOME/zplug"
 fi
 
@@ -19,7 +19,6 @@ zplug "plugins/git-flow", from:oh-my-zsh
 zplug "plugins/git-extra", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
-zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/arch", from:oh-my-zsh
 zplug "plugins/tmux", from:oh-my-zsh
 zplug "plugins/systemd", from:oh-my-zsh
@@ -50,3 +49,4 @@ export KEYTIMEOUT=1
 
 # export PATH
 export PATH="$PATH:$HOME/opt/bin:$HOME/opt/mongodb/bin:$HOME/opt/elasticsearch/bin:$HOME/opt/node/bin"
+
