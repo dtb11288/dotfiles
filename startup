@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [[ -r $HOME/.xps_13 ]]; then
+	$HOME/.xps_13
+fi
+
+# wallpaper
+sleep 1 && feh --bg-fill "$HOME/.wallpaper"
+
+# conky desktop
+sleep 1 && conky -c "$HOME/.i3/conky/Modern1.0/Modern1.1.0" &
+
+# aria2
+aria2c
+
+# Xresource
+xrdb "$HOME/.Xresources"
+
+# set keyboard speed
+xset r rate 200 25
+
+# filter screen
+redshift &
+
+# turn off screen after 5 minutes
+xset dpms 300
+
+# auto lock screen after 10 minutes
+xautolock -detectsleep -time 10 -locker "$HOME/.i3/lock/lock-i3" &
+
