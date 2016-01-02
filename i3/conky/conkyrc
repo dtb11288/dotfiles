@@ -75,11 +75,11 @@ TEXT
 {"full_text":"${if_match ${execpi 60 ~/.i3/conky/mail}>0}${execpi 60 ~/.i3/conky/mail}","color":"\#FF9933","separator":false,"separator_block_width":6},\
 {"full_text":"${endif}${endif}"},\
 # Battery:
-{"full_text":"${if_match ${battery_percent}>75}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${battery_percent}>90}","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
-{"full_text":"${if_match ${battery_percent}>50}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${battery_percent}>60}","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
-{"full_text":"${if_match ${battery_percent}>25}","color":"\#888888","separator":false,"separator_block_width":6},\
+{"full_text":"${if_match ${battery_percent}>30}","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
 {"full_text":"${if_match ${battery_percent}>10}","color":"\#888888","separator":false,"separator_block_width":6},\
 {"full_text":"${else}"},\
