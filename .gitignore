@@ -1,0 +1,6 @@
+nvim/bundle/
+nvim/sessions/
+nvim/undofiles/
+ranger/bookmarks
+ranger/history
+ranger/tagged
