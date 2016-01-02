@@ -48,6 +48,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
 Plug 'tmhedberg/matchit'
+Plug 'osyo-manga/vim-over'
+Plug 'hlissner/vim-multiedit'
 
 " csv
 Plug 'chrisbra/csv.vim'
