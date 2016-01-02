@@ -196,7 +196,7 @@ colorscheme colorsbox-material
 " buffers
 nnoremap <silent> <tab> :bnext<CR>
 nnoremap <silent> <s-tab> :bprevious<CR>
-nnoremap <silent> <leader>bq :bp<bar>sp<bar>bn<bar>bd!<CR>
+nnoremap <silent> <leader>bq :BP<bar>sp<bar>BN<bar>BD!<CR>
 nnoremap <silent> <leader>bn :enew<CR>
 
 " set working directory
@@ -367,7 +367,7 @@ noremap <leader>bl :CtrlPBuffer<CR>
 noremap <leader>e :CtrlPMRUFiles<CR>
 "let g:ctrlp_map = '<leader>e'
 let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g "'
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
 
 " tern on vim
@@ -458,7 +458,7 @@ nmap f/ <Plug>CtrlSFPrompt
 vmap f/ <Plug>CtrlSFVwordPath
 
 " indent
-exec "set list lcs=tab:\¦\ "
+set list lcs=tab:\¦\ " need a space here
 
 " rest
 let g:vrc_cookie_jar = '/tmp/vrc_cookie_jar'
