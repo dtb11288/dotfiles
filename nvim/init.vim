@@ -196,7 +196,7 @@ colorscheme colorsbox-material
 " buffers
 nnoremap <silent> <tab> :bnext<CR>
 nnoremap <silent> <s-tab> :bprevious<CR>
-nnoremap <silent> <leader>bq :BP<bar>sp<bar>BN<bar>BD!<CR>
+nnoremap <silent> <leader>bq :BD<CR>
 nnoremap <silent> <leader>bn :enew<CR>
 
 " set working directory
