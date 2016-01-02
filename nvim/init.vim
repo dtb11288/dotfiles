@@ -26,7 +26,7 @@ Plug 'majutsushi/tagbar'
 Plug 'simnalamburt/vim-mundo'
 Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-vinegar'
-Plug 'krisajenkins/vim-pipe'
+"Plug 'krisajenkins/vim-pipe'
 
 " auto complete
 Plug 'Valloric/YouCompleteMe', {'do': 'python2 install.py'}
@@ -174,10 +174,10 @@ set noshowmode
 set updatetime=250
 
 " copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
+vnoremap <leader>y  "+y
+nnoremap <leader>Y  "+yg_
+nnoremap <leader>y  "+y
+nnoremap <leader>yy "+yy
 
 " paste from clipboard
 nnoremap <leader>p "+p
@@ -194,10 +194,10 @@ set ignorecase
 colorscheme colorsbox-material
 
 " buffers
-nnoremap <silent> <tab> :bnext<CR>
-nnoremap <silent> <s-tab> :bprevious<CR>
-nnoremap <silent> <leader>bq :BD<CR>
-nnoremap <silent> <leader>bn :enew<CR>
+nnoremap <silent><tab> :bnext<CR>
+nnoremap <silent><s-tab> :bprevious<CR>
+nnoremap <silent><leader>bq :BD<CR>
+nnoremap <silent><leader>bn :enew<CR>
 
 " set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -303,7 +303,7 @@ fun! NormalizeWidths()
     set equalalways! equalalways!
     let &eadirection = eadir_pref
 endf
-map <silent> <F3> :call VexToggle()<CR>
+map <silent><F3> :call VexToggle()<CR>
 let g:netrw_liststyle=3         " thin (change to 3 for tree)
 let g:netrw_banner=0            " no banner
 let g:netrw_altv=1              " open files on right
@@ -325,8 +325,8 @@ set list
 " plugins configuration
 "*****************************************************************************
 " NERDTree
-noremap <F2> :NERDTreeToggle<CR>
-nnoremap <silent> <leader><F2> :NERDTreeFind<CR>
+noremap <silent><F2> :NERDTreeToggle<CR>
+nnoremap <silent><leader><F2> :NERDTreeFind<CR>
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
@@ -431,7 +431,7 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " gundo
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <silent><F5> :GundoToggle<CR>
 let g:gundo_right = 1
 
 " better-whitespaces
@@ -462,3 +462,4 @@ set list lcs=tab:\¦\ " need a space here
 
 " rest
 let g:vrc_cookie_jar = '/tmp/vrc_cookie_jar'
+
