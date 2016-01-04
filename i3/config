@@ -225,5 +225,3 @@ client.unfocused        $grey       $grey       $lightgrey  $grey
 client.urgent           $red        $red        $black      $red
 client.background       $back
 
-# startup script
-exec --no-startup-id $HOME/.startup
