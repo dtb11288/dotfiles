@@ -15,7 +15,7 @@ zplug "$ZPLUG_GIT"
 
 # oh-my-zsh plugins
 zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/git-flow", from:oh-my-zsh
+zplug "plugins/git-flow-avh", from:oh-my-zsh
 zplug "plugins/git-extra", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh

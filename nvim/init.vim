@@ -77,6 +77,9 @@ Plug 'othree/html5.vim'
 Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
 
+" markdown
+Plug 'gabrielelana/vim-markdown'
+
 " i3
 Plug 'PotatoesMaster/i3-vim-syntax'
 
@@ -254,7 +257,7 @@ function! MakeSession()
 endfunction
 function! LoadSession()
     if argc() == 0
-        let g:sessiondir = s:vim_home."/sessions" . getcwd()
+        let g:sessiondir = s:vim_home."/sessions".getcwd()
         let g:sessionfile = g:sessiondir."/session.vim"
         if (filereadable(g:sessionfile))
             exe "source ".g:sessionfile

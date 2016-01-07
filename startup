@@ -5,16 +5,21 @@ if [[ -r $HOME/.optional ]]; then
 fi
 
 # wallpaper
-sleep 1 && feh --bg-fill "$HOME/.wallpaper"
+#sleep 1 && feh --bg-fill "$HOME/.wallpaper"
+feh --bg-fill "$HOME/.wallpaper"
 
 # conky desktop
-sleep 1 && conky -c "$HOME/.i3/conky/Modern1.0/Modern1.1.0" &
+#sleep 1 && conky -c "$HOME/.i3/conky/Modern1.0/Modern1.1.0" &
 
 # filter screen
 redshift &
+redshift-gtk &
 
 # aria2
 aria2c
+
+# ibus
+ibus-daemon -d
 
 # Xresource
 xrdb "$HOME/.Xresources"
@@ -30,4 +35,10 @@ xautolock -detectsleep -time 10 -locker "$HOME/.i3/lock/lock-i3" &
 
 # polkit
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# udiskie automount
+udiskie -C0ansf $(which ranger) &
+
+# notification daemon
+dunst &
 
