@@ -48,5 +48,5 @@ fi
 export KEYTIMEOUT=1
 
 # export PATH
-export PATH="$PATH:$HOME/opt/bin:$HOME/opt/mongodb/bin:$HOME/opt/elasticsearch/bin:$HOME/opt/node/bin"
+export PATH="$PATH:$HOME/opt/bin"
 
