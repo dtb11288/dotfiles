@@ -50,3 +50,5 @@ export KEYTIMEOUT=1
 # export PATH
 export PATH="$PATH:$HOME/opt/bin"
 
+# export cabal
+export PATH="$PATH:$HOME/.cabal/bin"

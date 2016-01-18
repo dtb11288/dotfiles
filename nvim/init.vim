@@ -43,6 +43,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
 Plug 'vim-scripts/Smart-Tabs'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
@@ -82,6 +83,13 @@ Plug 'gabrielelana/vim-markdown'
 
 " i3
 Plug 'PotatoesMaster/i3-vim-syntax'
+
+" haskell
+Plug 'Shougo/vimproc', { 'do': 'make' }
+Plug 'eagletmt/neco-ghc'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'dag/vim2hs'
+Plug 'lukerandall/haskellmode-vim'
 
 " conky
 Plug 'smancill/conky-syntax.vim'
@@ -208,7 +216,6 @@ nnoremap <silent><leader>bn :enew<CR>
 nnoremap <leader>. :lcd %:p:h<CR>
 
 " load ftplugins and indent files
-"filetype plugin on
 filetype plugin indent on
 filetype indent on
 
@@ -467,4 +474,18 @@ set list lcs=tab:\¦\ " need a space here
 
 " rest
 let g:vrc_cookie_jar = '/tmp/vrc_cookie_jar'
+
+" neco-ghc
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+let g:necoghc_enable_detailed_browse = 1
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+" haskell mod
+autocmd BufEnter *.hs compiler ghc
+let g:haddock_browser="/usr/bin/google-chrome-stable"
+
+" hdevtools
+au FileType haskell nnoremap <buffer> <F1> :GhcModType<CR>
+au FileType haskell nnoremap <buffer> <silent> <F2> :GhcModTypeClear<CR>
 
