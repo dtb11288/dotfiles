@@ -7,6 +7,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
 import qualified XMonad.StackSet as W
@@ -33,12 +34,14 @@ myConfig = baseConfig
     { modMask = myModMask
     , terminal = myTerminal
     , workspaces = myWorkspaces
-    , manageHook = manageDocks <+> manageHook defaultConfig
-    , layoutHook = avoidStruts $ layoutHook defaultConfig
+    , manageHook = manageDocks <+> manageHook baseConfig <+> myManageHook
+    , layoutHook = avoidStruts $ layoutHook baseConfig
     , focusedBorderColor = colorFocusedBorder
     , normalBorderColor = colorNormalBorder
     , borderWidth = myBorderWidth
-    }
+    } `additionalKeys` myKeys
+
+myManageHook = composeOne [ isFullscreen -?> (doF W.focusDown <+> doFullFloat) ]
 
 -- my PP
 myPP = xmobarPP
@@ -69,3 +72,14 @@ myTrayBar = "killall -9 trayer; trayer --edge top --align right --SetDockType tr
 myBorderWidth = 1
 
 -- my keys
+myKeys =
+    [
+    -- volumn keys
+      ((0, xF86XK_AudioLowerVolume   ), spawn "amixer -q sset Master 5%-")
+    , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer -q sset Master 5%+ unmute")
+    , ((0, xF86XK_AudioMute          ), spawn "amixer -q sset Master toggle")
+
+    -- brightness keys
+    , ((0, xF86XK_MonBrightnessUp    ), spawn "xbacklight -inc 5 # increase screen brightness")
+    , ((0, xF86XK_MonBrightnessDown  ), spawn "xbacklight -dec 5 # decrease screen brightness")
+    ]
