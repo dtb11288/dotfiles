@@ -5,6 +5,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
+import XMonad.Layout.LayoutHints
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import Graphics.X11.ExtraTypes.XF86
@@ -34,17 +35,21 @@ myConfig = baseConfig {
       modMask = myModMask
     , terminal = myTerminal
     , workspaces = myWorkspaces
-    , manageHook = manageDocks <+> manageHook baseConfig <+> myManageHook
-    , layoutHook = avoidStruts $ layoutHook baseConfig
+    , manageHook = myManageHook
+    , layoutHook = myLayoutHook
     , focusedBorderColor = colorFocusedBorder
     , normalBorderColor = colorNormalBorder
     , borderWidth = myBorderWidth
     } `additionalKeys` myKeys
 
-myManageHook = composeOne [
+-- manage apps
+myManageHook = manageDocks <+> manageHook baseConfig <+> composeOne [
       isFullscreen -?> (doF W.focusDown <+> doFullFloat)
     , resource =? "trayer" -?> doIgnore
     ]
+
+-- layouts
+myLayoutHook = layoutHints $ avoidStruts $ smartBorders $ layoutHook baseConfig
 
 -- my PP
 myPP = xmobarPP {
