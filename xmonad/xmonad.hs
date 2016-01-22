@@ -30,8 +30,8 @@ main = do
     xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
 -- my config
-myConfig = baseConfig
-    { modMask = myModMask
+myConfig = baseConfig {
+      modMask = myModMask
     , terminal = myTerminal
     , workspaces = myWorkspaces
     , manageHook = manageDocks <+> manageHook baseConfig <+> myManageHook
@@ -41,20 +41,35 @@ myConfig = baseConfig
     , borderWidth = myBorderWidth
     } `additionalKeys` myKeys
 
-myManageHook = composeOne [ isFullscreen -?> (doF W.focusDown <+> doFullFloat) ]
+myManageHook = composeOne [
+      isFullscreen -?> (doF W.focusDown <+> doFullFloat)
+    , resource =? "trayer" -?> doIgnore
+    ]
 
 -- my PP
-myPP = xmobarPP
-    { ppCurrent = xmobarColor colorXmobarCurrent colorFallback . wrap "[" "]"
+myPP = xmobarPP {
+      ppCurrent = xmobarColor colorXmobarCurrent colorFallback . wrap "[" "]"
     , ppTitle = xmobarColor colorXmobarTitle colorFallback
     , ppUrgent = xmobarColor colorXmobarUrgent colorXmobarUrgent
     }
 
+-- my keys
+myKeys = [
+    -- volumn keys
+      ((0, xF86XK_AudioLowerVolume   ), spawn "amixer -q sset Master 5%-")
+    , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer -q sset Master 5%+ unmute")
+    , ((0, xF86XK_AudioMute          ), spawn "amixer -q sset Master toggle")
+
+    -- brightness keys
+    , ((0, xF86XK_MonBrightnessUp    ), spawn "xbacklight -inc 5 # increase screen brightness")
+    , ((0, xF86XK_MonBrightnessDown  ), spawn "xbacklight -dec 5 # decrease screen brightness")
+    ]
+
 -- status bar
 myBar = "xmobar ~/.xmonad/xmobar.hs"
 
--- keys
-toggleStrutsKey XConfig { XMonad.modMask = myModMask } = (myModMask, xK_b)
+-- show/hide top bar
+toggleStrutsKey XConfig { XMonad.modMask = myModMask } = ( myModMask, xK_b )
 
 -- use super key
 myModMask = mod4Mask
@@ -71,15 +86,3 @@ myTrayBar = "killall -9 trayer; trayer --edge top --align right --SetDockType tr
 -- border width
 myBorderWidth = 1
 
--- my keys
-myKeys =
-    [
-    -- volumn keys
-      ((0, xF86XK_AudioLowerVolume   ), spawn "amixer -q sset Master 5%-")
-    , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer -q sset Master 5%+ unmute")
-    , ((0, xF86XK_AudioMute          ), spawn "amixer -q sset Master toggle")
-
-    -- brightness keys
-    , ((0, xF86XK_MonBrightnessUp    ), spawn "xbacklight -inc 5 # increase screen brightness")
-    , ((0, xF86XK_MonBrightnessDown  ), spawn "xbacklight -dec 5 # decrease screen brightness")
-    ]

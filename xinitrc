@@ -2,4 +2,4 @@
 if [[ -r ~/.startup ]]; then
     ~/.startup
 fi
-exec i3
+exec xmonad
