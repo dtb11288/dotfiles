@@ -86,7 +86,7 @@ myTerminal = "urxvt -e tmux"
 myWorkspaces = map show [1..9]
 
 -- tray bar
-myTrayBar = "killall -9 trayer; trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --height 23 --transparent true --tint 0x000000"
+myTrayBar = "killall -9 trayer; trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --height 23 --transparent true --alpha 0 --tint 0x080808"
 
 -- border width
 myBorderWidth = 1
