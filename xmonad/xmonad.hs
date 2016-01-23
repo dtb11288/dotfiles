@@ -48,7 +48,7 @@ myManageHook = manageDocks <+> manageHook baseConfig <+> composeOne [
     ]
 
 -- layouts
-myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
+myLayoutHook = avoidStruts $ layoutHook baseConfig
 
 -- my PP
 myPP = xmobarPP {
