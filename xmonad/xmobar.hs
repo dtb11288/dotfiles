@@ -8,14 +8,60 @@ Config
     , position = TopW L 95
     , lowerOnStart = True
     , commands =
-        [ Run Network "wlp2s0" ["-L","50","-H","500","--low","#4779b3","--normal","#4779b3","--high","#bf85cc","-t","<dev> <tx> Kb/s"] 8
-        , Run Battery ["-t", "<left>"] 100
-        , Run MultiCpu ["-t","<total0>"] 30
-        , Run Date "%_d %#B %Y <fc=#AEB898>|</fc> %H:%M" "date" 600
+        -- weather monitor
+        [ Run Weather "VVNB" [ "--template", "<skyCondition> - <fc=#4682B4><tempC></fc>°C"
+                             ] 36000
+
+        -- network activity monitor (dynamic interface resolution)
+        , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s-<rx>kB/s"
+                             , "--Low"      , "1000"       -- units: kB/s
+                             , "--High"     , "5000"       -- units: kB/s
+                             , "--low"      , "darkgreen"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkred"
+                             ] 10
+
+        -- cpu activity monitor
+        , Run MultiCpu       [ "--template" , "Cpu: <total0>%"
+                             , "--Low"      , "50"         -- units: %
+                             , "--High"     , "85"         -- units: %
+                             , "--low"      , "darkgreen"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkred"
+                             ] 10
+
+         -- memory usage monitor
+        , Run Memory         [ "--template" ,"Mem: <usedratio>%"
+                             , "--Low"      , "20"        -- units: %
+                             , "--High"     , "90"        -- units: %
+                             , "--low"      , "darkgreen"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkred"
+                             ] 10
+
+        -- battery monitor
+        , Run Battery        [ "--template" , "Bat: <acstatus>"
+                             , "--Low"      , "10"        -- units: %
+                             , "--High"     , "80"        -- units: %
+                             , "--low"      , "darkred"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkgreen"
+
+                             , "--" -- battery specific options
+                                       -- discharging status
+                                       , "-o"   , "<left>% (<timeleft>)"
+                                       -- AC "on" status
+                                       , "-O"   , "<fc=#dAA520>Charging</fc>"
+                                       -- charged status
+                                       , "-i"   , "<fc=#006000>Charged</fc>"
+                             ] 50
+        -- time and date indicator
+        --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
+        , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
         --, Run Com "/home/tzbob/bin/alsavolume" [] "volume" 10
         , Run StdinReader
         ]
     , sepChar = "%"
     , alignSep = "}{"
-    , template = " %StdinReader% }{<fc=#AEB898>net</fc> %wlp2s0% <fc=#AEB898>cpu</fc> %multicpu% <fc=#AEB898>bat</fc> %battery% <fc=#AEB898>|</fc> %date% <fc=#AEB898>|</fc>"
+    , template = " %StdinReader% }{%VVNB% | %dynnetwork% | %memory% | %battery% | %date% |"
     }

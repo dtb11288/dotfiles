@@ -22,7 +22,7 @@ aria2c
 ibus-daemon -d
 
 # Xresource
-xrdb "$HOME/.Xresources"
+xrdb -merge "$HOME/.Xresources"
 
 # fix mouse xmonad
 xsetroot -cursor_name left_ptr
@@ -45,7 +45,3 @@ udiskie -C0ansf $(which ranger) &
 # notification daemon
 dunst &
 
-# trayer
-#trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 15 --height 12 --transparent true --tint 0x000000 &
-
-#stalonetray &
