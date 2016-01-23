@@ -73,7 +73,7 @@ myKeys = [
 myBar = "xmobar ~/.xmonad/xmobar.hs"
 
 -- show/hide top bar
-toggleStrutsKey XConfig { XMonad.modMask = myModMask } = ( myModMask, xK_b )
+toggleStrutsKey XConfig { XMonad.modMask = myModMask } = ( myModMask, xK_f )
 
 -- use super key
 myModMask = mod4Mask
