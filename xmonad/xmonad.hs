@@ -5,7 +5,6 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
-import XMonad.Layout.LayoutHints
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import Graphics.X11.ExtraTypes.XF86
@@ -49,7 +48,7 @@ myManageHook = manageDocks <+> manageHook baseConfig <+> composeOne [
     ]
 
 -- layouts
-myLayoutHook = layoutHints $ avoidStruts $ smartBorders $ layoutHook baseConfig
+myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
 -- my PP
 myPP = xmobarPP {
