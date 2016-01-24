@@ -27,7 +27,7 @@ baseConfig = desktopConfig
 -- main
 main = do
     spawnPipe myTrayBar
-    xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+    xmonad =<< statusBar myBar myPP toggleXMobarKey myConfig
 
 -- my config
 myConfig = baseConfig
@@ -45,12 +45,13 @@ myConfig = baseConfig
 
 -- manage apps
 myManageHook = manageDocks <+> manageHook baseConfig <+> composeOne
-    [ isFullscreen -?> (doF W.focusDown <+> doFullFloat)
-    , resource =? "trayer" -?> doIgnore
+    [ isFullscreen                  -?> doF W.focusDown <+> doFullFloat
+    , className =? "Skype"          -?> doFloat
+    , className =? "MPlayer"        -?> doFloat
     ]
 
 -- layouts
-myLayoutHook = avoidStruts $ layoutHook baseConfig
+myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
 -- my PP
 myPP = xmobarPP
@@ -70,6 +71,9 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
     , ((0, xF86XK_MonBrightnessUp   ), spawn "xbacklight -inc 5 # increase screen brightness")
     , ((0, xF86XK_MonBrightnessDown ), spawn "xbacklight -dec 5 # decrease screen brightness")
 
+    -- display shutdown menu
+    , ((modMask, xK_Delete          ), spawn "xmobar ~/.xmonad/shutdown.hs")
+
     -- dmenu
     , ((modMask, xK_p               ), spawn myDmenu)
     ]
@@ -80,7 +84,7 @@ myDmenu = unwords
     ]
 
 -- show/hide top bar
-toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_f)
+toggleXMobarKey XConfig { XMonad.modMask = modMask } = (modMask, xK_f)
 
 -- terminal
 myTerminal = unwords

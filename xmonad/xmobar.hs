@@ -9,11 +9,11 @@ Config
     , lowerOnStart = True
     , commands =
         -- weather monitor
-        [ Run Weather "VVNB" [ "--template", "<skyCondition> - <fc=#4682B4><tempC></fc>°C"
+        [ Run Weather "VVNB" [ "--template", "<fn=1></fn> <skyCondition> - <fc=#4682B4><tempC></fc>°C"
                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s-<rx>kB/s"
+        , Run DynNetwork     [ "--template" , "<fn=1></fn> <fn=1></fn><tx>kB <fn=1></fn><rx>kB"
                              , "--Low"      , "1000"       -- units: kB/s
                              , "--High"     , "5000"       -- units: kB/s
                              , "--low"      , "darkgreen"
@@ -22,7 +22,7 @@ Config
                              ] 10
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "Cpu: <total0>%"
+        , Run MultiCpu       [ "--template" , "<fn=1></fn> <total0>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "darkgreen"
@@ -31,7 +31,7 @@ Config
                              ] 10
 
          -- memory usage monitor
-        , Run Memory         [ "--template" ,"Mem: <usedratio>%"
+        , Run Memory         [ "--template" ,"<fn=1></fn> <usedratio>%"
                              , "--Low"      , "20"        -- units: %
                              , "--High"     , "90"        -- units: %
                              , "--low"      , "darkgreen"
@@ -40,7 +40,7 @@ Config
                              ] 10
 
         -- battery monitor
-        , Run Battery        [ "--template" , "Bat: <acstatus>"
+        , Run Battery        [ "--template" , "<fn=1></fn> <acstatus>"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
                              , "--low"      , "darkred"
@@ -57,11 +57,11 @@ Config
                              ] 50
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
+        , Run Date           "<fn=1></fn> <fc=#ABABAB>%F (%a) %T</fc>" "date" 10
         --, Run Com "/home/tzbob/bin/alsavolume" [] "volume" 10
         , Run StdinReader
         ]
     , sepChar = "%"
     , alignSep = "}{"
-    , template = " %StdinReader% }{%VVNB% | %dynnetwork% | %memory% | %battery% | %date% |"
+    , template = " %StdinReader% }{%VVNB% | %dynnetwork% | %multicpu% | %memory% | %battery% | %date% |"
     }
