@@ -1,6 +1,6 @@
 Config
     { font = "xft:Roboto Mono for Powerline:size=12:antialias=true"
-    , additionalFonts = ["xft:FontAwesome"]
+    , additionalFonts = ["xft:FontAwesome-12"]
     , border = NoBorder
     , borderColor = "#151515"
     , fgColor = "#404040"
@@ -13,7 +13,7 @@ Config
                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork     [ "--template" , "<fn=1></fn> <fn=1></fn><tx>kB <fn=1></fn><rx>kB"
+        , Run DynNetwork     [ "--template" , "<fn=1></fn><tx>kB <fn=1></fn><rx>kB"
                              , "--Low"      , "1000"       -- units: kB/s
                              , "--High"     , "5000"       -- units: kB/s
                              , "--low"      , "darkgreen"
