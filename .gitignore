@@ -9,3 +9,4 @@ nvim/.netrwhist
 *.hi
 *.errors
 xmonad/xmonad-x86_64-linux
+nvim/.init.vim-rplugin~

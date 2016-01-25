@@ -316,7 +316,7 @@ fun! NormalizeWidths()
     set equalalways! equalalways!
     let &eadirection = eadir_pref
 endf
-map <silent><F3> :call VexToggle()<CR>
+map <silent><leader><F3> :call VexToggle()<CR>
 let g:netrw_liststyle=3         " thin (change to 3 for tree)
 let g:netrw_banner=0            " no banner
 let g:netrw_altv=1              " open files on right
@@ -469,6 +469,7 @@ nmap ga <Plug>(EasyAlign)
 " ctrlsf
 nmap f/ <Plug>CtrlSFPrompt
 vmap f/ <Plug>CtrlSFVwordPath
+nmap <silent><F3> :CtrlSFToggle<CR>
 
 " indent
 set list lcs=tab:\¦\ " need a space here
