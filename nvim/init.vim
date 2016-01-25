@@ -211,6 +211,7 @@ nnoremap <silent><tab> :bnext<CR>
 nnoremap <silent><s-tab> :bprevious<CR>
 nnoremap <silent><leader>bq :BD<CR>
 nnoremap <silent><leader>bn :enew<CR>
+nnoremap <silent><leader>abq :bufdo bd<CR>
 
 " set working directory
 nnoremap <leader>. :lcd %:p:h<CR>

@@ -1,7 +1,7 @@
 Config
     { font = "xft:Roboto Mono for Powerline:size=12:antialias=true"
     , additionalFonts = ["xft:FontAwesome"]
-    , border = FullBM 0
+    , border = NoBorder
     , borderColor = "#151515"
     , fgColor = "#404040"
     , bgColor = "#080808"
