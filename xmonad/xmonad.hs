@@ -76,11 +76,21 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
 
     -- dmenu
     , ((modMask, xK_p               ), spawn myDmenu)
+    , ((modMask .|. shiftMask, xK_p ), spawn myDesktopDmenu)
     ]
 
 myDmenu = unwords
     [ "dmenu_run"
     , "-fn", "-*-roboto-medium-*-*-*-*-*-*-*-*-*-*-*"
+    ]
+
+myDesktopDmenu = unwords
+    [ "i3-dmenu-desktop"
+    , "--dmenu='"
+    , "dmenu"
+    , "-i"
+    , "-fn", "-*-roboto-medium-*-*-*-*-*-*-*-*-*-*-*"
+    , "'"
     ]
 
 -- show/hide top bar
