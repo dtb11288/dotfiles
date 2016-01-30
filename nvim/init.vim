@@ -387,15 +387,15 @@ let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
 let g:tern_map_keys = 1
-nmap <leader>td  :TernDef<cr>
-nmap <leader>tb  :TernDocBrowse<cr>
-nmap <leader>tt  :TernType<cr>
-nmap <leader>to  :TernDoc<cr>
-nmap <leader>tpd :TernDefPreview<cr>
-nmap <leader>tsd :TernDefSplit<cr>
-nmap <leader>ttd :TernDefTab<cr>
-nmap <leader>tr  :TernRefs<cr>
-nmap <leader>tR  :TernRename<cr>
+au FileType javascript nmap <buffer> td  :TernDef<cr>
+au FileType javascript nmap <buffer> tb  :TernDocBrowse<cr>
+au FileType javascript nmap <buffer> tt  :TernType<cr>
+au FileType javascript nmap <buffer> to  :TernDoc<cr>
+au FileType javascript nmap <buffer> tpd :TernDefPreview<cr>
+au FileType javascript nmap <buffer> tsd :TernDefSplit<cr>
+au FileType javascript nmap <buffer> ttd :TernDefTab<cr>
+au FileType javascript nmap <buffer> tr  :TernRefs<cr>
+au FileType javascript nmap <buffer> tR  :TernRename<cr>
 
 " youcompleteme
 let g:ycm_add_preview_to_completeopt = 0
@@ -486,8 +486,8 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " haskell mod
 autocmd BufEnter *.hs compiler ghc
 let g:haddock_browser="/usr/bin/google-chrome-stable"
-
-" hdevtools
-au FileType haskell nnoremap <buffer> <F1> :GhcModType<CR>
-au FileType haskell nnoremap <buffer> <silent> <F2> :GhcModTypeClear<CR>
-
+au FileType haskell nnoremap <buffer> tt :call GHC_ShowType(0)<CR>
+au FileType haskell nnoremap <buffer> <silent> tw :GhcModTypeInsert<CR>
+au FileType haskell nnoremap <buffer> <silent> ts :GhcModSplitFunCase<CR>
+au FileType haskell nnoremap <buffer> <silent> tq :GhcModType<CR>
+au FileType haskell nnoremap <buffer> <silent> te :GhcModTypeClear<CR>

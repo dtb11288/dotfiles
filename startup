@@ -19,7 +19,10 @@ redshift-gtk &
 aria2c
 
 # ibus
-ibus-daemon -d
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+ibus-daemon -dx
 
 # Xresource
 xrdb -merge "$HOME/.Xresources"
