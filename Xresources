@@ -10,10 +10,12 @@ URxvt*scrollBar:            false
 URxvt*scrollTtyOutput:      false
 URxvt*scrollTtyKeypress:    true
 URxvt*secondaryScroll:      true
-URxvt*saveLines:            8000
+URxvt*saveLines:            0
 URxvt.urlLauncher:          xdg-open
 URxvt*cursorUnderline:      false
 URxvt*scrollKey:            true
 URxvt*scrollWithBuffer:     false
 URxvt*internalBorder:       0
 URxvt*loginShell:           false
+URxvt.secondaryScreen:      1
+URxvt.secondaryScroll:      0

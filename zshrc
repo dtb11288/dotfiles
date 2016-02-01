@@ -44,11 +44,10 @@ if [[ -r /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh ]
     source /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
+if [[ -r "$HOME/.env" ]]; then
+    source "$HOME/.env"
+fi
+
 # set timeout key for zsh
 export KEYTIMEOUT=1
 
-# export PATH
-export PATH="$PATH:$HOME/opt/bin"
-
-# export cabal
-export PATH="$PATH:$HOME/.cabal/bin"
