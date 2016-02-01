@@ -8,3 +8,7 @@ export PATH="$PATH:$HOME/opt/bin"
 
 # export cabal
 export PATH="$PATH:$HOME/.cabal/bin"
+
+# ssh-agent
+alias startx='ssh-agent startx'
+

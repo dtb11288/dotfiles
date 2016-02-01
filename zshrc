@@ -7,7 +7,6 @@ if [[ ! -d $ZPLUG_HOME ]]; then
 	git clone "https://github.com/$ZPLUG_GIT.git" "$ZPLUG_HOME/repos/$ZPLUG_GIT";
 	ln -s "$ZPLUG_HOME/repos/$ZPLUG_GIT/zplug" "$ZPLUG_HOME/zplug"
 fi
-
 source $ZPLUG_HOME/zplug
 
 # zplug manage itself
@@ -44,6 +43,7 @@ if [[ -r /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh ]
     source /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
+# load env source
 if [[ -r "$HOME/.env" ]]; then
     source "$HOME/.env"
 fi
