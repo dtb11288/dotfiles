@@ -10,3 +10,9 @@ nvim/.netrwhist
 *.errors
 xmonad/xmonad-x86_64-linux
 nvim/.init.vim-rplugin~
+cmus/autosave
+cmus/cache
+cmus/command-history
+cmus/lib.pl
+cmus/playlist.pl
+cmus/search-history

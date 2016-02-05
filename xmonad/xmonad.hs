@@ -67,12 +67,18 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
     , ((0, xF86XK_AudioRaiseVolume  ), spawn "amixer -q sset Master 5%+ unmute")
     , ((0, xF86XK_AudioMute         ), spawn "amixer -q sset Master toggle")
 
+    -- media keys
+    , ((0, xF86XK_AudioPrev         ), spawn "cmus-remote -r")
+    , ((0, xF86XK_AudioNext         ), spawn "cmus-remote -n")
+    , ((0, xF86XK_AudioPlay         ), spawn "cmus-remote -u")
+    , ((0, xF86XK_AudioStop         ), spawn "cmus-remote -s")
+
     -- brightness keys
     , ((0, xF86XK_MonBrightnessUp   ), spawn "xbacklight -inc 5 # increase screen brightness")
     , ((0, xF86XK_MonBrightnessDown ), spawn "xbacklight -dec 5 # decrease screen brightness")
 
     -- display shutdown menu
-    , ((modMask, xK_Delete          ), spawn "xmobar ~/.xmonad/shutdown.hs")
+    , ((modMask, xK_Delete          ), spawn myShutdownMenu)
 
     -- dmenu
     , ((modMask, xK_p               ), spawn myDmenu)
@@ -91,6 +97,10 @@ myDesktopDmenu = unwords
     , "-i"
     , "-fn", "-*-roboto-medium-*-*-*-*-*-*-*-*-*-*-*"
     , "'"
+    ]
+
+myShutdownMenu = unwords
+    [ "xmobar", "~/.xmonad/shutdown.hs"
     ]
 
 -- show/hide top bar
