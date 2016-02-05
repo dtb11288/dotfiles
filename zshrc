@@ -4,8 +4,8 @@ ZPLUG_GIT="b4b4r07/zplug"
 
 # clone zplug
 if [[ ! -d $ZPLUG_HOME ]]; then
-	git clone "https://github.com/$ZPLUG_GIT.git" "$ZPLUG_HOME/repos/$ZPLUG_GIT";
-	ln -s "$ZPLUG_HOME/repos/$ZPLUG_GIT/zplug" "$ZPLUG_HOME/zplug"
+    git clone "https://github.com/$ZPLUG_GIT.git" "$ZPLUG_HOME/repos/$ZPLUG_GIT";
+    ln -s "$ZPLUG_HOME/repos/$ZPLUG_GIT/zplug" "$ZPLUG_HOME/zplug"
 fi
 source $ZPLUG_HOME/zplug
 

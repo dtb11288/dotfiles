@@ -6,6 +6,15 @@ export QT_IM_MODULE=ibus
 # export PATH
 export PATH="$PATH:$HOME/opt/bin"
 
+# export nodejs
+export PATH="$PATH:$HOME/opt/node/bin"
+
+# export elasticsearch
+export PATH="$PATH:$HOME/opt/elasticsearch/bin"
+
+# export mongodb
+export PATH="$PATH:$HOME/opt/mongodb/bin"
+
 # export cabal
 export PATH="$PATH:$HOME/.cabal/bin"
 
