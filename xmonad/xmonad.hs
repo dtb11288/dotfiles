@@ -47,7 +47,7 @@ myConfig = baseConfig
 myManageHook = manageDocks <+> manageHook baseConfig <+> composeOne
     [ isFullscreen                  -?> doF W.focusDown <+> doFullFloat
     , className =? "Skype"          -?> doFloat
-    , className =? "MPlayer"        -?> doFloat
+    , className =? "mpv"            -?> doFloat
     ]
 
 -- layouts
