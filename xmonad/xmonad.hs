@@ -87,7 +87,7 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
 
 myDmenu = unwords
     [ "dmenu_run"
-    , "-fn", "-*-roboto-medium-*-*-*-*-*-*-*-*-*-*-*"
+    , "-fn", "-*-noto-medium-*-*-*-*-*-*-*-*-*-*-*"
     ]
 
 myDesktopDmenu = unwords
@@ -95,7 +95,7 @@ myDesktopDmenu = unwords
     , "--dmenu='"
     , "dmenu"
     , "-i"
-    , "-fn", "-*-roboto-medium-*-*-*-*-*-*-*-*-*-*-*"
+    , "-fn", "-*-noto-medium-*-*-*-*-*-*-*-*-*-*-*"
     , "'"
     ]
 

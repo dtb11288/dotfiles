@@ -1,5 +1,5 @@
 Config
-    { font = "xft:Roboto Mono for Powerline:size=12:antialias=true"
+    { font = "xft:Noto Mono:size=12:antialias=true"
     , additionalFonts = ["xft:FontAwesome-12"]
     , border = NoBorder
     , borderColor = "#151515"

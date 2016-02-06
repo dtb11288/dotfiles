@@ -24,6 +24,9 @@ zplug "plugins/systemd", from:oh-my-zsh
 zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
 
+# theme
+zplug "themes/robbyrussell", from:oh-my-zsh
+
 # after executing compinit command and sourcing other plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice: 10
 
@@ -37,11 +40,6 @@ fi
 
 # then, source plugins and add commands to $PATH
 zplug load --verbose
-
-# load powerline
-if [[ -r /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
-fi
 
 # load env source
 if [[ -r "$HOME/.env" ]]; then
