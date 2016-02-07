@@ -3,6 +3,7 @@ import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
 import XMonad.Util.Run(spawnPipe)
@@ -34,6 +35,7 @@ myConfig = baseConfig
     { modMask = mod4Mask
     , terminal = myTerminal
     , focusFollowsMouse = False
+    , handleEventHook    = fullscreenEventHook
     , workspaces = myWorkspaces
     , manageHook = myManageHook
     , layoutHook = myLayoutHook
