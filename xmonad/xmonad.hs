@@ -49,6 +49,8 @@ myConfig = baseConfig
 myManageHook = manageDocks <+> manageHookConfig <+> composeOne
     [ isFullscreen                  -?> doF W.focusDown <+> doFullFloat
     , className =? "Skype"          -?> doFloat
+    , className =? "Steam"          -?> doFloat
+    , className =? "Shutter"        -?> doFloat
     , className =? "mpv"            -?> doFloat
     ]
     where manageHookConfig = manageHook baseConfig
