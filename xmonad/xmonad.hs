@@ -23,7 +23,7 @@ colorXmobarUrgent = "red"
 colorFallback = ""
 
 -- define default config
-baseConfig = desktopConfig
+baseConfig = ewmh desktopConfig
 
 -- main
 main = do
@@ -112,7 +112,8 @@ myDesktopDmenu = unwords
 
 -- shutdown menu
 myShutdownMenu = unwords
-    [ "xmobar", "~/.xmonad/shutdown.hs"
+    [ "xmobar"
+    , "~/.xmonad/shutdown.hs"
     ]
 
 -- terminal
@@ -154,7 +155,7 @@ myRestartXmonad = unwords
 myBorderWidth = 1
 
 -- show/hide top bar
-toggleXMobarKey XConfig { XMonad.modMask = modMask } = (modMask, xK_f)
+toggleXMobarKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 -- workspaces
 myWorkspaces = map show [1..9]
