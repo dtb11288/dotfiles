@@ -35,25 +35,29 @@ myConfig = baseConfig
     { modMask = mod4Mask
     , terminal = myTerminal
     , focusFollowsMouse = False
-    , handleEventHook    = fullscreenEventHook
+    , handleEventHook    = myHandleEventHook
     , workspaces = myWorkspaces
     , manageHook = myManageHook
     , layoutHook = myLayoutHook
     , focusedBorderColor = colorFocusedBorder
     , normalBorderColor = colorNormalBorder
     , borderWidth = myBorderWidth
-    , keys = \c -> myKeys c `M.union` keys defaultConfig c
+    , keys = \c -> myKeys c `M.union` keys baseConfig c
     }
 
 -- manage apps
-myManageHook = manageDocks <+> manageHook baseConfig <+> composeOne
+myManageHook = manageDocks <+> manageHookConfig <+> composeOne
     [ isFullscreen                  -?> doF W.focusDown <+> doFullFloat
     , className =? "Skype"          -?> doFloat
     , className =? "mpv"            -?> doFloat
     ]
+    where manageHookConfig = manageHook baseConfig
 
 -- layouts
 myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
+
+-- event hook
+myHandleEventHook = fullscreenEventHook
 
 -- my PP
 myPP = xmobarPP
@@ -76,8 +80,8 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
     , ((0, xF86XK_AudioStop         ), spawn "cmus-remote -s")
 
     -- brightness keys
-    , ((0, xF86XK_MonBrightnessUp   ), spawn "xbacklight -inc 5 # increase screen brightness")
-    , ((0, xF86XK_MonBrightnessDown ), spawn "xbacklight -dec 5 # decrease screen brightness")
+    , ((0, xF86XK_MonBrightnessUp   ), spawn "xbacklight -inc 5")
+    , ((0, xF86XK_MonBrightnessDown ), spawn "xbacklight -dec 5")
 
     -- display shutdown menu
     , ((modMask, xK_Delete          ), spawn myShutdownMenu)
@@ -85,13 +89,18 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
     -- dmenu
     , ((modMask, xK_p               ), spawn myDmenu)
     , ((modMask .|. shiftMask, xK_p ), spawn myDesktopDmenu)
+
+    -- restart xmonad
+    , ((modMask, xK_q               ), spawn myRestartXmonad)
     ]
 
+-- dmenu
 myDmenu = unwords
     [ "dmenu_run"
     , "-fn", "-*-noto-medium-*-*-*-*-*-*-*-*-*-*-*"
     ]
 
+-- i3 demnu desktop
 myDesktopDmenu = unwords
     [ "i3-dmenu-desktop"
     , "--dmenu='"
@@ -101,12 +110,10 @@ myDesktopDmenu = unwords
     , "'"
     ]
 
+-- shutdown menu
 myShutdownMenu = unwords
     [ "xmobar", "~/.xmonad/shutdown.hs"
     ]
-
--- show/hide top bar
-toggleXMobarKey XConfig { XMonad.modMask = modMask } = (modMask, xK_f)
 
 -- terminal
 myTerminal = unwords
@@ -114,16 +121,9 @@ myTerminal = unwords
     , "-e", "tmux"
     ]
 
--- workspaces
-myWorkspaces = map show [1..9]
-
 -- tray bar
 myTrayBar = unwords
-    -- kill trayer
-    [ "killall"
-    , "-9", "trayer;"
-    -- then re-run it
-    , "trayer"
+    [ "trayer"
     , " --edge", "top"
     , "--align", "right"
     , "--SetDockType", "true"
@@ -142,6 +142,20 @@ myBar = unwords
     , "~/.xmonad/xmobar.hs"
     ]
 
+-- restart xmonad
+myRestartXmonad = unwords
+    [ "killall", "-9", "trayer;"
+    , "xmonad", "--recompile;"
+    , "xmonad" , "--restart;"
+    , "notify-send", "'Xmonad reloaded';"
+    ]
+
 -- border width
 myBorderWidth = 1
+
+-- show/hide top bar
+toggleXMobarKey XConfig { XMonad.modMask = modMask } = (modMask, xK_f)
+
+-- workspaces
+myWorkspaces = map show [1..9]
 
