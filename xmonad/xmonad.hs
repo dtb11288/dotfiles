@@ -132,7 +132,7 @@ myTrayBar = unwords
     , "--SetDockType", "true"
     , "--SetPartialStrut", "true"
     , "--expand", "true"
-    , "--width", "5"
+    , "--width", "7"
     , "--height", "23"
     , "--transparent", "true"
     , "--alpha", "0"

@@ -3,7 +3,7 @@
 
 ! rxvt settings
 ! run "fc-list" for a list of available fonts
-URxvt*font:                 xft:Noto Mono:size=12,xft:Awesome:Regular,xft:FreeSerif:style=Regular
+URxvt*font:                 xft:Noto Mono:size=10,xft:Awesome:Regular,xft:FreeSerif:style=Regular
 URxvt*foreground:           white
 URxvt*background:           black
 URxvt*scrollBar:            false

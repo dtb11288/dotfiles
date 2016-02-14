@@ -5,7 +5,7 @@ Config
     , borderColor = "#151515"
     , fgColor = "#404040"
     , bgColor = "#080808"
-    , position = TopW L 95
+    , position = TopW L 93
     , lowerOnStart = True
     , commands =
         -- weather monitor

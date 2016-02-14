@@ -240,6 +240,9 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
+" allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
 " show preview windows at bottom
 function! PreviewDown()
    if !&previewwindow

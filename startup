@@ -45,3 +45,6 @@ udiskie -C0ansf $(which ranger) &
 # notification daemon
 dunst &
 
+# clipboad manager
+parcellite &
+
