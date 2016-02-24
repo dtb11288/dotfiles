@@ -447,8 +447,8 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " gundo
-nnoremap <silent><F5> :GundoToggle<CR>
-let g:gundo_right = 1
+nnoremap <silent><F5> :MundoToggle<CR>
+let g:mundo_right = 1
 
 " better-whitespaces
 autocmd BufWritePre * StripWhitespace
