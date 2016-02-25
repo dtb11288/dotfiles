@@ -9,6 +9,7 @@ if [[ ! -d $ZPLUG_HOME ]]; then
 fi
 source $ZPLUG_HOME/zplug
 
+
 # zplug manage itself
 zplug "$ZPLUG_GIT"
 
@@ -25,7 +26,7 @@ zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
 
 # theme
-zplug "themes/robbyrussell", from:oh-my-zsh
+zplug "themes/bira", from:oh-my-zsh
 
 # after executing compinit command and sourcing other plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice: 10
@@ -40,6 +41,10 @@ fi
 
 # then, source plugins and add commands to $PATH
 zplug load --verbose
+
+# zsh colors loading
+autoload -U colors && colors
+setopt promptsubst
 
 # load env source
 if [[ -r "$HOME/.env" ]]; then
