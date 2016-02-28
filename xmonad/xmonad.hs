@@ -34,8 +34,8 @@ main = do
 myConfig = baseConfig
     { modMask = mod4Mask
     , terminal = myTerminal
-    , focusFollowsMouse = False
-    , handleEventHook    = myHandleEventHook
+    , focusFollowsMouse = True
+    , handleEventHook = myHandleEventHook
     , workspaces = myWorkspaces
     , manageHook = myManageHook
     , layoutHook = myLayoutHook
@@ -47,11 +47,12 @@ myConfig = baseConfig
 
 -- manage apps
 myManageHook = manageDocks <+> manageHookConfig <+> composeOne
-    [ isFullscreen                  -?> doF W.focusDown <+> doFullFloat
-    , className =? "Skype"          -?> doFloat
-    , className =? "Steam"          -?> doFloat
-    , className =? "Shutter"        -?> doFloat
-    , className =? "mpv"            -?> doFloat
+    [ isFullscreen                              -?> doF W.focusDown <+> doFullFloat
+    , className =? "Skype"                      -?> doFloat
+    , className =? "Steam"                      -?> doFloat
+    , className =? "Shutter"                    -?> doFloat
+    , className =? "mpv"                        -?> doFloat
+    , className =? "File-roller"                -?> doFloat
     ]
     where manageHookConfig = manageHook baseConfig
 
