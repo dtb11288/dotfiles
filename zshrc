@@ -26,7 +26,7 @@ zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
 
 # theme
-zplug "themes/bira", from:oh-my-zsh
+zplug "themes/frisk", from:oh-my-zsh
 
 # after executing compinit command and sourcing other plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice: 10
