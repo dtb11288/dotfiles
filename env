@@ -3,20 +3,20 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
-# export PATH
-export PATH="$PATH:$HOME/opt/bin"
-
 # export nodejs
-export PATH="$PATH:$HOME/opt/node/bin"
+export PATH="$HOME/opt/node/bin:$PATH"
 
 # export elasticsearch
-export PATH="$PATH:$HOME/opt/elasticsearch/bin"
+export PATH="$HOME/opt/elasticsearch/bin:$PATH"
 
 # export mongodb
-export PATH="$PATH:$HOME/opt/mongodb/bin"
+export PATH="$HOME/opt/mongodb/bin:$PATH"
 
 # export cabal
-export PATH="$PATH:$HOME/.cabal/bin"
+export PATH="$HOME/.cabal/bin:$PATH"
+
+# export PATH
+export PATH="$HOME/opt/bin:$PATH"
 
 # ssh-agent
 alias startx='ssh-agent startx'
