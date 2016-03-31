@@ -12,9 +12,6 @@ export PATH="$HOME/opt/elasticsearch/bin:$PATH"
 # export mongodb
 export PATH="$HOME/opt/mongodb/bin:$PATH"
 
-# export cabal
-export PATH="$HOME/.cabal/bin:$PATH"
-
 # export PATH
 export PATH="$HOME/opt/bin:$PATH"
 

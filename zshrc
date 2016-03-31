@@ -23,6 +23,7 @@ zplug "plugins/arch", from:oh-my-zsh
 zplug "plugins/tmux", from:oh-my-zsh
 zplug "plugins/systemd", from:oh-my-zsh
 zplug "plugins/cp", from:oh-my-zsh
+zplug "plugins/wd", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
 
 # theme

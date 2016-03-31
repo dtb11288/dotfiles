@@ -34,7 +34,7 @@ main = do
 myConfig = baseConfig
     { modMask = mod4Mask
     , terminal = myTerminal
-    , focusFollowsMouse = True
+    , focusFollowsMouse = False
     , handleEventHook = myHandleEventHook
     , workspaces = myWorkspaces
     , manageHook = myManageHook
@@ -52,6 +52,7 @@ myManageHook = manageDocks <+> manageHookConfig <+> composeOne
     , className =? "Steam"                      -?> doFloat
     , className =? "Shutter"                    -?> doFloat
     , className =? "mpv"                        -?> doFloat
+    , className =? "feh"                        -?> doFloat
     , className =? "File-roller"                -?> doFloat
     ]
     where manageHookConfig = manageHook baseConfig

@@ -10,7 +10,7 @@ Config
     , commands =
         -- weather monitor
         [ Run Weather "VVNB" [ "--template", "<fn=1></fn> <skyCondition> - <fc=#4682B4><tempC></fc>°C"
-                             ] 36000
+                             ] 6000
 
         -- network activity monitor (dynamic interface resolution)
         , Run DynNetwork     [ "--template" , "<fn=1></fn><tx>kB <fn=1></fn><rx>kB"

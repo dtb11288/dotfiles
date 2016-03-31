@@ -12,13 +12,14 @@ feh --bg-fill "$HOME/.wallpaper"
 #sleep 1 && conky -c "$HOME/.i3/conky/Modern1.0/Modern1.1.0" &
 
 # filter screen
-redshift &
-redshift-gtk &
+#redshift &
+redshift-gtk -l 21:105 &
 
 # aria2
 aria2c
 
 # ibus
+killall -9 ibus-daemon
 ibus-daemon -dx
 
 # Xresource
@@ -40,11 +41,14 @@ xautolock -detectsleep -time 10 -locker "$HOME/.i3/lock/lock-i3" &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # udiskie automount
-udiskie -C0ansf $(which ranger) &
+udiskie -C0ansf $(which thunar) &
 
 # notification daemon
 dunst &
 
 # clipboad manager
 parcellite &
+
+# gnome keyring
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 
