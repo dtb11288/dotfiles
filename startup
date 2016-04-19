@@ -49,6 +49,9 @@ dunst &
 # clipboad manager
 parcellite &
 
+# caffeine
+caffeine &
+
 # gnome keyring
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 

@@ -19,3 +19,4 @@ URxvt*internalBorder:       0
 URxvt*loginShell:           false
 URxvt.secondaryScreen:      1
 URxvt.secondaryScroll:      0
+URxvt*buffered:             false

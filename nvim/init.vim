@@ -92,7 +92,7 @@ Plug 'dag/vim2hs'
 Plug 'lukerandall/haskellmode-vim'
 
 " conky
-Plug 'smancill/conky-syntax.vim'
+"Plug 'smancill/conky-syntax.vim'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -171,7 +171,7 @@ syntax on
 set t_Co=256
 
 " hightlight current line
-set cursorline
+set nocursorline
 
 " better scrolling
 set ttyfast
@@ -212,6 +212,9 @@ nnoremap <silent><s-tab> :bprevious<CR>
 nnoremap <silent><leader>bq :BD<CR>
 nnoremap <silent><leader>bn :enew<CR>
 nnoremap <silent><leader>abq :bufdo bd<CR>
+
+" select word and seeach it
+vnoremap // y/<C-R>"
 
 " set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -326,13 +329,15 @@ let g:netrw_altv=1              " open files on right
 let g:netrw_preview=1           " open previews vertically
 
 " don't wrap line
-set nowrap
+set wrap
+set linebreak
+set breakindent
 
 " tab options
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 
 " list
 set list
@@ -494,3 +499,6 @@ au FileType haskell nnoremap <buffer> <silent> tw :GhcModTypeInsert<CR>
 au FileType haskell nnoremap <buffer> <silent> ts :GhcModSplitFunCase<CR>
 au FileType haskell nnoremap <buffer> <silent> tq :GhcModType<CR>
 au FileType haskell nnoremap <buffer> <silent> te :GhcModTypeClear<CR>
+
+" vim magit
+let g:magit_discard_untracked_do_delete=1

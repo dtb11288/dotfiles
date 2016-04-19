@@ -17,14 +17,16 @@ zplug "$ZPLUG_GIT"
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/git-flow-avh", from:oh-my-zsh
 zplug "plugins/git-extra", from:oh-my-zsh
-zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
-zplug "plugins/arch", from:oh-my-zsh
+zplug "plugins/archlinux", from:oh-my-zsh
 zplug "plugins/tmux", from:oh-my-zsh
 zplug "plugins/systemd", from:oh-my-zsh
 zplug "plugins/cp", from:oh-my-zsh
 zplug "plugins/wd", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
+zplug "plugins/npm", from:oh-my-zsh
+zplug "plugins/adb", from:oh-my-zsh
+zplug "plugins/web-search", from:oh-my-zsh
 
 # theme
 zplug "themes/frisk", from:oh-my-zsh
