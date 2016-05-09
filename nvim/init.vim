@@ -26,7 +26,6 @@ Plug 'majutsushi/tagbar'
 Plug 'simnalamburt/vim-mundo'
 Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-vinegar'
-"Plug 'krisajenkins/vim-pipe'
 
 " auto complete
 Plug 'Valloric/YouCompleteMe', {'do': 'python2 install.py'}
@@ -92,7 +91,7 @@ Plug 'dag/vim2hs'
 Plug 'lukerandall/haskellmode-vim'
 
 " conky
-"Plug 'smancill/conky-syntax.vim'
+Plug 'smancill/conky-syntax.vim'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -116,7 +115,6 @@ Plug 'gabesoft/vim-ags'
 
 " theme
 Plug 'flazz/vim-colorschemes'
-Plug 'mkarmona/colorsbox'
 
 if exists("s:bootstrap") && s:bootstrap
     unlet s:bootstrap
@@ -131,7 +129,6 @@ call plug#end()
 " encoding
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=utf-8
 
 " map control keys
 let mapleader=','
@@ -143,7 +140,7 @@ set backspace=indent,eol,start
 " enable hidden buffers
 set hidden
 
-" directories for swp files
+" no swap, no backup
 set nobackup
 set noswapfile
 
@@ -170,7 +167,7 @@ syntax on
 " vim color
 set t_Co=256
 
-" hightlight current line
+" no hightlight current line (cause slow)
 set nocursorline
 
 " better scrolling
@@ -199,12 +196,13 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 " search
-set grepprg=ag\ --nogroup\ --nocolor
+set grepprg="ag --nogroup --nocolor"
 set hlsearch
 set ignorecase
 
 " theme
-colorscheme colorsbox-material
+set background=dark
+colorscheme hybrid_material
 
 " buffers
 nnoremap <silent><tab> :bnext<CR>
@@ -213,7 +211,7 @@ nnoremap <silent><leader>bq :BD<CR>
 nnoremap <silent><leader>bn :enew<CR>
 nnoremap <silent><leader>abq :bufdo bd<CR>
 
-" select word and seeach it
+" select word and search it
 vnoremap // y/<C-R>"
 
 " set working directory
@@ -339,9 +337,6 @@ set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 
-" list
-set list
-
 "*****************************************************************************
 " plugins configuration
 "*****************************************************************************
@@ -383,10 +378,10 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let g:ctrlp_use_caching = 0
+let g:ctrlp_extensions = ['tag']
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 noremap <leader>bl :CtrlPBuffer<CR>
 noremap <leader>e :CtrlPMRUFiles<CR>
-"let g:ctrlp_map = '<leader>e'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
@@ -419,6 +414,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_jade_checkers = ['jade_lint']
 
 " incsearch
 map /  <Plug>(incsearch-forward)
@@ -480,7 +476,9 @@ vmap f/ <Plug>CtrlSFVwordPath
 nmap <silent><F3> :CtrlSFToggle<CR>
 
 " indent
-set list lcs=tab:\¦\ " need a space here
+let g:indentLine_enabled = 1
+let g:indentLine_faster = 1
+set list lcs=tab:\¦\ " space in the end
 
 " rest
 let g:vrc_cookie_jar = '/tmp/vrc_cookie_jar'

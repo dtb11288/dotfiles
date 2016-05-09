@@ -18,3 +18,6 @@ export PATH="$HOME/opt/bin:$PATH"
 # ssh-agent
 alias startx='ssh-agent startx'
 
+# feh
+alias feh='feh -Z -.'
+
