@@ -158,8 +158,8 @@ syntax on
 " vim color
 set t_Co=256
 
-" no hightlight current line (cause slow)
-set nocursorline
+" hightlight current line
+set cursorline
 
 " better scrolling
 set ttyfast
@@ -268,48 +268,6 @@ function! LoadSession()
 endfunction
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call MakeSession()
-
-" toggle vexplore
-fun! VexToggle()
-	 if exists("t:vex_buf_nr")
-		call VexClose()
-	 else
-		call VexOpen()
-	 endif
-endf
-fun! VexOpen()
-	let g:netrw_browse_split=4
-	let vex_width = 25
-	execute "Vexplore " . getcwd()
-	let t:vex_buf_nr = bufnr("%")
-	wincmd H
-	call VexSize(vex_width)
-endf
-fun! VexClose()
-	let cur_win_nr = winnr()
-	let target_nr = ( cur_win_nr == 1 ? winnr("#") : cur_win_nr )
-	1wincmd w
-	close
-	unlet t:vex_buf_nr
-	execute (target_nr - 1) . "wincmd w"
-	call NormalizeWidths()
-endf
-fun! VexSize(vex_width)
-	execute "vertical resize" . a:vex_width
-	set winfixwidth
-	call NormalizeWidths()
-endf
-fun! NormalizeWidths()
-	let eadir_pref = &eadirection
-	set eadirection=hor
-	set equalalways! equalalways!
-	let &eadirection = eadir_pref
-endf
-map <silent><leader><F3> :call VexToggle()<CR>
-let g:netrw_liststyle=3         " thin (change to 3 for tree)
-let g:netrw_banner=0            " no banner
-let g:netrw_altv=1              " open files on right
-let g:netrw_preview=1           " open previews vertically
 
 " don't wrap line
 set wrap
