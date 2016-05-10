@@ -24,7 +24,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'simnalamburt/vim-mundo'
-Plug 'qpkorr/vim-bufkill'
+Plug 'moll/vim-bbye'
 
 " auto complete
 Plug 'Valloric/YouCompleteMe', {'do': 'python2 install.py'}
@@ -172,7 +172,11 @@ set showmatch
 set noshowmode
 
 " interval update time
-set updatetime=250
+set updatetime=100
+
+" load ftplugins and indent files
+filetype plugin indent on
+filetype indent on
 
 " copy to clipboard
 vnoremap <leader>y  "+y
@@ -198,19 +202,9 @@ colorscheme hybrid_material
 " buffers
 nnoremap <silent><tab> :bnext<CR>
 nnoremap <silent><s-tab> :bprevious<CR>
-nnoremap <silent><leader>bq :BD<CR>
+nnoremap <silent><leader>bq :Bdelete<CR>
 nnoremap <silent><leader>bn :enew<CR>
-nnoremap <silent><leader>abq :bufdo bd<CR>
-
-" select word and search it
-vnoremap // y/<C-R>"
-
-" set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-" load ftplugins and indent files
-filetype plugin indent on
-filetype indent on
+nnoremap <silent><leader>abq :bufdo Bdelete<CR>
 
 " switching windows
 noremap <C-j> <C-w>j
@@ -369,10 +363,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let g:ctrlp_use_caching = 0
-let g:ctrlp_extensions = ['tag']
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 noremap <leader>bl :CtrlPBuffer<CR>
-noremap <leader>e :CtrlPMRUFiles<CR>
+noremap <leader>r :CtrlPMRUFiles<CR>
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
@@ -380,7 +373,7 @@ let g:ctrlp_dont_split = 'NERD_tree_2'
 " tern on vim
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
-let g:tern_map_keys = 1
+let g:tern_map_keys = 0
 au FileType javascript nmap <buffer> td  :TernDef<CR>
 au FileType javascript nmap <buffer> tb  :TernDocBrowse<CR>
 au FileType javascript nmap <buffer> tt  :TernType<CR>
@@ -408,7 +401,8 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_jade_checkers = ['jade_lint']
 
 " incsearch
-map /  <Plug>(incsearch-stay)
+nmap / <Plug>(incsearch-forward)
+vmap / y<Plug>(incsearch-forward)<C-R>"
 
 " :h g:incsearch#auto_nohlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -425,18 +419,6 @@ let g:mundo_right = 1
 
 " better-whitespaces
 autocmd BufWritePre * StripWhitespace
-
-" git
-noremap <leader>ga  :Gwrite<CR>
-noremap <leader>gR  :Gread<CR>
-noremap <leader>gc  :Gcommit<CR>
-noremap <leader>gca :Gcommit --amend<CR>
-noremap <leader>gsh :Gpush<CR>
-noremap <leader>gll :Gpull<CR>
-noremap <leader>gs  :Gstatus<CR>
-noremap <leader>gb  :Gblame<CR>
-noremap <leader>gd  :Gvdiff<CR>
-noremap <leader>gr  :Gremove<CR>
 
 " easy align
 xmap ga <Plug>(EasyAlign)
