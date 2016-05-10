@@ -25,7 +25,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'simnalamburt/vim-mundo'
 Plug 'qpkorr/vim-bufkill'
-Plug 'tpope/vim-vinegar'
 
 " auto complete
 Plug 'Valloric/YouCompleteMe', {'do': 'python2 install.py'}
@@ -41,14 +40,11 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-indent'
 Plug 'vim-scripts/Smart-Tabs'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
 Plug 'tmhedberg/matchit'
-Plug 'osyo-manga/vim-over'
 Plug 'hlissner/vim-multiedit'
 
 " csv
@@ -65,7 +61,6 @@ Plug 'sidorares/node-vim-debugger'
 Plug 'digitaltoad/vim-jade'
 
 " javascript
-Plug 'walm/jshint.vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 
@@ -106,12 +101,8 @@ Plug 'diepm/vim-rest-console'
 
 " search
 Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'dyng/ctrlsf.vim'
-Plug 'rking/ag.vim'
-Plug 'gabesoft/vim-ags'
 
 " theme
 Plug 'flazz/vim-colorschemes'
@@ -246,79 +237,79 @@ cmap w!! w !sudo tee > /dev/null %
 
 " show preview windows at bottom
 function! PreviewDown()
-   if !&previewwindow
-       silent! wincmd P
-   endif
-   if &previewwindow
-       silent! wincmd J
-       silent! wincmd p
-   endif
+	if !&previewwindow
+		 silent! wincmd P
+	endif
+	if &previewwindow
+		 silent! wincmd J
+		 silent! wincmd p
+	endif
 endf
 au BufWinEnter * call PreviewDown()
 
 " session automatically load and save session on start/exit.
 function! MakeSession()
-    if g:sessionfile != ""
-        echo "Saving."
-        if (filewritable(g:sessiondir) != 2)
-            exe "silent !mkdir -p ".g:sessiondir
-            redraw!
-        endif
-        exe "mksession! ".g:sessionfile
-    endif
+	 if g:sessionfile != ""
+		  echo "Saving."
+		  if (filewritable(g:sessiondir) != 2)
+				exe "silent !mkdir -p ".g:sessiondir
+				redraw!
+		  endif
+		  exe "mksession! ".g:sessionfile
+	 endif
 endfunction
 function! LoadSession()
-    if argc() == 0
-        let g:sessiondir = s:vim_home."/sessions".getcwd()
-        let g:sessionfile = g:sessiondir."/session.vim"
-        if (filereadable(g:sessionfile))
-            exe "source ".g:sessionfile
-        else
-            echo "No session loaded."
-        endif
-    else
-        let g:sessionfile = ""
-        let g:sessiondir = ""
-    endif
+	 if argc() == 0
+		  let g:sessiondir = s:vim_home."/sessions".getcwd()
+		  let g:sessionfile = g:sessiondir."/session.vim"
+		  if (filereadable(g:sessionfile))
+				exe "source ".g:sessionfile
+		  else
+				echo "No session loaded."
+		  endif
+	 else
+		  let g:sessionfile = ""
+		  let g:sessiondir = ""
+	 endif
 endfunction
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call MakeSession()
 
 " toggle vexplore
 fun! VexToggle()
-    if exists("t:vex_buf_nr")
-        call VexClose()
-    else
-        call VexOpen()
-    endif
+	 if exists("t:vex_buf_nr")
+		  call VexClose()
+	 else
+		  call VexOpen()
+	 endif
 endf
 fun! VexOpen()
-    let g:netrw_browse_split=4    " open files in previous window
-    let vex_width = 25
-    execute "Vexplore " . getcwd()
-    let t:vex_buf_nr = bufnr("%")
-    wincmd H
-    call VexSize(vex_width)
+	let g:netrw_browse_split=4
+	let vex_width = 25
+	execute "Vexplore " . getcwd()
+	let t:vex_buf_nr = bufnr("%")
+	wincmd H
+	call VexSize(vex_width)
 endf
 fun! VexClose()
-    let cur_win_nr = winnr()
-    let target_nr = ( cur_win_nr == 1 ? winnr("#") : cur_win_nr )
-    1wincmd w
-    close
-    unlet t:vex_buf_nr
-    execute (target_nr - 1) . "wincmd w"
-    call NormalizeWidths()
+	let cur_win_nr = winnr()
+	let target_nr = ( cur_win_nr == 1 ? winnr("#") : cur_win_nr )
+	1wincmd w
+	close
+	unlet t:vex_buf_nr
+	execute (target_nr - 1) . "wincmd w"
+	call NormalizeWidths()
 endf
 fun! VexSize(vex_width)
-    execute "vertical resize" . a:vex_width
-    set winfixwidth
-    call NormalizeWidths()
+	execute "vertical resize" . a:vex_width
+	set winfixwidth
+	call NormalizeWidths()
 endf
 fun! NormalizeWidths()
-    let eadir_pref = &eadirection
-    set eadirection=hor
-    set equalalways! equalalways!
-    let &eadirection = eadir_pref
+	let eadir_pref = &eadirection
+	set eadirection=hor
+	set equalalways! equalalways!
+	let &eadirection = eadir_pref
 endf
 map <silent><leader><F3> :call VexToggle()<CR>
 let g:netrw_liststyle=3         " thin (change to 3 for tree)
@@ -354,13 +345,13 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 " close all open buffers on entering a window if the only buffer that's left is the NERDTree buffer
 function! s:CloseIfOnlyNerdTreeLeft()
-    if exists("t:NERDTreeBufName")
-        if bufwinnr(t:NERDTreeBufName) != -1
-            if winnr("$") == 1
-                q
-            endif
-        endif
-    endif
+	if exists("t:NERDTreeBufName")
+		if bufwinnr(t:NERDTreeBufName) != -1
+			if winnr("$") == 1
+				q
+			endif
+		endif
+	endif
 endfunction
 
 " tagbar
@@ -402,7 +393,7 @@ au FileType javascript nmap <buffer> tR  :TernRename<cr>
 
 " youcompleteme
 let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_confirm_extra_conf=0
+let g:ycm_confirm_extra_conf = 0
 set completeopt-=preview
 
 " syntastic
@@ -417,9 +408,7 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_jade_checkers = ['jade_lint']
 
 " incsearch
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+map /  <Plug>(incsearch-stay)
 
 " :h g:incsearch#auto_nohlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -429,23 +418,6 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
-
-" fuzzy incsearch
-map z/  <Plug>(incsearch-easymotion-/)
-map z?  <Plug>(incsearch-easymotion-?)
-map zg/ <Plug>(incsearch-easymotion-stay)
-
-" incsearch.vim x fuzzy x vim-easymotion
-function! s:config_easyfuzzymotion(...) abort
-    return extend(copy({
-    \    'converters': [incsearch#config#fuzzy#converter()],
-    \    'modules': [incsearch#config#easymotion#module()],
-    \    'keymap': {"\<CR>": '<Over>(easymotion)'},
-    \    'is_expr': 0,
-    \    'is_stay': 1
-    \ }), get(a:, 1, {}))
-endfunction
-noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " gundo
 nnoremap <silent><F5> :MundoToggle<CR>
@@ -471,13 +443,13 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " ctrlsf
-nmap f/ <Plug>CtrlSFPrompt
-vmap f/ <Plug>CtrlSFVwordPath
+nmap ? <Plug>CtrlSFPrompt
+vmap ? <Plug>CtrlSFVwordPath
 nmap <silent><F3> :CtrlSFToggle<CR>
 
 " indent
 let g:indentLine_enabled = 1
-let g:indentLine_faster = 1
+let g:indentLine_faster  = 1
 set list lcs=tab:\¦\ " space in the end
 
 " rest
