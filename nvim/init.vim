@@ -8,9 +8,9 @@ let s:vim_home=expand("~/.config/nvim")
 let s:bundle_home=s:vim_home."/bundle"
 let s:plug_tool_home=s:bundle_home."/vim-plug"
 if !isdirectory(s:plug_tool_home."/.git")
-    silent exec "!mkdir -p ".s:bundle_home
-    silent exec "!git clone https://github.com/jwhitley/vim-plug.git ".s:plug_tool_home
-    let s:bootstrap=1
+	silent exec "!mkdir -p ".s:bundle_home
+	silent exec "!git clone https://github.com/jwhitley/vim-plug.git ".s:plug_tool_home
+	let s:bootstrap=1
 endif
 exec "set rtp+=".s:plug_tool_home
 call plug#begin(s:bundle_home)
@@ -238,11 +238,11 @@ cmap w!! w !sudo tee > /dev/null %
 " show preview windows at bottom
 function! PreviewDown()
 	if !&previewwindow
-		 silent! wincmd P
+		silent! wincmd P
 	endif
 	if &previewwindow
-		 silent! wincmd J
-		 silent! wincmd p
+		silent! wincmd J
+		silent! wincmd p
 	endif
 endf
 au BufWinEnter * call PreviewDown()
@@ -250,26 +250,26 @@ au BufWinEnter * call PreviewDown()
 " session automatically load and save session on start/exit.
 function! MakeSession()
 	 if g:sessionfile != ""
-		  echo "Saving."
-		  if (filewritable(g:sessiondir) != 2)
-				exe "silent !mkdir -p ".g:sessiondir
-				redraw!
-		  endif
-		  exe "mksession! ".g:sessionfile
+		echo "Saving."
+		if (filewritable(g:sessiondir) != 2)
+			exe "silent !mkdir -p ".g:sessiondir
+			redraw!
+		endif
+		exe "mksession! ".g:sessionfile
 	 endif
 endfunction
 function! LoadSession()
 	 if argc() == 0
-		  let g:sessiondir = s:vim_home."/sessions".getcwd()
-		  let g:sessionfile = g:sessiondir."/session.vim"
-		  if (filereadable(g:sessionfile))
-				exe "source ".g:sessionfile
-		  else
-				echo "No session loaded."
-		  endif
+		let g:sessiondir = s:vim_home."/sessions".getcwd()
+		let g:sessionfile = g:sessiondir."/session.vim"
+		if (filereadable(g:sessionfile))
+			exe "source ".g:sessionfile
+		else
+			echo "No session loaded."
+		endif
 	 else
-		  let g:sessionfile = ""
-		  let g:sessiondir = ""
+		let g:sessionfile = ""
+		let g:sessiondir = ""
 	 endif
 endfunction
 au VimEnter * nested :call LoadSession()
@@ -278,9 +278,9 @@ au VimLeave * :call MakeSession()
 " toggle vexplore
 fun! VexToggle()
 	 if exists("t:vex_buf_nr")
-		  call VexClose()
+		call VexClose()
 	 else
-		  call VexOpen()
+		call VexOpen()
 	 endif
 endf
 fun! VexOpen()
@@ -381,15 +381,15 @@ let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
 let g:tern_map_keys = 1
-au FileType javascript nmap <buffer> td  :TernDef<cr>
-au FileType javascript nmap <buffer> tb  :TernDocBrowse<cr>
-au FileType javascript nmap <buffer> tt  :TernType<cr>
-au FileType javascript nmap <buffer> to  :TernDoc<cr>
-au FileType javascript nmap <buffer> tpd :TernDefPreview<cr>
-au FileType javascript nmap <buffer> tsd :TernDefSplit<cr>
-au FileType javascript nmap <buffer> ttd :TernDefTab<cr>
-au FileType javascript nmap <buffer> tr  :TernRefs<cr>
-au FileType javascript nmap <buffer> tR  :TernRename<cr>
+au FileType javascript nmap <buffer> td  :TernDef<CR>
+au FileType javascript nmap <buffer> tb  :TernDocBrowse<CR>
+au FileType javascript nmap <buffer> tt  :TernType<CR>
+au FileType javascript nmap <buffer> to  :TernDoc<CR>
+au FileType javascript nmap <buffer> tpd :TernDefPreview<CR>
+au FileType javascript nmap <buffer> tsd :TernDefSplit<CR>
+au FileType javascript nmap <buffer> ttd :TernDefTab<CR>
+au FileType javascript nmap <buffer> tr  :TernRefs<CR>
+au FileType javascript nmap <buffer> tR  :TernRename<CR>
 
 " youcompleteme
 let g:ycm_add_preview_to_completeopt = 0
