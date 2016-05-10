@@ -19,7 +19,8 @@ call plug#begin(s:bundle_home)
 Plug 'jwhitley/vim-plug'
 
 " control
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
@@ -108,8 +109,8 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'flazz/vim-colorschemes'
 
 if exists("s:bootstrap") && s:bootstrap
-    unlet s:bootstrap
-    autocmd VimEnter * PlugInstall
+	unlet s:bootstrap
+	autocmd VimEnter * PlugInstall
 endif
 call plug#end()
 
@@ -123,6 +124,7 @@ set fileencoding=utf-8
 
 " map control keys
 let mapleader=','
+let maplocalleader=','
 nnoremap ; :
 
 " fix backspace indent
@@ -179,9 +181,9 @@ filetype plugin indent on
 filetype indent on
 
 " copy to clipboard
-vnoremap <leader>y  "+y
-nnoremap <leader>Y  "+yg_
-nnoremap <leader>y  "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
+nnoremap <leader>y "+y
 nnoremap <leader>yy "+yy
 
 " paste from clipboard
@@ -198,19 +200,29 @@ set ignorecase
 " theme
 set background=dark
 colorscheme hybrid_material
+if &diff
+	colorscheme evening
+endif
 
 " buffers
 nnoremap <silent><tab> :bnext<CR>
-nnoremap <silent><s-tab> :bprevious<CR>
+nnoremap <silent><S-tab> :bprevious<CR>
 nnoremap <silent><leader>bq :Bdelete<CR>
 nnoremap <silent><leader>bn :enew<CR>
 nnoremap <silent><leader>abq :bufdo Bdelete<CR>
+
+" tabs
+nnoremap <silent><C-t> :tabnew<CR>
 
 " switching windows
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
+
+" split windows
+noremap \| :vsplit<CR>
+noremap _ :split<CR>
 
 " useful mapping keys
 nnoremap <buffer> k gk
@@ -316,6 +328,7 @@ let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme='wombat'
 
 " ctrlp
 set wildmode=list:longest,list:full
@@ -329,18 +342,8 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
 
 " tern on vim
-let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
-let g:tern_map_keys = 0
-au FileType javascript nmap <buffer> td  :TernDef<CR>
-au FileType javascript nmap <buffer> tb  :TernDocBrowse<CR>
-au FileType javascript nmap <buffer> tt  :TernType<CR>
-au FileType javascript nmap <buffer> to  :TernDoc<CR>
-au FileType javascript nmap <buffer> tpd :TernDefPreview<CR>
-au FileType javascript nmap <buffer> tsd :TernDefSplit<CR>
-au FileType javascript nmap <buffer> ttd :TernDefTab<CR>
-au FileType javascript nmap <buffer> tr  :TernRefs<CR>
-au FileType javascript nmap <buffer> tR  :TernRename<CR>
+let g:tern_map_keys = 1
 
 " youcompleteme
 let g:ycm_add_preview_to_completeopt = 0
