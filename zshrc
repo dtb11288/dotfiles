@@ -6,8 +6,8 @@ ZPLUG_CLONE_DEPTH=1
 
 # clone zplug
 if [[ ! -d $ZPLUG_HOME ]]; then
-    git clone "https://github.com/$ZPLUG_GIT.git" "$ZPLUG_HOME/repos/$ZPLUG_GIT";
-    ln -s "$ZPLUG_HOME/repos/$ZPLUG_GIT/zplug" "$ZPLUG_HOME/zplug"
+	git clone "https://github.com/$ZPLUG_GIT.git" "$ZPLUG_HOME/repos/$ZPLUG_GIT";
+	ln -s "$ZPLUG_HOME/repos/$ZPLUG_GIT/zplug" "$ZPLUG_HOME/zplug"
 fi
 source $ZPLUG_HOME/zplug
 
@@ -38,10 +38,10 @@ zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
 # install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+	printf "Install? [y/N]: "
+	if read -q; then
+		echo; zplug install
+	fi
 fi
 
 # then, source plugins and add commands to $PATH
@@ -53,7 +53,7 @@ setopt promptsubst
 
 # load env source
 if [[ -r "$HOME/.env" ]]; then
-    source "$HOME/.env"
+	source "$HOME/.env"
 fi
 
 # set timeout key for zsh
