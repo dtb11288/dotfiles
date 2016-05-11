@@ -1,5 +1,6 @@
 " vim home
 let s:vim_home=expand("~/.config/nvim")
+filetype off
 
 "*****************************************************************************
 " vim-plug install packages
@@ -59,11 +60,10 @@ Plug 'moll/vim-node'
 Plug 'sidorares/node-vim-debugger'
 
 " jade
-Plug 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-pug'
 
 " javascript
 Plug 'jelera/vim-javascript-syntax'
-Plug 'pangloss/vim-javascript'
 
 " html
 Plug 'othree/html5-syntax.vim'
