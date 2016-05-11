@@ -1,6 +1,5 @@
 " vim home
 let s:vim_home=expand("~/.config/nvim")
-filetype off
 
 "*****************************************************************************
 " vim-plug install packages
