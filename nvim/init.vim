@@ -334,9 +334,9 @@ let g:airline_theme='wombat'
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let g:ctrlp_use_caching = 0
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+cnoremap <C-P> <C-R>=expand("%:p:h")."/" <CR>
 noremap <leader>bl :CtrlPBuffer<CR>
-noremap <leader>r :CtrlPMRUFiles<CR>
+noremap <leader>rf :CtrlPMRUFiles<CR>
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
