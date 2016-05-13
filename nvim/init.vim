@@ -28,8 +28,9 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'moll/vim-bbye'
 
 " auto complete
-Plug 'Valloric/YouCompleteMe', {'do': 'python2 install.py'}
+Plug 'Shougo/deoplete.nvim'
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
+Plug 'carlitux/deoplete-ternjs'
 Plug 'neomake/neomake'
 Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
@@ -343,11 +344,6 @@ let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:tern_show_signature_in_pum = 1
 let g:tern_map_keys = 1
 
-" youcompleteme
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_confirm_extra_conf = 0
-set completeopt-=preview
-
 " incsearch
 nmap / <Plug>(incsearch-forward)
 vmap / y<Plug>(incsearch-forward)<C-R>"
@@ -409,3 +405,6 @@ let g:magit_discard_untracked_do_delete=1
 
 " hack jade template
 autocmd BufNewFile,BufReadPost *.jade set filetype=pug
+
+" deoplete.
+let g:deoplete#enable_at_startup = 1
