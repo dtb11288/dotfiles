@@ -30,7 +30,7 @@ Plug 'moll/vim-bbye'
 " auto complete
 Plug 'Valloric/YouCompleteMe', {'do': 'python2 install.py'}
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
-Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
 Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -322,7 +322,6 @@ map <F8> :TagbarToggle<CR>
 
 " airline
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 let g:airline#extensions#tabline#enabled = 1
@@ -349,17 +348,6 @@ let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_confirm_extra_conf = 0
 set completeopt-=preview
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_jade_checkers = ['jade_lint']
-
 " incsearch
 nmap / <Plug>(incsearch-forward)
 vmap / y<Plug>(incsearch-forward)<C-R>"
@@ -379,6 +367,10 @@ let g:mundo_right = 1
 
 " better-whitespaces
 autocmd BufWritePre * StripWhitespace
+
+" neomake
+let g:neomake_open_list = 2
+autocmd BufWritePost * Neomake
 
 " easy align
 xmap ga <Plug>(EasyAlign)
@@ -414,3 +406,6 @@ au FileType haskell nnoremap <buffer> <silent> te :GhcModTypeClear<CR>
 
 " vim magit
 let g:magit_discard_untracked_do_delete=1
+
+" hack jade template
+autocmd BufNewFile,BufReadPost *.jade set filetype=pug
