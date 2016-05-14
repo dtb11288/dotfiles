@@ -26,6 +26,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'simnalamburt/vim-mundo'
 Plug 'moll/vim-bbye'
+Plug 'Konfekt/FastFold'
 
 " auto complete
 Plug 'Shougo/deoplete.nvim'
@@ -408,3 +409,4 @@ autocmd BufNewFile,BufReadPost *.jade set filetype=pug
 
 " deoplete.
 let g:deoplete#enable_at_startup = 1
+set completeopt-=preview
