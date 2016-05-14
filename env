@@ -21,3 +21,7 @@ alias startx='ssh-agent startx'
 # feh
 alias feh='feh -Z -.'
 
+# vi, vim
+alias vi='nvim'
+alias vim='nvim'
+

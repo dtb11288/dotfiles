@@ -45,7 +45,7 @@ Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/Smart-Tabs'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
 Plug 'tmhedberg/matchit'
 Plug 'hlissner/vim-multiedit'
@@ -147,6 +147,7 @@ set nocompatible
 
 " show line number
 set number
+set relativenumber
 
 " terminal
 set shell=zsh
@@ -395,17 +396,14 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " haskell mod
 autocmd BufEnter *.hs compiler ghc
 let g:haddock_browser="/usr/bin/google-chrome-stable"
-au FileType haskell nnoremap <buffer> tt :call GHC_ShowType(0)<CR>
-au FileType haskell nnoremap <buffer> <silent> tw :GhcModTypeInsert<CR>
-au FileType haskell nnoremap <buffer> <silent> ts :GhcModSplitFunCase<CR>
-au FileType haskell nnoremap <buffer> <silent> tq :GhcModType<CR>
-au FileType haskell nnoremap <buffer> <silent> te :GhcModTypeClear<CR>
+"au FileType haskell nnoremap <buffer> tt :call GHC_ShowType(0)<CR>
+"au FileType haskell nnoremap <buffer> <silent> tw :GhcModTypeInsert<CR>
+"au FileType haskell nnoremap <buffer> <silent> ts :GhcModSplitFunCase<CR>
+"au FileType haskell nnoremap <buffer> <silent> tq :GhcModType<CR>
+"au FileType haskell nnoremap <buffer> <silent> te :GhcModTypeClear<CR>
 
 " vim magit
 let g:magit_discard_untracked_do_delete=1
-
-" hack jade template
-autocmd BufNewFile,BufReadPost *.jade set filetype=pug
 
 " deoplete.
 let g:deoplete#enable_at_startup = 1
