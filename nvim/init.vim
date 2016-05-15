@@ -49,6 +49,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'djoshea/vim-autoread'
 Plug 'tmhedberg/matchit'
 Plug 'hlissner/vim-multiedit'
+Plug 'terryma/vim-expand-region'
 
 " csv
 Plug 'chrisbra/csv.vim'
@@ -184,9 +185,11 @@ filetype indent on
 
 " copy to clipboard
 vnoremap <leader>y "+y
-nnoremap <leader>Y "+yg_
+vnoremap <leader>d "+d
+nnoremap <leader>d "+d
 nnoremap <leader>y "+y
 nnoremap <leader>yy "+yy
+nnoremap <leader>dd "+dd
 
 " paste from clipboard
 nnoremap <leader>p "+p
@@ -239,6 +242,9 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+
+" stupid window
+map q: :q
 
 " allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
@@ -327,9 +333,12 @@ map <F8> :TagbarToggle<CR>
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#format = 'Git_flow_branch_format'
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme='wombat'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_section_z=''
 
 " ctrlp
 set wildmode=list:longest,list:full
@@ -341,6 +350,7 @@ noremap <leader>rf :CtrlPMRUFiles<CR>
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
+let g:ctrlp_match_window = 'results:100'
 
 " tern on vim
 let g:tern_show_signature_in_pum = 1
@@ -348,7 +358,9 @@ let g:tern_map_keys = 1
 
 " incsearch
 nmap / <Plug>(incsearch-forward)
+nmap ? <Plug>(incsearch-backward)
 vmap / y<Plug>(incsearch-forward)<C-R>"
+vmap ? y<Plug>(incsearch-backward)<C-R>"
 
 " :h g:incsearch#auto_nohlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -371,12 +383,12 @@ let g:neomake_open_list = 2
 autocmd BufWritePost * Neomake
 
 " easy align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+xmap <leader>ea <Plug>(EasyAlign)
+nmap <leader>ea <Plug>(EasyAlign)
 
 " ctrlsf
-nmap ? <Plug>CtrlSFPrompt
-vmap ? <Plug>CtrlSFVwordPath
+nmap <leader>/ <Plug>CtrlSFPrompt
+vmap <leader>/ <Plug>CtrlSFVwordPath
 nmap <silent><F3> :CtrlSFToggle<CR>
 
 " indent
