@@ -38,7 +38,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " editor
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
