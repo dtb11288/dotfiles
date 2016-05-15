@@ -388,10 +388,8 @@ set list lcs=tab:\¦\ " space in the end
 let g:vrc_cookie_jar = '/tmp/vrc_cookie_jar'
 
 " neco-ghc
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
 let g:necoghc_enable_detailed_browse = 1
 let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " haskell mod
 autocmd BufEnter *.hs compiler ghc
