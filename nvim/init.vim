@@ -1,5 +1,6 @@
 " vim home
 let s:vim_home=expand("~/.config/nvim")
+let s:vim_plug="jwhitley/vim-plug"
 
 "*****************************************************************************
 " vim-plug install packages
@@ -9,7 +10,7 @@ let s:bundle_home=s:vim_home."/bundle"
 let s:plug_tool_home=s:bundle_home."/vim-plug"
 if !isdirectory(s:plug_tool_home."/.git")
 	silent exec "!mkdir -p ".s:bundle_home
-	silent exec "!git clone https://github.com/jwhitley/vim-plug.git ".s:plug_tool_home
+	silent exec "!git clone https://github.com/".s:vim_plug.".git ".s:plug_tool_home
 	let s:bootstrap=1
 endif
 exec "set rtp+=".s:plug_tool_home
@@ -104,7 +105,6 @@ Plug 'diepm/vim-rest-console'
 
 " search
 Plug 'haya14busa/incsearch.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'dyng/ctrlsf.vim'
 
 " theme
@@ -125,9 +125,8 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " map control keys
-let mapleader=','
-let maplocalleader=','
-nnoremap ; :
+let mapleader="\<space>"
+let maplocalleader="\<space>"
 
 " fix backspace indent
 set backspace=indent,eol,start
@@ -152,7 +151,7 @@ set relativenumber
 
 " terminal
 set shell=zsh
-tnoremap <Esc> <C-\><C-n>
+tnoremap <esc> <c-\><c-n>
 
 " always show status bar
 set laststatus=2
@@ -199,8 +198,10 @@ vnoremap <leader>P "+P
 
 " search
 set grepprg="ag --nogroup --nocolor"
+set incsearch
 set hlsearch
 set ignorecase
+nnoremap <silent><esc> :noh<cr><esc>
 
 " theme
 set background=dark
@@ -210,24 +211,24 @@ if &diff
 endif
 
 " buffers
-nnoremap <silent><tab> :bnext<CR>
-nnoremap <silent><S-tab> :bprevious<CR>
-nnoremap <silent><leader>bq :Bdelete<CR>
-nnoremap <silent><leader>bn :enew<CR>
-nnoremap <silent><leader>abq :bufdo Bdelete<CR>
+" nnoremap <silent><tab> :bnext<cr>
+" nnoremap <silent><s-tab> :bprevious<cr>
+nnoremap <silent><leader>bq :Bdelete<cr>
+nnoremap <silent><leader>bn :enew<cr>
+nnoremap <silent><leader>abq :bufdo Bdelete<cr>
 
 " tabs
-nnoremap <silent><C-t> :tabnew<CR>
+nnoremap <silent><c-t> :tabnew<cr>
 
 " switching windows
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
+noremap <c-h> <c-w>h
 
 " split windows
-noremap \| :vsplit<CR>
-noremap _ :split<CR>
+noremap \| :vsplit<cr>
+noremap _ :split<cr>
 
 " useful mapping keys
 nnoremap <buffer> k gk
@@ -242,9 +243,6 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
-
-" stupid window
-map q: :q
 
 " allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
@@ -304,8 +302,8 @@ set noexpandtab
 " plugins configuration
 "*****************************************************************************
 " NERDTree
-noremap <silent><F2> :NERDTreeToggle<CR>
-nnoremap <silent><leader><F2> :NERDTreeFind<CR>
+noremap <silent><F2> :NERDTreeToggle<cr>
+nnoremap <silent><leader><F2> :NERDTreeFind<cr>
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
@@ -327,7 +325,7 @@ function! s:CloseIfOnlyNerdTreeLeft()
 endfunction
 
 " tagbar
-map <F8> :TagbarToggle<CR>
+map <F8> :TagbarToggle<cr>
 
 " airline
 let g:airline#extensions#branch#enabled = 1
@@ -344,9 +342,8 @@ let g:airline_section_z=''
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let g:ctrlp_use_caching = 0
-cnoremap <C-P> <C-R>=expand("%:p:h")."/" <CR>
-noremap <leader>bl :CtrlPBuffer<CR>
-noremap <leader>rf :CtrlPMRUFiles<CR>
+noremap <leader>bl :CtrlPBuffer<cr>
+noremap <leader>rf :CtrlPMRUFiles<cr>
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
@@ -359,8 +356,8 @@ let g:tern_map_keys = 1
 " incsearch
 nmap / <Plug>(incsearch-forward)
 nmap ? <Plug>(incsearch-backward)
-vmap / y<Plug>(incsearch-forward)<C-R>"
-vmap ? y<Plug>(incsearch-backward)<C-R>"
+vmap / y<Plug>(incsearch-forward)<c-r>"
+vmap ? y<Plug>(incsearch-backward)<c-r>"
 
 " :h g:incsearch#auto_nohlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -372,7 +369,7 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
 " gundo
-nnoremap <silent><F5> :MundoToggle<CR>
+nnoremap <silent><F5> :MundoToggle<cr>
 let g:mundo_right = 1
 
 " better-whitespaces
@@ -389,7 +386,7 @@ nmap <leader>ea <Plug>(EasyAlign)
 " ctrlsf
 nmap <leader>/ <Plug>CtrlSFPrompt
 vmap <leader>/ <Plug>CtrlSFVwordPath
-nmap <silent><F3> :CtrlSFToggle<CR>
+nmap <silent><F3> :CtrlSFToggle<cr>
 
 " indent
 let g:indentLine_enabled = 1
@@ -406,11 +403,11 @@ let g:haskellmode_completion_ghc = 0
 " haskell mod
 autocmd BufEnter *.hs compiler ghc
 let g:haddock_browser="/usr/bin/google-chrome-stable"
-"au FileType haskell nnoremap <buffer> tt :call GHC_ShowType(0)<CR>
-"au FileType haskell nnoremap <buffer> <silent> tw :GhcModTypeInsert<CR>
-"au FileType haskell nnoremap <buffer> <silent> ts :GhcModSplitFunCase<CR>
-"au FileType haskell nnoremap <buffer> <silent> tq :GhcModType<CR>
-"au FileType haskell nnoremap <buffer> <silent> te :GhcModTypeClear<CR>
+"au FileType haskell nnoremap <buffer> tt :call GHC_ShowType(0)<cr>
+"au FileType haskell nnoremap <buffer> <silent> tw :GhcModTypeInsert<cr>
+"au FileType haskell nnoremap <buffer> <silent> ts :GhcModSplitFunCase<cr>
+"au FileType haskell nnoremap <buffer> <silent> tq :GhcModType<cr>
+"au FileType haskell nnoremap <buffer> <silent> te :GhcModTypeClear<cr>
 
 " vim magit
 let g:magit_discard_untracked_do_delete=1
