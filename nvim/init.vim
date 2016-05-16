@@ -27,7 +27,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'simnalamburt/vim-mundo'
 Plug 'moll/vim-bbye'
-Plug 'Konfekt/FastFold'
 
 " auto complete
 Plug 'Shougo/deoplete.nvim'
@@ -51,6 +50,9 @@ Plug 'djoshea/vim-autoread'
 Plug 'tmhedberg/matchit'
 Plug 'hlissner/vim-multiedit'
 Plug 'terryma/vim-expand-region'
+Plug 'Chiel92/vim-autoformat'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'Konfekt/FastFold'
 
 " csv
 Plug 'chrisbra/csv.vim'
@@ -408,6 +410,9 @@ let g:haddock_browser="/usr/bin/google-chrome-stable"
 "au FileType haskell nnoremap <buffer> <silent> ts :GhcModSplitFunCase<cr>
 "au FileType haskell nnoremap <buffer> <silent> tq :GhcModType<cr>
 "au FileType haskell nnoremap <buffer> <silent> te :GhcModTypeClear<cr>
+
+" gitgutter
+let g:gitgutter_max_signs = 1000
 
 " vim magit
 let g:magit_discard_untracked_do_delete=1
