@@ -350,6 +350,16 @@ let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_match_window = 'results:100'
+let g:ctrlp_buffer_func = { 'enter': 'CtrlPMappings' }
+function! CtrlPMappings()
+  nnoremap <buffer> <silent> <c-q> :call <sid>DeleteBuffer()<cr>
+endfunction
+function! s:DeleteBuffer()
+	let path = fnamemodify(getline('.')[2:], ':p')
+	let bufn = matchstr(path, '\v\d+\ze\*No Name')
+	exec "bd" bufn ==# "" ? path : bufn
+	exec "norm \<F5>"
+endfunction
 
 " tern on vim
 let g:tern_show_signature_in_pum = 1
