@@ -62,7 +62,6 @@ Plug 'fidian/hexmode'
 
 " nodejs
 Plug 'moll/vim-node'
-Plug 'sidorares/node-vim-debugger'
 
 " jade
 Plug 'digitaltoad/vim-pug'
@@ -90,6 +89,10 @@ Plug 'eagletmt/neco-ghc'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'dag/vim2hs'
 Plug 'lukerandall/haskellmode-vim'
+
+" java
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'hsanson/vim-android'
 
 " conky
 Plug 'smancill/conky-syntax.vim'
