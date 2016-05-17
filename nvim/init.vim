@@ -236,10 +236,6 @@ noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
 noremap <c-h> <c-w>h
 
-" split windows
-noremap \| :vsplit<cr>
-noremap _ :split<cr>
-
 " useful mapping keys
 nnoremap <buffer> k gk
 nnoremap <buffer> j gj
@@ -435,6 +431,7 @@ let g:gitgutter_max_signs = 1000
 " vim magit
 let g:magit_discard_untracked_do_delete=1
 
-" deoplete.
+" deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_start_length = 1
 set completeopt-=preview
