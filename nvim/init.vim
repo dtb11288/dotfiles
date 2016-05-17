@@ -39,6 +39,7 @@ Plug 'honza/vim-snippets'
 
 " editor
 Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
