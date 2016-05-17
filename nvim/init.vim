@@ -52,8 +52,12 @@ Plug 'tmhedberg/matchit'
 Plug 'hlissner/vim-multiedit'
 Plug 'terryma/vim-expand-region'
 Plug 'Chiel92/vim-autoformat'
-Plug 'michaeljsmith/vim-indent-object'
 Plug 'Konfekt/FastFold'
+
+" text object
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'glts/vim-textobj-comment'
 
 " csv
 Plug 'chrisbra/csv.vim'
