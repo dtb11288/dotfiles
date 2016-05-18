@@ -24,6 +24,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'majutsushi/tagbar'
 Plug 'simnalamburt/vim-mundo'
 Plug 'moll/vim-bbye'
@@ -219,6 +220,10 @@ colorscheme hybrid_material
 if &diff
 	colorscheme evening
 endif
+
+" title
+set title
+autocmd BufEnter * let &titlestring = expand("%:t")
 
 " buffers
 " nnoremap <silent><tab> :bnext<cr>
