@@ -1,6 +1,5 @@
 " vim home
 let s:vim_home=expand("~/.config/nvim")
-let s:vim_plug="jwhitley/vim-plug"
 
 "*****************************************************************************
 " vim-plug install packages
@@ -8,6 +7,7 @@ let s:vim_plug="jwhitley/vim-plug"
 " install vim-plug
 let s:bundle_home=s:vim_home."/bundle"
 let s:plug_tool_home=s:bundle_home."/vim-plug"
+let s:vim_plug="jwhitley/vim-plug"
 if !isdirectory(s:plug_tool_home."/.git")
 	silent exec "!mkdir -p ".s:bundle_home
 	silent exec "!git clone https://github.com/".s:vim_plug.".git ".s:plug_tool_home
