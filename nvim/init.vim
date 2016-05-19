@@ -23,7 +23,8 @@ Plug 'jwhitley/vim-plug'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'majutsushi/tagbar'
 Plug 'simnalamburt/vim-mundo'
@@ -408,16 +409,35 @@ noremap <leader>rf :CtrlPMRUFiles<cr>
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
+let g:ctrlp_open_multiple_files = 'i'
 let g:ctrlp_match_window = 'results:100'
-let g:ctrlp_buffer_func = { 'enter': 'CtrlPMappings' }
-function! CtrlPMappings()
-	nnoremap <buffer> <silent> <c-q> :call <sid>DeleteBuffer()<cr>
+let g:ctrlp_buffer_func = { 'enter': 'CtrlPBufferMappings' }
+function! CtrlPBufferMappings()
+	nnoremap <buffer> <silent> <c-q> :call <sid>CtrlPDeleteBuffer()<cr>
 endfunction
-function! s:DeleteBuffer()
-	let path = fnamemodify(getline('.')[2:], ':p')
-	let bufn = matchstr(path, '\v\d+\ze\*No Name')
-	exec "bd" bufn ==# "" ? path : bufn
-	exec "norm \<F5>"
+function! s:CtrlPCloseBuffer(bufline)
+	let bufnum = matchlist(a:bufline, '>\s\+\([0-9]\+\)')[1]
+	exec "silent! bdelete" bufnum
+	return bufnum
+endfunction
+function! s:CtrlPDeleteBuffer()
+	let marked = ctrlp#getmarkedlist()
+	if empty(marked)
+		let linenum = line('.')
+		call s:CtrlPCloseBuffer(getline('.'))
+		exec "norm \<F5>"
+		let linebottom = line('$')
+		if linenum < linebottom
+			exec linenum
+		endif
+	else
+		for fname in marked
+			let bufid = fname =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(fname, '\d\+')) : fnamemodify(fname[2:], ':p')
+			exec "silent! bdelete" bufid
+		endfor
+		exec "norm \<F5>"
+		call ctrlp#clearmarkedlist()
+	endif
 endfunction
 
 " tern on vim
