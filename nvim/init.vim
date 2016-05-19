@@ -411,7 +411,7 @@ let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_match_window = 'results:100'
 let g:ctrlp_buffer_func = { 'enter': 'CtrlPMappings' }
 function! CtrlPMappings()
-  nnoremap <buffer> <silent> <c-q> :call <sid>DeleteBuffer()<cr>
+	nnoremap <buffer> <silent> <c-q> :call <sid>DeleteBuffer()<cr>
 endfunction
 function! s:DeleteBuffer()
 	let path = fnamemodify(getline('.')[2:], ':p')
