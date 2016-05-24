@@ -507,4 +507,6 @@ let g:magit_discard_untracked_do_delete=1
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#enable_smart_case = 1
 set completeopt-=preview
