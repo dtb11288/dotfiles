@@ -2,130 +2,129 @@
 let s:vim_home=expand("~/.config/nvim")
 
 "*****************************************************************************
-" vim-plug install packages
+" dein install packages
 "*****************************************************************************
-" install vim-plug
+" install dein
 let s:bundle_home=s:vim_home."/bundle"
-let s:plug_tool_home=s:bundle_home."/vim-plug"
-let s:vim_plug="jwhitley/vim-plug"
+let s:dein_repo="Shougo/dein.vim"
+let s:plug_tool_home=s:bundle_home."/repos/github.com/".s:dein_repo
 if !isdirectory(s:plug_tool_home."/.git")
 	silent exec "!mkdir -p ".s:bundle_home
-	silent exec "!git clone https://github.com/".s:vim_plug.".git ".s:plug_tool_home
-	let s:bootstrap=1
+	silent exec "!git clone https://github.com/".s:dein_repo.".git ".s:plug_tool_home
 endif
 exec "set rtp+=".s:plug_tool_home
-call plug#begin(s:bundle_home)
+call dein#begin(s:bundle_home)
 
-" let vim-plug manage itself
-Plug 'jwhitley/vim-plug'
+" let dein manage itself
+exec "call dein#add('".s:dein_repo."')"
 
 " control
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'majutsushi/tagbar'
-Plug 'simnalamburt/vim-mundo'
-Plug 'moll/vim-bbye'
-Plug 'easymotion/vim-easymotion'
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('scrooloose/nerdtree')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('majutsushi/tagbar')
+call dein#add('simnalamburt/vim-mundo')
+call dein#add('moll/vim-bbye')
+call dein#add('easymotion/vim-easymotion')
 
 " auto complete
-Plug 'Shougo/deoplete.nvim'
-Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
-Plug 'carlitux/deoplete-ternjs'
-Plug 'neomake/neomake'
-Plug 'jiangmiao/auto-pairs'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+call dein#add('Shougo/deoplete.nvim')
+call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
+call dein#add('carlitux/deoplete-ternjs')
+call dein#add('neomake/neomake')
+call dein#add('jiangmiao/auto-pairs')
+call dein#add('SirVer/ultisnips')
+call dein#add('honza/vim-snippets')
 
 " editor
-Plug 'tomtom/tcomment_vim'
-Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'junegunn/vim-easy-align'
-Plug 'vim-scripts/Smart-Tabs'
-Plug 'ntpeters/vim-better-whitespace'
-"Plug 'Yggdroot/indentLine'
-Plug 'djoshea/vim-autoread'
-Plug 'tmhedberg/matchit'
-Plug 'hlissner/vim-multiedit'
-Plug 'terryma/vim-expand-region'
-Plug 'Chiel92/vim-autoformat'
-Plug 'Konfekt/FastFold'
+call dein#add('tomtom/tcomment_vim')
+call dein#add('vim-scripts/ReplaceWithRegister')
+call dein#add('terryma/vim-multiple-cursors')
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-repeat')
+call dein#add('junegunn/vim-easy-align')
+call dein#add('vim-scripts/Smart-Tabs')
+call dein#add('ntpeters/vim-better-whitespace')
+"call dein#add('Yggdroot/indentLine')
+call dein#add('djoshea/vim-autoread')
+call dein#add('tmhedberg/matchit')
+call dein#add('hlissner/vim-multiedit')
+call dein#add('terryma/vim-expand-region')
+call dein#add('Chiel92/vim-autoformat')
+call dein#add('Konfekt/FastFold')
 
 " text object
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-indent'
-Plug 'glts/vim-textobj-comment'
+call dein#add('kana/vim-textobj-user')
+call dein#add('kana/vim-textobj-indent')
+call dein#add('glts/vim-textobj-comment')
 
 " csv
-Plug 'chrisbra/csv.vim'
+call dein#add('chrisbra/csv.vim')
 
 " hex
-Plug 'fidian/hexmode'
+call dein#add('fidian/hexmode')
 
 " nodejs
-Plug 'moll/vim-node'
+call dein#add('moll/vim-node')
 
 " jade
-Plug 'digitaltoad/vim-pug'
+call dein#add('digitaltoad/vim-pug')
 
 " javascript
-Plug 'jelera/vim-javascript-syntax'
+call dein#add('jelera/vim-javascript-syntax')
 
 " html
-Plug 'othree/html5-syntax.vim'
-Plug 'othree/html5.vim'
+call dein#add('othree/html5-syntax.vim')
+call dein#add('othree/html5.vim')
 
 " css
-Plug 'ap/vim-css-color'
-Plug 'hail2u/vim-css3-syntax'
+call dein#add('ap/vim-css-color')
+call dein#add('hail2u/vim-css3-syntax')
 
 " markdown
-Plug 'gabrielelana/vim-markdown'
+call dein#add('gabrielelana/vim-markdown')
 
 " i3
-Plug 'PotatoesMaster/i3-vim-syntax'
+call dein#add('PotatoesMaster/i3-vim-syntax')
 
 " haskell
-Plug 'Shougo/vimproc', { 'do': 'make' }
-Plug 'eagletmt/neco-ghc'
-Plug 'eagletmt/ghcmod-vim'
-Plug 'dag/vim2hs'
-Plug 'lukerandall/haskellmode-vim'
+call dein#add('Shougo/vimproc', { 'build': 'make' })
+call dein#add('eagletmt/neco-ghc')
+call dein#add('eagletmt/ghcmod-vim')
+call dein#add('dag/vim2hs')
+call dein#add('lukerandall/haskellmode-vim')
 
 " java
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'hsanson/vim-android'
+call dein#add('artur-shaik/vim-javacomplete2')
+call dein#add('hsanson/vim-android')
 
 " conky
-Plug 'smancill/conky-syntax.vim'
+call dein#add('smancill/conky-syntax.vim')
 
 " git
-Plug 'tpope/vim-fugitive'
-Plug 'gregsexton/gitv'
-Plug 'renyard/vim-git-flow-format'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
-Plug 'jreybert/vimagit', { 'branch': 'next' }
+call dein#add('tpope/vim-fugitive')
+call dein#add('gregsexton/gitv')
+call dein#add('renyard/vim-git-flow-format')
+call dein#add('Xuyuanp/nerdtree-git-plugin')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('jreybert/vimagit', { 'rev': 'next' })
 
 " rest tool
-Plug 'diepm/vim-rest-console'
+call dein#add('diepm/vim-rest-console')
 
 " search
-Plug 'haya14busa/incsearch.vim'
-Plug 'dyng/ctrlsf.vim'
+call dein#add('haya14busa/incsearch.vim')
+call dein#add('dyng/ctrlsf.vim')
 
 " theme
-Plug 'flazz/vim-colorschemes'
+call dein#add('flazz/vim-colorschemes')
 
-if exists("s:bootstrap") && s:bootstrap
-	unlet s:bootstrap
-	autocmd VimEnter * PlugInstall
+" end and check install
+call dein#end()
+if dein#check_install()
+	call dein#install()
 endif
-call plug#end()
 
 
 "*****************************************************************************
