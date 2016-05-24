@@ -24,11 +24,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
-Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'majutsushi/tagbar'
 Plug 'simnalamburt/vim-mundo'
 Plug 'moll/vim-bbye'
+Plug 'easymotion/vim-easymotion'
 
 " auto complete
 Plug 'Shougo/deoplete.nvim'
@@ -355,9 +354,9 @@ set linebreak
 set breakindent
 
 " tab options
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set noexpandtab
 
 "*****************************************************************************
