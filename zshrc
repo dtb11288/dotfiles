@@ -11,7 +11,6 @@ if [[ ! -d $ZPLUG_HOME ]]; then
 fi
 source $ZPLUG_HOME/zplug
 
-
 # zplug manage itself
 zplug "$ZPLUG_GIT"
 
@@ -29,9 +28,14 @@ zplug "plugins/node", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/adb", from:oh-my-zsh
 zplug "plugins/web-search", from:oh-my-zsh
+zplug "plugins/web-search", from:oh-my-zsh
 
 # theme
 zplug "themes/frisk", from:oh-my-zsh
+
+# suggestion
+zplug "horosgrisa/zsh-history-substring-search"
+zplug "tarruda/zsh-autosuggestions"
 
 # after executing compinit command and sourcing other plugins
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
