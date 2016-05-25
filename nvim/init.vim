@@ -33,7 +33,7 @@ Plug 'easymotion/vim-easymotion'
 
 " auto complete
 Plug 'Shougo/deoplete.nvim'
-Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
+Plug 'ternjs/tern_for_vim'
 Plug 'carlitux/deoplete-ternjs'
 Plug 'neomake/neomake'
 Plug 'jiangmiao/auto-pairs'
@@ -444,6 +444,9 @@ endfunction
 " tern on vim
 let g:tern_show_signature_in_pum = 1
 let g:tern_map_keys = 1
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+let g:tern_request_timeout = 1
 
 " incsearch
 nmap / <Plug>(incsearch-forward)
