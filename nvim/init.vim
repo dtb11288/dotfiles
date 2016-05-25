@@ -2,130 +2,133 @@
 let s:vim_home=expand("~/.config/nvim")
 
 "*****************************************************************************
-" dein install packages
+" vim_plug install packages
 "*****************************************************************************
 " install dein
 let s:bundle_home=s:vim_home."/bundle"
-let s:dein_repo="Shougo/dein.vim"
-let s:plug_tool_home=s:bundle_home."/repos/github.com/".s:dein_repo
+let s:vim_plug_repo="junegunn/vim-plug"
+let s:plug_tool_home=s:bundle_home."/vim-plug"
 if !isdirectory(s:plug_tool_home."/.git")
 	silent exec "!mkdir -p ".s:bundle_home
-	silent exec "!git clone https://github.com/".s:dein_repo.".git ".s:plug_tool_home
+	silent exec "!git clone https://github.com/".s:vim_plug_repo.".git ".s:plug_tool_home
+	silent exec "!mkdir -p ".s:plug_tool_home."/autoload"
+	silent exec "!ln -s ".s:plug_tool_home."/plug.vim ".s:plug_tool_home."/autoload"
+	let s:bootstrap=1
 endif
 exec "set rtp+=".s:plug_tool_home
-call dein#begin(s:bundle_home)
+call plug#begin(s:bundle_home)
 
-" let dein manage itself
-exec "call dein#add('".s:dein_repo."')"
+" let vim_plug manage itself
+exec "Plug '".s:vim_plug_repo."'"
 
 " control
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('scrooloose/nerdtree')
-call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('majutsushi/tagbar')
-call dein#add('simnalamburt/vim-mundo')
-call dein#add('moll/vim-bbye')
-call dein#add('easymotion/vim-easymotion')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'majutsushi/tagbar'
+Plug 'simnalamburt/vim-mundo'
+Plug 'moll/vim-bbye'
+Plug 'easymotion/vim-easymotion'
 
 " auto complete
-call dein#add('Shougo/deoplete.nvim')
-call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
-call dein#add('carlitux/deoplete-ternjs')
-call dein#add('neomake/neomake')
-call dein#add('jiangmiao/auto-pairs')
-call dein#add('SirVer/ultisnips')
-call dein#add('honza/vim-snippets')
+Plug 'Shougo/deoplete.nvim'
+Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
+Plug 'carlitux/deoplete-ternjs'
+Plug 'neomake/neomake'
+Plug 'jiangmiao/auto-pairs'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " editor
-call dein#add('tomtom/tcomment_vim')
-call dein#add('vim-scripts/ReplaceWithRegister')
-call dein#add('terryma/vim-multiple-cursors')
-call dein#add('tpope/vim-surround')
-call dein#add('tpope/vim-repeat')
-call dein#add('junegunn/vim-easy-align')
-call dein#add('vim-scripts/Smart-Tabs')
-call dein#add('ntpeters/vim-better-whitespace')
-"call dein#add('Yggdroot/indentLine')
-call dein#add('djoshea/vim-autoread')
-call dein#add('tmhedberg/matchit')
-call dein#add('hlissner/vim-multiedit')
-call dein#add('terryma/vim-expand-region')
-call dein#add('Chiel92/vim-autoformat')
-call dein#add('Konfekt/FastFold')
+Plug 'tomtom/tcomment_vim'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-scripts/Smart-Tabs'
+Plug 'ntpeters/vim-better-whitespace'
+"Plug 'Yggdroot/indentLine'
+Plug 'djoshea/vim-autoread'
+Plug 'tmhedberg/matchit'
+Plug 'hlissner/vim-multiedit'
+Plug 'terryma/vim-expand-region'
+Plug 'Chiel92/vim-autoformat'
+Plug 'Konfekt/FastFold'
 
 " text object
-call dein#add('kana/vim-textobj-user')
-call dein#add('kana/vim-textobj-indent')
-call dein#add('glts/vim-textobj-comment')
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'glts/vim-textobj-comment'
 
 " csv
-call dein#add('chrisbra/csv.vim')
+Plug 'chrisbra/csv.vim'
 
 " hex
-call dein#add('fidian/hexmode')
+Plug 'fidian/hexmode'
 
 " nodejs
-call dein#add('moll/vim-node')
+Plug 'moll/vim-node'
 
 " jade
-call dein#add('digitaltoad/vim-pug')
+Plug 'digitaltoad/vim-pug'
 
 " javascript
-call dein#add('jelera/vim-javascript-syntax')
+Plug 'jelera/vim-javascript-syntax'
 
 " html
-call dein#add('othree/html5-syntax.vim')
-call dein#add('othree/html5.vim')
+Plug 'othree/html5-syntax.vim'
+Plug 'othree/html5.vim'
 
 " css
-call dein#add('ap/vim-css-color')
-call dein#add('hail2u/vim-css3-syntax')
+Plug 'ap/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
 
 " markdown
-call dein#add('gabrielelana/vim-markdown')
+Plug 'gabrielelana/vim-markdown'
 
 " i3
-call dein#add('PotatoesMaster/i3-vim-syntax')
+Plug 'PotatoesMaster/i3-vim-syntax'
 
 " haskell
-call dein#add('Shougo/vimproc', { 'build': 'make' })
-call dein#add('eagletmt/neco-ghc')
-call dein#add('eagletmt/ghcmod-vim')
-call dein#add('dag/vim2hs')
-call dein#add('lukerandall/haskellmode-vim')
+Plug 'Shougo/vimproc', { 'do': 'make' }
+Plug 'eagletmt/neco-ghc'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'dag/vim2hs'
+Plug 'lukerandall/haskellmode-vim'
 
 " java
-call dein#add('artur-shaik/vim-javacomplete2')
-call dein#add('hsanson/vim-android')
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'hsanson/vim-android'
 
 " conky
-call dein#add('smancill/conky-syntax.vim')
+Plug 'smancill/conky-syntax.vim'
 
 " git
-call dein#add('tpope/vim-fugitive')
-call dein#add('gregsexton/gitv')
-call dein#add('renyard/vim-git-flow-format')
-call dein#add('Xuyuanp/nerdtree-git-plugin')
-call dein#add('airblade/vim-gitgutter')
-call dein#add('jreybert/vimagit', { 'rev': 'next' })
+Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv'
+Plug 'renyard/vim-git-flow-format'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit', { 'branch': 'next' }
 
 " rest tool
-call dein#add('diepm/vim-rest-console')
+Plug 'diepm/vim-rest-console'
 
 " search
-call dein#add('haya14busa/incsearch.vim')
-call dein#add('dyng/ctrlsf.vim')
+Plug 'haya14busa/incsearch.vim'
+Plug 'dyng/ctrlsf.vim'
 
 " theme
-call dein#add('flazz/vim-colorschemes')
+Plug 'flazz/vim-colorschemes'
 
 " end and check install
-call dein#end()
-if dein#check_install()
-	call dein#install()
+call plug#end()
+if exists("s:bootstrap") && s:bootstrap
+	unlet s:bootstrap
+	exec "PlugInstall"
 endif
-
 
 "*****************************************************************************
 " basic setup
