@@ -33,8 +33,6 @@ Plug 'easymotion/vim-easymotion'
 
 " auto complete
 Plug 'Shougo/deoplete.nvim'
-Plug 'ternjs/tern_for_vim'
-Plug 'carlitux/deoplete-ternjs'
 Plug 'neomake/neomake'
 Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
@@ -47,7 +45,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
-Plug 'vim-scripts/Smart-Tabs'
+" Plug 'vim-scripts/Smart-Tabs'
 Plug 'ntpeters/vim-better-whitespace'
 "Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
@@ -68,8 +66,13 @@ Plug 'chrisbra/csv.vim'
 " hex
 Plug 'fidian/hexmode'
 
+" python
+Plug 'zchee/deoplete-jedi'
+
 " nodejs
 Plug 'moll/vim-node'
+Plug 'ternjs/tern_for_vim'
+Plug 'carlitux/deoplete-ternjs'
 
 " jade
 Plug 'digitaltoad/vim-pug'
