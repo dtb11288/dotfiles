@@ -26,7 +26,7 @@
 
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget
+from libqtile import layout, bar, widget, hook
 
 mod = "mod4"
 
@@ -132,7 +132,8 @@ screens = [
 				widget.Prompt(),
 				widget.WindowName(),
 				widget.CPUGraph(graph_color="#8787af", border_width=0),
-				widget.NetGraph(graph_color="#ffaf5f", border_width=0),
+				widget.MemoryGraph(graph_color="#ffaf5f", border_width=0),
+				widget.NetGraph(graph_color="#2980B9", border_width=0),
 				widget.Spacer(width=5),
 				widget.Systray(),
 				widget.Volume(emoji=True),
@@ -157,15 +158,16 @@ mouse = [
 @hook.subscribe.client_new
 def floating_dialogs(window):
 	dialog = window.window.get_wm_type() == 'dialog'
+	popup = window.window.get_wm_type() == 'popup'
 	transient = window.window.get_wm_transient_for()
-	if dialog or transient:
+	if (dialog or transient) or popup:
 		window.floating = True
 
 dgroups_key_binder = None
 dgroups_app_rules = []
 main = None
-follow_mouse_focus = True
-bring_front_click = False
+follow_mouse_focus = False
+bring_front_click = True
 cursor_warp = False
 floating_layout = layout.Floating(**layout_theme)
 auto_fullscreen = True
