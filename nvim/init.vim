@@ -235,7 +235,7 @@ nnoremap <silent><leader>bn :enew<cr>
 nnoremap <silent><leader>abq :bufdo Bdelete<cr>
 
 " tabs
-nnoremap <silent><c-t> :tabnew<cr>
+nnoremap <silent><leader>nt :tabnew<cr>
 
 " switching windows
 noremap <c-j> <c-w>j
@@ -407,10 +407,12 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let g:ctrlp_use_caching = 0
 noremap <leader>bl :CtrlPBuffer<cr>
 noremap <leader>rf :CtrlPMRUFiles<cr>
+noremap <leader>ct :CtrlPTag<cr>
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_open_multiple_files = 'i'
+let g:ctrlp_extensions = ['tag']
 let g:ctrlp_match_window = 'results:100'
 let g:ctrlp_buffer_func = { 'enter': 'CtrlPBufferMappings' }
 function! CtrlPBufferMappings()
