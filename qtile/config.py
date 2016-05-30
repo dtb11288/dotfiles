@@ -30,6 +30,15 @@ from libqtile import layout, bar, widget, hook
 
 mod = "mod4"
 
+# Commands to spawn
+class Commands(object):
+	dmenu = 'dmenu_run -i -p ">>>" -fn "Noto-17" -nb "#000" -nf "#fff" -sb "#00BF32" -sf "#fff"'
+	volume_toggle = "amixer -q set Master toggle"
+	volume_down = "amixer -c 0 sset Master 5%-"
+	volume_up = "amixer -c 0 sset Master 5%+ unmute"
+	light_down = "xbacklight -dec 5"
+	light_up = "xbacklight -inc 5"
+
 keys = [
 	# Switch between windows in current stack pane
 	Key(
@@ -64,13 +73,13 @@ keys = [
 	),
 
 	# Sound
-	Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
-	Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 5%-")),
-	Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 5%+ unmute")),
+	Key([], "XF86AudioMute", lazy.spawn(Commands.volume_toggle)),
+	Key([], "XF86AudioLowerVolume", lazy.spawn(Commands.volume_down)),
+	Key([], "XF86AudioRaiseVolume", lazy.spawn(Commands.volume_up)),
 
 	# Brightness
-	Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
-	Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")),
+	Key([], "XF86MonBrightnessUp", lazy.spawn(Commands.light_up)),
+	Key([], "XF86MonBrightnessDown", lazy.spawn(Commands.light_down)),
 
 	# Toggle between split and unsplit sides of stack.
 	# Split = all windows displayed
@@ -88,7 +97,7 @@ keys = [
 
 	Key([mod, "control"], "r", lazy.restart()),
 	Key([mod, "control"], "q", lazy.shutdown()),
-	Key([mod], "r", lazy.spawncmd()),
+	Key([mod], "r", lazy.spawn(Commands.dmenu)),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -155,12 +164,26 @@ mouse = [
 ]
 
 # floating windows
+float_windows = set([
+	"feh",
+	"skype",
+	"shutter"
+])
+
+def should_be_floating(w):
+	wm_class = w.get_wm_class()
+	if isinstance(wm_class, tuple):
+		for cls in wm_class:
+			if cls.lower() in float_windows:
+				return True
+	else:
+		if wm_class.lower() in float_windows:
+			return True
+	return w.get_wm_type() == 'dialog' or bool(w.get_wm_transient_for())
+
 @hook.subscribe.client_new
-def floating_dialogs(window):
-	dialog = window.window.get_wm_type() == 'dialog'
-	popup = window.window.get_wm_type() == 'popup'
-	transient = window.window.get_wm_transient_for()
-	if (dialog or transient) or popup:
+def dialogs(window):
+	if should_be_floating(window.window):
 		window.floating = True
 
 dgroups_key_binder = None
