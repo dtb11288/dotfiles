@@ -32,7 +32,7 @@ mod = "mod4"
 
 # Commands to spawn
 class Commands(object):
-	dmenu = 'dmenu_run -i -p ">>>" -fn "Noto-17" -nb "#000" -nf "#fff" -sb "#00BF32" -sf "#fff"'
+	dmenu = 'dmenu_run -i -p ">>>" -fn "Noto-18" -nb "#000" -nf "#fff" -sb "#4285F4" -sf "#fff"'
 	volume_toggle = "amixer -q set Master toggle"
 	volume_down = "amixer -c 0 sset Master 5%-"
 	volume_up = "amixer -c 0 sset Master 5%+ unmute"
