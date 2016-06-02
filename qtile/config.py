@@ -32,7 +32,7 @@ mod = "mod4"
 
 # Commands to spawn
 class Commands(object):
-	dmenu = 'dmenu_run -i -p ">>>" -fn "Noto-18" -nb "#000" -nf "#fff" -sb "#4285F4" -sf "#fff"'
+	dmenu = 'dmenu_run -i -b -p ">>>" -fn "Noto-11" -nb "#000" -nf "#fff" -sb "#4285F4" -sf "#fff"'
 	volume_toggle = "amixer -q set Master toggle"
 	volume_down = "amixer -c 0 sset Master 5%-"
 	volume_up = "amixer -c 0 sset Master 5%+ unmute"
@@ -123,6 +123,8 @@ widget_defaults = dict(
 	font='Noto',
 	fontsize=16,
 	padding=3,
+	border_width=0,
+	line_width=1
 )
 
 screens = [
@@ -133,10 +135,15 @@ screens = [
 				widget.Spacer(width=10),
 				widget.Prompt(),
 				widget.WindowName(foreground="#ffaf5f"),
-				widget.CPUGraph(graph_color="#8787af", border_width=0),
-				widget.MemoryGraph(graph_color="#E74D3D", border_width=0),
-				widget.NetGraph(graph_color="#2980B9", border_width=0),
-				widget.Spacer(width=5),
+				widget.TextBox("cpu"),
+				widget.CPUGraph(graph_color="#8787af"),
+				widget.Spacer(width=10),
+				widget.TextBox("mem"),
+				widget.MemoryGraph(graph_color="#E74D3D"),
+				widget.Spacer(width=10),
+				widget.TextBox("net"),
+				widget.NetGraph(graph_color="#2980B9"),
+				widget.Spacer(width=10),
 				widget.Systray(),
 				widget.Volume(emoji=True),
 				widget.BatteryIcon(),
