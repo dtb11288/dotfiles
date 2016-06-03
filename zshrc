@@ -60,6 +60,11 @@ if [[ -r "$HOME/.env" ]]; then
 	source "$HOME/.env"
 fi
 
+# an optional source
+if [[ -r "$HOME/.optional" ]]; then
+	source "$HOME/.optional"
+fi
+
 # set timeout key for zsh
 export KEYTIMEOUT=1
 
