@@ -5,9 +5,10 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Gaps
+import XMonad.Layout.Gaps()
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import System.Taffybar.Hooks.PagerHints (pagerHints)
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
@@ -17,18 +18,15 @@ import qualified Data.Map as M
 -- colors
 colorFocusedBorder = "#8787af"
 colorNormalBorder = "#202020"
-colorXmobarCurrent = "#87afd7"
-colorXmobarTitle = "#ffaf5f"
-colorXmobarUrgent = "red"
 colorFallback = ""
 
 -- define default config
-baseConfig = ewmh desktopConfig
+baseConfig = ewmh $ pagerHints desktopConfig
 
 -- main
 main = do
-    spawnPipe myTrayBar
-    xmonad =<< statusBar myBar myPP toggleXMobarKey myConfig
+    spawn myBar
+    xmonad myConfig
 
 -- my config
 myConfig = baseConfig
@@ -63,13 +61,6 @@ myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 -- event hook
 myHandleEventHook = fullscreenEventHook
 
--- my PP
-myPP = xmobarPP
-    { ppCurrent = xmobarColor colorXmobarCurrent colorFallback . wrap "[" "]"
-    , ppTitle = xmobarColor colorXmobarTitle colorFallback . shorten 50
-    , ppUrgent = xmobarColor colorXmobarUrgent colorXmobarUrgent
-    }
-
 -- my keys
 myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
     -- volumn keys
@@ -87,37 +78,29 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
     , ((0, xF86XK_MonBrightnessUp       ), spawn "xbacklight -inc 5")
     , ((0, xF86XK_MonBrightnessDown     ), spawn "xbacklight -dec 5")
 
-    -- display shutdown menu
-    , ((modMask, xK_Delete              ), spawn myShutdownMenu)
-
     -- dmenu
     , ((modMask, xK_p                   ), spawn myDmenu)
-    , ((modMask .|. shiftMask, xK_p     ), spawn myDesktopDmenu)
 
     -- restart xmonad
     , ((modMask, xK_q                   ), spawn myRestartXmonad)
     ]
 
+-- my bar
+myBar = unwords
+    [ "for pid in `pgrep taffybar`; do kill $pid; done;"
+    , "taffybar &"
+    ]
+
 -- dmenu
 myDmenu = unwords
     [ "dmenu_run"
-    , "-fn", "-*-noto-medium-*-*-*-*-*-*-*-*-*-*-*"
-    ]
-
--- i3 demnu desktop
-myDesktopDmenu = unwords
-    [ "i3-dmenu-desktop"
-    , "--dmenu='"
-    , "dmenu"
     , "-i"
-    , "-fn", "-*-noto-medium-*-*-*-*-*-*-*-*-*-*-*"
-    , "'"
-    ]
-
--- shutdown menu
-myShutdownMenu = unwords
-    [ "xmobar"
-    , "~/.xmonad/shutdown.hs"
+    , "-p \">>>\""
+    , "-fn", "Noto-14"
+    , "-nb \"#000\""
+    , "-nf \"#fff\""
+    , "-sb \"#4285F4\""
+    , "-sf \"#fff\""
     ]
 
 -- terminal
@@ -126,40 +109,15 @@ myTerminal = unwords
     , "-e", "tmux"
     ]
 
--- tray bar
-myTrayBar = unwords
-    [ "trayer"
-    , " --edge", "top"
-    , "--align", "right"
-    , "--SetDockType", "true"
-    , "--SetPartialStrut", "true"
-    , "--expand", "true"
-    , "--width", "7"
-    , "--height", "23"
-    , "--transparent", "true"
-    , "--alpha", "0"
-    , "--tint", "0x080808"
-    ]
-
--- status bar
-myBar = unwords
-    [ "xmobar"
-    , "~/.xmonad/xmobar.hs"
-    ]
-
 -- restart xmonad
 myRestartXmonad = unwords
-    [ "killall", "-9", "trayer;"
-    , "xmonad", "--recompile;"
+    [ "xmonad", "--recompile;"
     , "xmonad" , "--restart;"
     , "notify-send", "'Xmonad reloaded';"
     ]
 
 -- border width
 myBorderWidth = 1
-
--- show/hide top bar
-toggleXMobarKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 -- workspaces
 myWorkspaces = map show [1..9]
