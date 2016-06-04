@@ -45,7 +45,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
-" Plug 'vim-scripts/Smart-Tabs'
+Plug 'vim-scripts/Smart-Tabs'
 Plug 'ntpeters/vim-better-whitespace'
 "Plug 'Yggdroot/indentLine'
 Plug 'djoshea/vim-autoread'
@@ -65,9 +65,6 @@ Plug 'chrisbra/csv.vim'
 
 " hex
 Plug 'fidian/hexmode'
-
-" python
-Plug 'zchee/deoplete-jedi'
 
 " nodejs
 Plug 'moll/vim-node'
@@ -501,7 +498,7 @@ let g:necoghc_enable_detailed_browse = 1
 let g:haskellmode_completion_ghc = 0
 
 " haskell mod
-autocmd BufEnter *.hs compiler ghc
+" autocmd BufEnter *.hs compiler ghc
 let g:haddock_browser="/usr/bin/google-chrome-stable"
 "au FileType haskell nnoremap <buffer> tt :call GHC_ShowType(0)<cr>
 "au FileType haskell nnoremap <buffer> <silent> tw :GhcModTypeInsert<cr>
