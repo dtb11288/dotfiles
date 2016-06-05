@@ -1,29 +1,5 @@
 #!/bin/bash
 
-# shutdown
-if [[ "$1" == "shutdown" ]]; then
-	systemctl poweroff -i;
-	exit 1;
-fi
-
-# restart
-if [[ "$1" == "reboot" ]]; then
-	systemctl reboot;
-	exit 1;
-fi
-
-# logout
-if [[ "$1" == "logout" ]]; then
-	i3-msg exit;
-	exit 1;
-fi
-
-# off screen
-if [[ "$1" == "off" ]]; then
-	xset dpms force off;
-	exit 1;
-fi
-
 # Take a screenshot
 xwd -root -silent -out /tmp/screen_locked.xwd
 
@@ -32,10 +8,4 @@ convert /tmp/screen_locked.xwd -blur 0x6 /tmp/screen_locked.png
 
 # Lock screen displaying this image.
 i3lock -i /tmp/screen_locked.png
-
-# suspend
-if [[ "$1" == "suspend" ]]; then
-	systemctl suspend;
-	exit 1;
-fi
 

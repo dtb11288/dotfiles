@@ -5,11 +5,7 @@ if [[ -r $HOME/.optional ]]; then
 fi
 
 # wallpaper
-#sleep 1 && feh --bg-fill "$HOME/.wallpaper"
 feh --bg-fill "$HOME/.wallpaper"
-
-# conky desktop
-#sleep 1 && conky -c "$HOME/.i3/conky/Modern1.0/Modern1.1.0" &
 
 # filter screen
 #redshift &
