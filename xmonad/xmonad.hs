@@ -90,6 +90,9 @@ myKeys XConfig {XMonad.modMask = extraKeysModMask} = M.fromList
     -- dmenu
     , ((extraKeysModMask, xK_p          ), spawn myDmenu)
 
+    -- lockscreen
+    , ((extraKeysModMask, xK_Escape     ), spawn myLockScreen)
+
     -- restart xmonad
     , ((extraKeysModMask, xK_q          ), spawn myRestartXmonad)
     ]
@@ -119,6 +122,13 @@ myTerminal :: String
 myTerminal = unwords
     [ "urxvt"
     , "-e tmux"
+    ]
+
+-- lockscreen
+myLockScreen :: String
+myLockScreen = unwords
+    [ "xautolock"
+    , "-locknow"
     ]
 
 -- restart xmonad
