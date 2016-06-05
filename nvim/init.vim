@@ -498,13 +498,13 @@ let g:necoghc_enable_detailed_browse = 1
 let g:haskellmode_completion_ghc = 0
 
 " haskell mod
-" autocmd BufEnter *.hs compiler ghc
+autocmd BufEnter *.hs compiler ghc
 let g:haddock_browser="/usr/bin/google-chrome-stable"
-"au FileType haskell nnoremap <buffer> tt :call GHC_ShowType(0)<cr>
-"au FileType haskell nnoremap <buffer> <silent> tw :GhcModTypeInsert<cr>
-"au FileType haskell nnoremap <buffer> <silent> ts :GhcModSplitFunCase<cr>
-"au FileType haskell nnoremap <buffer> <silent> tq :GhcModType<cr>
-"au FileType haskell nnoremap <buffer> <silent> te :GhcModTypeClear<cr>
+au FileType haskell nnoremap <buffer> tt :call GHC_ShowType(0)<cr>
+au FileType haskell nnoremap <buffer> <silent> <leader>tw :GhcModTypeInsert<cr>
+au FileType haskell nnoremap <buffer> <silent> <leader>ts :GhcModSplitFunCase<cr>
+au FileType haskell nnoremap <buffer> <silent> <leader>tq :GhcModType<cr>
+au FileType haskell nnoremap <buffer> <silent> <leader>te :GhcModTypeClear<cr>
 
 " gitgutter
 let g:gitgutter_max_signs = 1000

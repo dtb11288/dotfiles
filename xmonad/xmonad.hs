@@ -1,36 +1,41 @@
 import XMonad
 import XMonad.Config.Desktop
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Gaps()
-import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys)
 import System.Taffybar.Hooks.PagerHints (pagerHints)
 import Graphics.X11.ExtraTypes.XF86
-import System.IO
+import Data.Monoid
+import XMonad.Layout.LayoutModifier
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 
 -- colors
+colorFocusedBorder :: String
 colorFocusedBorder = "#8787af"
+
+colorNormalBorder :: String
 colorNormalBorder = "#202020"
-colorFallback = ""
 
 -- define default config
+baseConfig :: XConfig (ModifiedLayout AvoidStruts (Choose Tall (Choose (Mirror Tall) Full)))
 baseConfig = ewmh $ pagerHints desktopConfig
 
 -- main
+main :: IO ()
 main = do
     spawn myBar
     xmonad myConfig
 
+myModMask :: KeyMask
+myModMask = mod4Mask
+
 -- my config
+myConfig :: XConfig (ModifiedLayout AvoidStruts (ModifiedLayout SmartBorder (ModifiedLayout AvoidStruts (Choose Tall (Choose (Mirror Tall) Full)))))
 myConfig = baseConfig
-    { modMask = mod4Mask
+    { modMask = myModMask
     , terminal = myTerminal
     , focusFollowsMouse = False
     , handleEventHook = myHandleEventHook
@@ -44,25 +49,29 @@ myConfig = baseConfig
     }
 
 -- manage apps
+myManageHook :: ManageHook
 myManageHook = manageDocks <+> manageHookConfig <+> composeOne
-    [ isFullscreen                              -?> doF W.focusDown <+> doFullFloat
-    , className =? "Skype"                      -?> doFloat
-    , className =? "Steam"                      -?> doFloat
-    , className =? "Shutter"                    -?> doFloat
-    , className =? "mpv"                        -?> doFloat
-    , className =? "feh"                        -?> doFloat
-    , className =? "File-roller"                -?> doFloat
+    [ isFullscreen                -?> doF W.focusDown <+> doFullFloat
+    , className =? "Skype"        -?> doFloat
+    , className =? "Steam"        -?> doFloat
+    , className =? "Shutter"      -?> doFloat
+    , className =? "mpv"          -?> doFloat
+    , className =? "feh"          -?> doFloat
+    , className =? "File-roller"  -?> doFloat
     ]
     where manageHookConfig = manageHook baseConfig
 
 -- layouts
+myLayoutHook :: ModifiedLayout AvoidStruts (ModifiedLayout SmartBorder (ModifiedLayout AvoidStruts (Choose Tall (Choose (Mirror Tall) Full)))) Window
 myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
 -- event hook
+myHandleEventHook :: Event -> X All
 myHandleEventHook = fullscreenEventHook
 
 -- my keys
-myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
+myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+myKeys XConfig {XMonad.modMask = extraKeysModMask} = M.fromList
     -- volumn keys
     [ ((0, xF86XK_AudioLowerVolume      ), spawn "amixer -q sset Master 5%-")
     , ((0, xF86XK_AudioRaiseVolume      ), spawn "amixer -q sset Master 5%+ unmute")
@@ -79,24 +88,26 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList
     , ((0, xF86XK_MonBrightnessDown     ), spawn "xbacklight -dec 5")
 
     -- dmenu
-    , ((modMask, xK_p                   ), spawn myDmenu)
+    , ((extraKeysModMask, xK_p          ), spawn myDmenu)
 
     -- restart xmonad
-    , ((modMask, xK_q                   ), spawn myRestartXmonad)
+    , ((extraKeysModMask, xK_q          ), spawn myRestartXmonad)
     ]
 
 -- my bar
+myBar :: String
 myBar = unwords
     [ "for pid in `pgrep taffybar`; do kill $pid; done;"
     , "taffybar &"
     ]
 
 -- dmenu
+myDmenu :: String
 myDmenu = unwords
     [ "dmenu_run"
     , "-i"
     , "-p \">>>\""
-    , "-fn", "Noto-14"
+    , "-fn Noto-14"
     , "-nb \"#000\""
     , "-nf \"#fff\""
     , "-sb \"#4285F4\""
@@ -104,21 +115,25 @@ myDmenu = unwords
     ]
 
 -- terminal
+myTerminal :: String
 myTerminal = unwords
     [ "urxvt"
-    , "-e", "tmux"
+    , "-e tmux"
     ]
 
 -- restart xmonad
+myRestartXmonad :: String
 myRestartXmonad = unwords
-    [ "xmonad", "--recompile;"
-    , "xmonad" , "--restart;"
-    , "notify-send", "'Xmonad reloaded';"
+    [ "xmonad --recompile;"
+    , "xmonad --restart;"
+    , "notify-send 'Xmonad reloaded';"
     ]
 
 -- border width
+myBorderWidth :: Dimension
 myBorderWidth = 1
 
 -- workspaces
-myWorkspaces = map show [1..9]
+myWorkspaces :: [String]
+myWorkspaces = map show ([1..9] :: [Int])
 
