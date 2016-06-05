@@ -4,8 +4,9 @@
 xwd -root -silent -out /tmp/screen_locked.xwd
 
 # Pixellate it 10x
-convert /tmp/screen_locked.xwd -blur 0x6 /tmp/screen_locked.png
+# convert /tmp/screen_locked.xwd -blur 0x6 /tmp/screen_locked.png
+convert /tmp/screen_locked.xwd -type Grayscale /tmp/screen_locked.png
 
 # Lock screen displaying this image.
-i3lock -i /tmp/screen_locked.png
+i3lock -i /tmp/screen_locked.png -e
 
