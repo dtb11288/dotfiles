@@ -35,8 +35,10 @@ xset r rate 200 25
 xset dpms 300
 
 # auto lock screen after 10 minutes
-xautolock -detectsleep -time 10 -locker "$HOME/.i3/lock/lock-i3" &
 xautolock -detectsleep -time 10 -locker "lockscreen" &
+
+# lock screen after suspend or hibernate
+xss-lock -- "lockscreen" &
 
 # polkit
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
