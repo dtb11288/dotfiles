@@ -6,15 +6,6 @@ export QT_IM_MODULE=ibus
 # for vim
 export VISUAL=nvim
 
-# export nodejs
-export PATH="$HOME/opt/node/bin:$PATH"
-
-# export elasticsearch
-export PATH="$HOME/opt/elasticsearch/bin:$PATH"
-
-# export mongodb
-export PATH="$HOME/opt/mongodb/bin:$PATH"
-
 # export PATH
 export PATH="$HOME/opt/bin:$PATH"
 

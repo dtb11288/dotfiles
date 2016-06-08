@@ -34,8 +34,8 @@ zplug "themes/frisk", from:oh-my-zsh
 
 # others
 zplug "tarruda/zsh-autosuggestions"
-zplug "horosgrisa/zsh-history-substring-search", nice:18
-zplug "zsh-users/zsh-syntax-highlighting", nice:19
+zplug "horosgrisa/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
 
 # install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -53,13 +53,13 @@ autoload -U colors && colors
 setopt promptsubst
 
 # load env source
-if [[ -r "$HOME/.env" ]]; then
-	source "$HOME/.env"
+if [[ -r $HOME/.env ]]; then
+	source $HOME/.env
 fi
 
 # an optional source
-if [[ -r "$HOME/.optional" ]]; then
-	source "$HOME/.optional"
+if [[ -r $HOME/.optional-env ]]; then
+	source $HOME/.optional-env
 fi
 
 # set timeout key for zsh

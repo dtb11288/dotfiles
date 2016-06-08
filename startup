@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ -r $HOME/.optional ]]; then
-    $HOME/.optional
+if [[ -r $HOME/.optional-startup ]]; then
+    $HOME/.optional-startup
 fi
 
 # wallpaper
