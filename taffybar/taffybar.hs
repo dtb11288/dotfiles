@@ -7,14 +7,17 @@ import System.Taffybar.SimpleClock
 import System.Taffybar.FreedesktopNotifications
 import System.Taffybar.Weather
 import System.Taffybar.MPRIS
+import System.Taffybar.Battery
 
 import System.Taffybar.Widgets.PollingBar()
 import System.Taffybar.Widgets.PollingGraph
 
 import System.Information.Memory
 import System.Information.CPU
+import System.Information.Network
 
 import Graphics.UI.Gtk.General.RcStyle (rcParseString)
+import Data.IORef
 
 memCallback :: IO [Double]
 memCallback = do
@@ -26,13 +29,45 @@ cpuCallback = do
     (_userLoad, systemLoad, totalLoad) <- cpuLoad
     return [totalLoad, systemLoad]
 
+netCallback :: String -> IORef [Integer] -> Double -> IORef [Double] -> IO [Double]
+netCallback interface sample interval maxNetwork = do
+    maybeThisSample <- getNetInfo interface
+    case maybeThisSample of
+        Just thisSample -> do
+            lastSample <- readIORef sample
+            lastMaxNetwork <- readIORef maxNetwork
+            writeIORef sample thisSample
+            let deltas = map (max 0 . fromIntegral) $ zipWith (-) thisSample lastSample
+                speed = map (/interval) deltas
+                newMaxNetwork = zipWith max speed lastMaxNetwork
+                newSpeed = zipWith (/) speed newMaxNetwork
+            writeIORef maxNetwork newMaxNetwork
+            return newSpeed
+        _ -> do
+            writeIORef maxNetwork [0, 0]
+            return [0, 0]
+
+myGraph :: GraphConfig
+myGraph = defaultGraphConfig
+    { graphDataStyles = repeat Line
+    }
+
 main :: IO ()
 main = do
-    let memCfg = defaultGraphConfig
+    sample <- newIORef [0, 0]
+    maxNetwork <- newIORef [0, 0]
+    let memCfg = myGraph
             { graphDataColors = [(1, 0, 0, 1)]
             , graphLabel = Just "mem"
             }
-        cpuCfg = defaultGraphConfig
+        netCfg = myGraph
+            { graphDataColors =
+                [ (0, 1, 0, 1)
+                , (1, 0, 0, 1)
+                ]
+            , graphLabel = Just "net"
+            }
+        cpuCfg = myGraph
             { graphDataColors =
                 [ (0, 1, 0, 1)
                 , (1, 0, 1, 0.5)
@@ -41,24 +76,26 @@ main = do
             }
         clock = textClockNew Nothing "<span fgcolor='orange'>%Y %b %d, %a %H:%M</span>" 1
         pager = taffyPagerNew defaultPagerConfig
-            { activeWindow = colorize "#92BA3F" "" . escape . shorten 100
+            { activeWindow = colorize "#92BA3F" "" . escape . shorten 70
             , activeWorkspace = colorize "#87afd7" "" . wrap "[" "]" . escape
             }
         note = notifyAreaNew defaultNotificationConfig
-        wea = weatherNew (defaultWeatherConfig "VVNB") {weatherTemplate = "$tempC$°C"} 10
+        wea = weatherNew (defaultWeatherConfig "VVNB") { weatherTemplate = "[ $skyCondition$, $tempC$°C ]" } 1
         mpris = mprisNew defaultMPRISConfig
         mem = pollingGraphNew memCfg 1 memCallback
         cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
         tray = systrayNew
-        font = "Noto Mono 12"
+        bat = batteryBarNew defaultBatteryConfig 1
+        net = pollingGraphNew netCfg 1 $ netCallback "wlp2s0" sample 1 maxNetwork
 
     rcParseString $ unwords
         [ "style \"default\" {"
-        , "  font_name = \"" ++ font ++ "\""
+        , "  font_name = \"Noto Mono 12\""
         , "}"
         ]
 
     defaultTaffybar defaultTaffybarConfig
         { startWidgets = [ pager, note ]
-        , endWidgets = [ clock, tray, wea, mem, cpu, mpris ]
+        , endWidgets = [ clock, tray, bat, mem, cpu, net, wea, mpris ]
+        , barHeight = 24
         }
