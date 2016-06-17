@@ -76,7 +76,7 @@ main = do
             }
         clock = textClockNew Nothing "<span fgcolor='orange'>%Y %b %d, %a %H:%M</span>" 1
         pager = taffyPagerNew defaultPagerConfig
-            { activeWindow = colorize "#92BA3F" "" . escape . shorten 70
+            { activeWindow = colorize "#92BA3F" "" . escape . shorten 75
             , activeWorkspace = colorize "#87afd7" "" . wrap "[" "]" . escape
             }
         note = notifyAreaNew defaultNotificationConfig
@@ -86,7 +86,7 @@ main = do
         cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
         tray = systrayNew
         bat = batteryBarNew defaultBatteryConfig 1
-        net = pollingGraphNew netCfg 1 $ netCallback "wlp2s0" sample 1 maxNetwork
+        net = pollingGraphNew netCfg 0.5 $ netCallback "wlp2s0" sample 0.5 maxNetwork
 
     rcParseString $ unwords
         [ "style \"default\" {"
