@@ -518,3 +518,6 @@ let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#enable_smart_case = 1
 set completeopt-=preview
+
+" ultisnips
+let g:UltiSnipsSnippetsDir = s:vim_home."/UltiSnips"
