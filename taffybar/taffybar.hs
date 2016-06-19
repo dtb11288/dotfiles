@@ -40,9 +40,9 @@ netCallback interface sample interval maxNetwork = do
             let deltas = map (max 0 . fromIntegral) $ zipWith (-) thisSample lastSample
                 speed = map (/interval) deltas
                 newMaxNetwork = zipWith max speed lastMaxNetwork
-                newSpeed = zipWith (/) speed newMaxNetwork
+                speedRatio = zipWith (/) speed newMaxNetwork
             writeIORef maxNetwork newMaxNetwork
-            return newSpeed
+            return speedRatio
         _ -> do
             writeIORef maxNetwork [0, 0]
             return [0, 0]
