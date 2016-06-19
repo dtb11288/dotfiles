@@ -14,6 +14,9 @@ redshift-gtk -l 21:105 &
 # aria2
 aria2c
 
+# volume icon
+volumeicon &
+
 # ibus
 killall -9 ibus-daemon
 ibus-daemon -dx
