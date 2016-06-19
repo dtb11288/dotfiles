@@ -74,7 +74,7 @@ main = do
                 ]
             , graphLabel = Just "cpu"
             }
-        clock = textClockNew Nothing "<span fgcolor='orange'>%Y %b %d, %a %H:%M</span>" 1
+        clock = textClockNew Nothing "<span fgcolor='orange'>%a, %b %d, %Y - %H:%M</span>" 1
         pager = taffyPagerNew defaultPagerConfig
             { activeWindow = colorize "#92BA3F" "" . escape . shorten 75
             , activeWorkspace = colorize "#87afd7" "" . wrap "[" "]" . escape
