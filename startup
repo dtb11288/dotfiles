@@ -17,6 +17,12 @@ aria2c
 # volume icon
 volumeicon &
 
+# battery icon
+cbatticon &
+
+# networkmanager
+nm-applet &
+
 # ibus
 killall -9 ibus-daemon
 ibus-daemon -dx
@@ -37,6 +43,7 @@ xset dpms 300
 xautolock -detectsleep -time 10 -locker "lockscreen" &
 
 # lock screen after suspend or hibernate
+killall -9 xss-lock
 xss-lock -- "lockscreen" &
 
 # polkit

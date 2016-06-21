@@ -7,7 +7,6 @@ import System.Taffybar.SimpleClock
 import System.Taffybar.FreedesktopNotifications
 import System.Taffybar.Weather
 import System.Taffybar.MPRIS
-import System.Taffybar.Battery
 
 import System.Taffybar.Widgets.PollingBar()
 import System.Taffybar.Widgets.PollingGraph
@@ -85,7 +84,6 @@ main = do
         mem = pollingGraphNew memCfg 1 memCallback
         cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
         tray = systrayNew
-        bat = batteryBarNew defaultBatteryConfig 1
         net = pollingGraphNew netCfg 0.5 $ netCallback "wlp2s0" sample 0.5 maxNetwork
 
     rcParseString $ unwords
@@ -96,6 +94,6 @@ main = do
 
     defaultTaffybar defaultTaffybarConfig
         { startWidgets = [ pager, note ]
-        , endWidgets = [ clock, tray, bat, mem, cpu, net, wea, mpris ]
+        , endWidgets = [ clock, tray, mem, cpu, net, wea, mpris ]
         , barHeight = 24
         }
