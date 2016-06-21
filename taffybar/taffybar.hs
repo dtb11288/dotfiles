@@ -4,7 +4,6 @@ import System.Taffybar.Pager
 import System.Taffybar.Systray
 import System.Taffybar.TaffyPager
 import System.Taffybar.SimpleClock
-import System.Taffybar.FreedesktopNotifications
 import System.Taffybar.Weather
 import System.Taffybar.MPRIS
 
@@ -78,7 +77,6 @@ main = do
             { activeWindow = colorize "#92BA3F" "" . escape . shorten 75
             , activeWorkspace = colorize "#87afd7" "" . wrap "[" "]" . escape
             }
-        note = notifyAreaNew defaultNotificationConfig
         wea = weatherNew (defaultWeatherConfig "VVNB") { weatherTemplate = "[ $skyCondition$, $tempC$°C ]" } 1
         mpris = mprisNew defaultMPRISConfig
         mem = pollingGraphNew memCfg 1 memCallback
@@ -93,7 +91,7 @@ main = do
         ]
 
     defaultTaffybar defaultTaffybarConfig
-        { startWidgets = [ pager, note ]
+        { startWidgets = [ pager ]
         , endWidgets = [ clock, tray, mem, cpu, net, wea, mpris ]
         , barHeight = 24
         }
