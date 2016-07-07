@@ -39,8 +39,8 @@ xset r rate 200 25
 # turn off screen after 5 minutes
 xset dpms 300
 
-# auto lock screen after 10 minutes
-xautolock -detectsleep -time 10 -locker "lockscreen" &
+# init lockscreen
+xautolock -detectsleep -locker "lockscreen" &
 
 # lock screen after suspend or hibernate
 killall -9 xss-lock
