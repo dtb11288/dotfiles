@@ -8,6 +8,7 @@ import System.Taffybar.Hooks.PagerHints (pagerHints)
 import Graphics.X11.ExtraTypes.XF86
 import Data.Monoid
 import XMonad.Layout.LayoutModifier
+import XMonad.Hooks.SetWMName
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
@@ -37,6 +38,7 @@ myConfig :: XConfig (ModifiedLayout AvoidStruts (ModifiedLayout SmartBorder (Mod
 myConfig = baseConfig
     { modMask = myModMask
     , terminal = myTerminal
+    , startupHook = setWMName "LG3D"
     , focusFollowsMouse = False
     , handleEventHook = myHandleEventHook
     , workspaces = myWorkspaces
