@@ -9,7 +9,7 @@ feh --bg-fill "$HOME/.wallpaper"
 
 # filter screen
 #redshift &
-redshift-gtk -l 21:105 &
+redshift-gtk &
 
 # aria2
 aria2c
