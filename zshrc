@@ -10,7 +10,7 @@ fi
 source $ZPLUG_HOME/repos/$ZPLUG_GIT/init.zsh
 
 # zplug manage itself
-# zplug "$ZPLUG_GIT"
+zplug "$ZPLUG_GIT"
 
 # oh-my-zsh plugins
 zplug "lib/history", from:oh-my-zsh
