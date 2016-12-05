@@ -82,7 +82,7 @@ main = do
         mem = pollingGraphNew memCfg 1 memCallback
         cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
         tray = systrayNew
-        net = pollingGraphNew netCfg 0.5 $ netCallback "wlp2s0" sample 0.5 maxNetwork
+        net = pollingGraphNew netCfg 0.5 $ netCallback "wlp6s0b1" sample 0.5 maxNetwork
 
     rcParseString $ unwords
         [ "style \"default\" {"
