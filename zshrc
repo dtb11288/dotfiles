@@ -1,7 +1,7 @@
 # export zplug home
 ZPLUG_HOME="$HOME/.zplug"
 ZPLUG_GIT="zplug/zplug"
-ZPLUG_CLONE_DEPTH=1
+zstyle :zplug:tag depth 1
 
 # clone zplug
 if [[ ! -d $ZPLUG_HOME ]]; then
