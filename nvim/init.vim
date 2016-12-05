@@ -45,9 +45,10 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-easy-align'
-Plug 'vim-scripts/Smart-Tabs'
+" Plug 'vim-scripts/Smart-Tabs'
 Plug 'ntpeters/vim-better-whitespace'
-"Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
+" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'djoshea/vim-autoread'
 Plug 'tmhedberg/matchit'
 Plug 'hlissner/vim-multiedit'
@@ -71,15 +72,20 @@ Plug 'moll/vim-node'
 Plug 'ternjs/tern_for_vim'
 Plug 'carlitux/deoplete-ternjs'
 
+" javascript
+Plug 'jelera/vim-javascript-syntax'
+" Plug 'pangloss/vim-javascript'
+
 " jade
 Plug 'digitaltoad/vim-pug'
 
-" javascript
-Plug 'jelera/vim-javascript-syntax'
+" jsx
+Plug 'mxw/vim-jsx'
 
 " html
 Plug 'othree/html5-syntax.vim'
 Plug 'othree/html5.vim'
+Plug 'alvan/vim-closetag'
 
 " css
 Plug 'ap/vim-css-color'
@@ -98,8 +104,7 @@ Plug 'eagletmt/ghcmod-vim'
 Plug 'dag/vim2hs'
 Plug 'lukerandall/haskellmode-vim'
 
-" conky
-Plug 'smancill/conky-syntax.vim'
+" conky Plug 'smancill/conky-syntax.vim'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -470,6 +475,8 @@ autocmd BufWritePre * StripWhitespace
 
 " neomake
 let g:neomake_open_list = 2
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
 autocmd BufWritePost * Neomake
 
 " easy align
@@ -513,8 +520,21 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#omni#input_patterns = {}
 set completeopt-=preview
 
 " ultisnips
 let g:UltiSnipsSnippetsDir = s:vim_home."/UltiSnips"
+
+" jsx
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+" choosewin
+nmap - <Plug>(choosewin)
+
+" slow multiple_cursors deoplete
+function! Multiple_cursors_before()
+	let b:deoplete_disable_auto_complete = 1
+endfunction
+function! Multiple_cursors_after()
+	let b:deoplete_disable_auto_complete = 0
+endfunction
