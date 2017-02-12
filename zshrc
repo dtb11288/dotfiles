@@ -35,7 +35,7 @@ zplug "themes/frisk", from:oh-my-zsh
 # others
 zplug "tarruda/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

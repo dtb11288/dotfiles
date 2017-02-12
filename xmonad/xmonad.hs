@@ -112,7 +112,7 @@ myDmenu = unwords
     [ "dmenu_run"
     , "-i"
     , "-p \">>>\""
-    , "-fn Noto-14"
+    , "-fn Noto-12"
     , "-nb \"#000\""
     , "-nf \"#fff\""
     , "-sb \"#4285F4\""

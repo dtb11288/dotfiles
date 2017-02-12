@@ -74,7 +74,7 @@ main = do
             }
         clock = textClockNew Nothing "<span fgcolor='orange'>%a, %b %d, %Y - %H:%M</span>" 1
         pager = taffyPagerNew defaultPagerConfig
-            { activeWindow = colorize "#92BA3F" "" . escape . shorten 75
+            { activeWindow = colorize "#92BA3F" "" . shorten 30 . escape
             , activeWorkspace = colorize "#87afd7" "" . wrap "[" "]" . escape
             }
         wea = weatherNew (defaultWeatherConfig "VVNB") { weatherTemplate = "[ $skyCondition$, $tempC$°C ]" } 1

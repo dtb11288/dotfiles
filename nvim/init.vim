@@ -73,11 +73,11 @@ Plug 'ternjs/tern_for_vim'
 Plug 'carlitux/deoplete-ternjs'
 
 " javascript
-Plug 'jelera/vim-javascript-syntax'
-" Plug 'pangloss/vim-javascript'
+" Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
 
 " jade
-Plug 'digitaltoad/vim-pug'
+" Plug 'digitaltoad/vim-pug'
 
 " jsx
 Plug 'mxw/vim-jsx'
