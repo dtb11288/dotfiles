@@ -27,6 +27,7 @@ zplug "plugins/wd", from:oh-my-zsh
 zplug "plugins/node", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/adb", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/web-search", from:oh-my-zsh
 
 # theme
@@ -46,7 +47,7 @@ if ! zplug check --verbose; then
 fi
 
 # then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load
 
 # zsh colors loading
 autoload -U colors && colors
