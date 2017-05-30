@@ -9,11 +9,11 @@ let s:bundle_home=s:vim_home."/bundle"
 let s:vim_plug_repo="junegunn/vim-plug"
 let s:plug_tool_home=s:bundle_home."/vim-plug"
 if !isdirectory(s:plug_tool_home."/.git")
-	silent exec "!mkdir -p ".s:bundle_home
-	silent exec "!git clone https://github.com/".s:vim_plug_repo.".git ".s:plug_tool_home
-	silent exec "!mkdir -p ".s:plug_tool_home."/autoload"
-	silent exec "!ln -s ".s:plug_tool_home."/plug.vim ".s:plug_tool_home."/autoload"
-	let s:bootstrap=1
+  silent exec "!mkdir -p ".s:bundle_home
+  silent exec "!git clone https://github.com/".s:vim_plug_repo.".git ".s:plug_tool_home
+  silent exec "!mkdir -p ".s:plug_tool_home."/autoload"
+  silent exec "!ln -s ".s:plug_tool_home."/plug.vim ".s:plug_tool_home."/autoload"
+  let s:bootstrap=1
 endif
 exec "set rtp+=".s:plug_tool_home
 call plug#begin(s:bundle_home)
@@ -73,11 +73,7 @@ Plug 'ternjs/tern_for_vim'
 Plug 'carlitux/deoplete-ternjs'
 
 " javascript
-" Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
-
-" jade
-" Plug 'digitaltoad/vim-pug'
 
 " jsx
 Plug 'mxw/vim-jsx'
@@ -127,8 +123,8 @@ Plug 'flazz/vim-colorschemes'
 " end and check install
 call plug#end()
 if exists("s:bootstrap") && s:bootstrap
-	unlet s:bootstrap
-	exec "PlugInstall"
+  unlet s:bootstrap
+  exec "PlugInstall"
 endif
 
 "*****************************************************************************
@@ -221,7 +217,7 @@ nnoremap <silent><esc> :noh<cr><esc>
 set background=dark
 colorscheme hybrid_material
 if &diff
-	colorscheme evening
+  colorscheme evening
 endif
 
 " title
@@ -263,84 +259,84 @@ cmap w!! w !sudo tee > /dev/null %
 
 " show preview windows at bottom
 function! PreviewDown()
-	if !&previewwindow
-		silent! wincmd P
-	endif
-	if &previewwindow
-		silent! wincmd J
-		silent! wincmd p
-	endif
+  if !&previewwindow
+    silent! wincmd P
+  endif
+  if &previewwindow
+    silent! wincmd J
+    silent! wincmd p
+  endif
 endf
 au BufWinEnter * call PreviewDown()
 
 " session automatically load and save session on start/exit.
 function! MakeSession()
-	 if g:sessionfile != ""
-		echo "Saving."
-		if (filewritable(g:sessiondir) != 2)
-			exe "silent !mkdir -p ".g:sessiondir
-			redraw!
-		endif
-		exe "mksession! ".g:sessionfile
-	 endif
+  if g:sessionfile != ""
+    echo "Saving."
+    if (filewritable(g:sessiondir) != 2)
+      exe "silent !mkdir -p ".g:sessiondir
+      redraw!
+    endif
+    exe "mksession! ".g:sessionfile
+  endif
 endfunction
 function! LoadSession()
-	 if argc() == 0
-		let g:sessiondir = s:vim_home."/sessions".getcwd()
-		let g:sessionfile = g:sessiondir."/session.vim"
-		if (filereadable(g:sessionfile))
-			exe "source ".g:sessionfile
-		else
-			echo "No session loaded."
-		endif
-	 else
-		let g:sessionfile = ""
-		let g:sessiondir = ""
-	 endif
+  if argc() == 0
+    let g:sessiondir = s:vim_home."/sessions".getcwd()
+    let g:sessionfile = g:sessiondir."/session.vim"
+    if (filereadable(g:sessionfile))
+      exe "source ".g:sessionfile
+    else
+      echo "No session loaded."
+    endif
+  else
+    let g:sessionfile = ""
+    let g:sessiondir = ""
+  endif
 endfunction
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call MakeSession()
 
 " toggle vexplore
 fun! VexToggle(dir, file)
-	if exists("t:vex_buf_nr")
-		call VexClose()
-	else
-		call VexOpen(a:dir, a:file)
-	endif
+  if exists("t:vex_buf_nr")
+    call VexClose()
+  else
+    call VexOpen(a:dir, a:file)
+  endif
 endf
 fun! VexOpen(dir, file)
-	let vex_width = 30
-	execute "Vexplore " . a:dir
-	let t:vex_buf_nr = bufnr("%")
-	if get(b:, 'netrw_liststyle') == 2
-		let pattern = '\%(^\|\s\+\)\zs'.escape(a:file, '.*[]~\').'[/*|@=]\=\%($\|\s\+\)'
-	else
-		let pattern = '^\%(| \)*'.escape(a:file, '.*[]~\').'[/*|@=]\=\%($\|\t\)'
-	endif
-	call search(pattern, 'wc')
-	wincmd H
-	call VexSize(vex_width)
+  let vex_width = 30
+  execute "Vexplore " . a:dir
+  let t:vex_buf_nr = bufnr("%")
+  if get(b:, 'netrw_liststyle') == 2
+    let pattern = '\%(^\|\s\+\)\zs'.escape(a:file, '.*[]~\').'[/*|@=]\=\%($\|\s\+\)'
+  else
+    let pattern = '^\%(| \)*'.escape(a:file, '.*[]~\').'[/*|@=]\=\%($\|\t\)'
+  endif
+  call search(pattern, 'wc')
+  wincmd H
+  call VexSize(vex_width)
 endf
 fun! VexClose()
-	let cur_win_nr = winnr()
-	let target_nr = ( cur_win_nr == 1 ? winnr("#") : cur_win_nr )
-	1wincmd w
-	close
-	unlet t:vex_buf_nr
-	execute (target_nr - 1) . "wincmd w"
-	call NormalizeWidths()
+  let cur_win_nr = winnr()
+  let target_nr = ( cur_win_nr == 1 ? winnr("#") : cur_win_nr )
+  1wincmd w
+  close
+  unlet t:vex_buf_nr
+  execute (target_nr - 1) . "wincmd w"
+  call NormalizeWidths()
 endf
 fun! VexSize(vex_width)
-	execute "vertical resize" . a:vex_width
-	set winfixwidth
-	call NormalizeWidths()
+  execute "vertical resize" . a:vex_width
+  set winfixwidth
+  call NormalizeWidths()
 endf
 fun! NormalizeWidths()
-	let eadir_pref = &eadirection
-	set eadirection=hor
-	set equalalways! equalalways!
-	let &eadirection = eadir_pref
+  let eadir_pref = &eadirection
+  set eadirection=hor
+  set equalalways! equalalways!
+  let &eadirection = eadir_pref
 endf
 map <silent><F9> :call VexToggle(getcwd(), "")<CR>
 map <silent><leader><F9> :call VexToggle(expand("%:p:h"), expand("%:t"))<CR>
@@ -360,7 +356,7 @@ set breakindent
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set noexpandtab
+set expandtab
 
 "*****************************************************************************
 " plugins configuration
@@ -379,13 +375,13 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 " close all open buffers on entering a window if the only buffer that's left is the NERDTree buffer
 function! s:CloseIfOnlyNerdTreeLeft()
-	if exists("t:NERDTreeBufName")
-		if bufwinnr(t:NERDTreeBufName) != -1
-			if winnr("$") == 1
-				q
-			endif
-		endif
-	endif
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
 endfunction
 
 " tagbar
@@ -417,31 +413,31 @@ let g:ctrlp_extensions = ['tag']
 let g:ctrlp_match_window = 'results:100'
 let g:ctrlp_buffer_func = { 'enter': 'CtrlPBufferMappings' }
 function! CtrlPBufferMappings()
-	nnoremap <buffer> <silent> <c-q> :call <sid>CtrlPDeleteBuffer()<cr>
+  nnoremap <buffer> <silent> <c-q> :call <sid>CtrlPDeleteBuffer()<cr>
 endfunction
 function! s:CtrlPCloseBuffer(bufline)
-	let bufnum = matchlist(a:bufline, '>\s\+\([0-9]\+\)')[1]
-	exec "silent! bdelete" bufnum
-	return bufnum
+  let bufnum = matchlist(a:bufline, '>\s\+\([0-9]\+\)')[1]
+  exec "silent! bdelete" bufnum
+  return bufnum
 endfunction
 function! s:CtrlPDeleteBuffer()
-	let marked = ctrlp#getmarkedlist()
-	if empty(marked)
-		let linenum = line('.')
-		call s:CtrlPCloseBuffer(getline('.'))
-		exec "norm \<F5>"
-		let linebottom = line('$')
-		if linenum < linebottom
-			exec linenum
-		endif
-	else
-		for fname in marked
-			let bufid = fname =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(fname, '\d\+')) : fnamemodify(fname[2:], ':p')
-			exec "silent! bdelete" bufid
-		endfor
-		exec "norm \<F5>"
-		call ctrlp#clearmarkedlist()
-	endif
+  let marked = ctrlp#getmarkedlist()
+  if empty(marked)
+    let linenum = line('.')
+    call s:CtrlPCloseBuffer(getline('.'))
+    exec "norm \<F5>"
+    let linebottom = line('$')
+    if linenum < linebottom
+      exec linenum
+    endif
+  else
+    for fname in marked
+      let bufid = fname =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(fname, '\d\+')) : fnamemodify(fname[2:], ':p')
+      exec "silent! bdelete" bufid
+    endfor
+    exec "norm \<F5>"
+    call ctrlp#clearmarkedlist()
+  endif
 endfunction
 
 " tern on vim
@@ -475,8 +471,8 @@ autocmd BufWritePre * StripWhitespace
 
 " neomake
 let g:neomake_open_list = 2
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = ['standard']
+" let g:neomake_jsx_enabled_makers = ['standard']
 autocmd BufWritePost * Neomake
 
 " easy align
@@ -494,7 +490,16 @@ let g:indentLine_faster  = 1
 set list lcs=tab:\¦\ " space in the end
 
 " rest
-let g:vrc_cookie_jar = '/tmp/vrc_cookie_jar'
+let g:vrc_curl_opts = {
+      \ '--connect-timeout' : 10,
+      \ '-b': '/tmp/vrc_cookie_jar',
+      \ '-c': '/tmp/vrc_cookie_jar',
+      \ '-L': '',
+      \ '-i': '',
+      \ '--max-time': 60,
+      \ '--ipv4': '',
+      \ '-k': '',
+      \}
 
 " neco-ghc
 let g:necoghc_enable_detailed_browse = 1
@@ -533,8 +538,8 @@ nmap - <Plug>(choosewin)
 
 " slow multiple_cursors deoplete
 function! Multiple_cursors_before()
-	let b:deoplete_disable_auto_complete = 1
+  let b:deoplete_disable_auto_complete = 1
 endfunction
 function! Multiple_cursors_after()
-	let b:deoplete_disable_auto_complete = 0
+  let b:deoplete_disable_auto_complete = 0
 endfunction
