@@ -125,7 +125,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'dyng/ctrlsf.vim'
 
 " theme
-Plug 'flazz/vim-colorschemes'
+Plug 'fxn/vim-monochrome'
 
 " end and check install
 call plug#end()
@@ -222,10 +222,7 @@ nnoremap <silent><esc> :noh<cr><esc>
 
 " theme
 set background=dark
-colorscheme hybrid_material
-if &diff
-  colorscheme evening
-endif
+colorscheme monochrome
 
 " title
 set title
