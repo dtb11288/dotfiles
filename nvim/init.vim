@@ -125,7 +125,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'dyng/ctrlsf.vim'
 
 " theme
-Plug 'fxn/vim-monochrome'
+Plug 'ewilazarus/preto'
 
 " end and check install
 call plug#end()
@@ -222,7 +222,7 @@ nnoremap <silent><esc> :noh<cr><esc>
 
 " theme
 set background=dark
-colorscheme monochrome
+colorscheme preto
 
 " title
 set title
@@ -397,7 +397,7 @@ let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#format = 'Git_flow_branch_format'
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='wombat'
+let g:airline_theme='minimalist'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_z=''
