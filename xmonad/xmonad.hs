@@ -69,7 +69,7 @@ myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
 -- event hook
 myHandleEventHook :: Event -> X All
-myHandleEventHook = fullscreenEventHook
+myHandleEventHook = docksEventHook
 
 -- my keys
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
