@@ -1,47 +1,26 @@
-# log
-snippet lw "log.warn" b
-log.warn(${1:warn});
-endsnippet
-snippet le "log.error" b
-log.error(${1:error});
-endsnippet
-snippet lv "log.verbose" b
-log.verbose(${1:verbose});
-endsnippet
-snippet li "log.info" b
-log.info(${1:info});
-endsnippet
-snippet ld "log.debug" b
-log.debug(${1:debug});
-endsnippet
-
-# async
-snippet aw "async.waterfall" b
-async.waterfall([
-	$3
-], function(${1:error}, ${2:result}) {
-});
-endsnippet
-snippet ap "async.parallel" b
-async.parallel({
-	$3
-}, function(${1:error}, ${2:result}) {
-});
-endsnippet
-snippet am "async.map" b
-async.map(${1:array}, function(${2:item}, ${3:map_callback}) {
-	$6
-}, function(${4:error}, ${5:result}) {
-});
-endsnippet
-snippet ae "async.each" b
-async.each(${1:array}, function(${2:item}, ${3:each_callback}) {
-	$6
-}, function(${4:error}, ${5:result}) {
-});
-endsnippet
-
 # todo
 snippet todo "TODO" b
-// TODO: ${1:desc} (Binh - `!v strftime("%b %d, %Y")`)
+// TODO: ${1:alien attacks} (Binh - `!v strftime("%b %d, %Y")`)
+endsnippet
+
+# new Promise
+snippet pr "new Promise" b
+new Promise((${1:resolve}, ${2:reject}) => {
+  ${3:resolve()}
+})
+endsnippet
+
+# log promise
+snippet lpr "log Promise" b
+.then(require('ramda').tap(data => { console.log(JSON.stringify(data, undefined, 2)) }))
+endsnippet
+
+# log pipe
+snippet lpi "log Pipe" b
+require('ramda').tap(data => { console.log(JSON.stringify(data, undefined, 2)) }),
+endsnippet
+
+# normal log
+snippet log "log" b
+console.log(JSON.stringify(${1:data}, undefined, 2))
 endsnippet

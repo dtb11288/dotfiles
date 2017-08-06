@@ -75,6 +75,13 @@ Plug 'carlitux/deoplete-ternjs'
 " javascript
 Plug 'pangloss/vim-javascript'
 
+" json
+Plug 'elzr/vim-json'
+
+" purescript
+Plug 'raichoo/purescript-vim'
+Plug 'FrigoEU/psc-ide-vim'
+
 " jsx
 Plug 'mxw/vim-jsx'
 
