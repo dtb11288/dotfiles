@@ -31,7 +31,7 @@ zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/web-search", from:oh-my-zsh
 
 # theme
-zplug "themes/frisk", from:oh-my-zsh
+zplug "themes/kardan", from:oh-my-zsh
 
 # others
 zplug "tarruda/zsh-autosuggestions"
