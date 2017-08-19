@@ -4,7 +4,6 @@ import System.Taffybar.Pager
 import System.Taffybar.Systray
 import System.Taffybar.TaffyPager
 import System.Taffybar.SimpleClock
-import System.Taffybar.Weather
 import System.Taffybar.MPRIS
 
 import System.Taffybar.Widgets.PollingBar()
@@ -48,6 +47,7 @@ netCallback interface sample interval maxNetwork = do
 myGraph :: GraphConfig
 myGraph = defaultGraphConfig
     { graphDataStyles = repeat Line
+    , graphPadding = 4
     }
 
 main :: IO ()
@@ -74,24 +74,23 @@ main = do
             }
         clock = textClockNew Nothing "<span fgcolor='orange'>%a, %b %d, %Y - %H:%M</span>" 1
         pager = taffyPagerNew defaultPagerConfig
-            { activeWindow = colorize "#92BA3F" "" . shorten 30 . escape
+            { activeWindow = colorize "#92BA3F" "" . shorten 80 . escape
             , activeWorkspace = colorize "#87afd7" "" . wrap "[" "]" . escape
             }
-        wea = weatherNew (defaultWeatherConfig "VVNB") { weatherTemplate = "[ $skyCondition$, $tempC$°C ]" } 1
         mpris = mprisNew defaultMPRISConfig
         mem = pollingGraphNew memCfg 1 memCallback
         cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
         tray = systrayNew
-        net = pollingGraphNew netCfg 0.5 $ netCallback "wlp6s0b1" sample 0.5 maxNetwork
+        net = pollingGraphNew netCfg 0.5 $ netCallback "wlp2s0" sample 0.5 maxNetwork
 
     rcParseString $ unwords
         [ "style \"default\" {"
-        , "  font_name = \"Noto Mono 12\""
+        , "  font_name = \"Noto Mono 14\""
         , "}"
         ]
 
     defaultTaffybar defaultTaffybarConfig
         { startWidgets = [ pager ]
-        , endWidgets = [ clock, tray, mem, cpu, net, wea, mpris ]
-        , barHeight = 24
+        , endWidgets = [ clock, tray, mem, cpu, net, mpris ]
+        , barHeight = 28
         }
