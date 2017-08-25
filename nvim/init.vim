@@ -85,6 +85,9 @@ Plug 'FrigoEU/psc-ide-vim'
 " jsx
 Plug 'mxw/vim-jsx'
 
+" graphql
+Plug 'jparise/vim-graphql'
+
 " html
 Plug 'othree/html5-syntax.vim'
 Plug 'othree/html5.vim'
