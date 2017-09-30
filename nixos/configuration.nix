@@ -16,7 +16,7 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;  # Enables wireless support via networkmanager.
 
   # Select internationalisation properties.
   i18n = {
@@ -50,29 +50,54 @@
   # services.printing.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
+  # services.xserver.enable = true;
+  # services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    windowManager = {
+      default = "xmonad";
+      xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+        extraPackages = haskellPackages: [
+          haskellPackages.xmonad-contrib
+          haskellPackages.xmonad-extras
+          haskellPackages.xmonad
+          haskellPackages.taffybar
+        ];
+      };
+    };
+    libinput = {
+      enable = true;
+      naturalScrolling = true;
+      disableWhileTyping = true;
+    };
+  };
+
+  fonts.fonts = [
+    pkgs.noto-fonts
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.binh = {
     createHome = true;
     home = "/home/binh";
     group = "users";
-    extraGroups = [ "wheel" "disk" ];
+    extraGroups = [ "wheel" "disk" "networkmanager" ];
     isSystemUser = false;
     useDefaultShell = true;
     shell = pkgs.fish;
   };
+
   security.sudo.enable = true;
   programs.fish.enable = true;
-  programs.ssh.forwardX11 = true;
-  programs.ssh.setXAuthLocation = true;
-  services.xserver.libinput.enable = true;
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "17.03";
