@@ -170,7 +170,6 @@ set number
 set relativenumber
 
 " terminal
-set shell=zsh
 tnoremap <esc> <c-\><c-n>
 
 " always show status bar
