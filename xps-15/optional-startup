@@ -1,0 +1,2 @@
+kilall -9 libinput-gestures
+libinput-gestures &
