@@ -1,0 +1,3 @@
+#!/bin/bash
+
+import -window root ~/Screenshots/image_$(date +'%F_%T').jpg
