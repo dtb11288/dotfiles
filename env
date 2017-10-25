@@ -7,7 +7,7 @@ export QT_IM_MODULE=ibus
 export VISUAL=nvim
 
 # export PATH
-export PATH="$HOME/opt/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/opt/bin:$PATH"
 
 # ssh-agent
 alias startx='ssh-agent startx'
