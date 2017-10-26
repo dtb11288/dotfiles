@@ -32,7 +32,13 @@ Plug 'moll/vim-bbye'
 Plug 'easymotion/vim-easymotion'
 
 " auto complete
-Plug 'Shougo/deoplete.nvim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'neomake/neomake'
 Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
@@ -55,6 +61,7 @@ Plug 'hlissner/vim-multiedit'
 Plug 'terryma/vim-expand-region'
 Plug 'Chiel92/vim-autoformat'
 Plug 'Konfekt/FastFold'
+Plug 'kopischke/vim-stay'
 
 " text object
 Plug 'kana/vim-textobj-user'
@@ -549,3 +556,6 @@ endfunction
 function! Multiple_cursors_after()
   let b:deoplete_disable_auto_complete = 0
 endfunction
+
+" vim-stay
+set viewoptions=cursor,folds,slash,unix
