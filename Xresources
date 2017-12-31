@@ -1,5 +1,6 @@
 ! import color scheme
 #include ".Xresources.theme"
+#include ".Xresources.optional"
 
 ! rxvt settings
 ! run "fc-list" for a list of available fonts

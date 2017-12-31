@@ -107,6 +107,9 @@ Plug 'hail2u/vim-css3-syntax'
 " markdown
 Plug 'gabrielelana/vim-markdown'
 
+" elm
+Plug 'ElmCast/elm-vim'
+
 " i3
 Plug 'PotatoesMaster/i3-vim-syntax'
 
