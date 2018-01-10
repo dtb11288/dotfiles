@@ -33,6 +33,13 @@
   environment.systemPackages = with pkgs; [
     git
     neovim
+    xlaunch
+    rxvt_unicode
+    dmenu
+    tmux
+    htop
+    wget
+    tree
   ];
 
   # List services that you want to enable:
@@ -47,7 +54,7 @@
   # networking.firewall.enable = false;
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
@@ -85,6 +92,10 @@
     pkgs.noto-fonts
   ];
 
+  security.setuidPrograms = [
+    "xlaunch"
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.binh = {
     createHome = true;
@@ -93,11 +104,11 @@
     extraGroups = [ "wheel" "disk" "networkmanager" ];
     isSystemUser = false;
     useDefaultShell = true;
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
   security.sudo.enable = true;
-  programs.fish.enable = true;
+  programs.zsh.enable = true;
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "17.03";
