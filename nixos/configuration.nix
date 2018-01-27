@@ -53,20 +53,15 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    # develop
+    # tools
     git
     neovim
-    ctags
-    gcc
-    gnumake
-    bc
-
-    # tools
     file
     coreutils
     tmux
     htop
     wget
+    curl
     tree
     w3m
     cmus
@@ -75,45 +70,29 @@
     zip
     unzip
     lsof
+    xdg_utils
+    rsync
 
     # desktop
     dmenu
-    xdotool
+    xorg.xbacklight
     rxvt_unicode
-    chromium
-    mpv
-    youtube-dl
-    libreoffice
     xss-lock
     xautolock
     xsel
-    xdg_utils
     dunst
     libnotify
-    enpass
     pavucontrol
     blueman
     networkmanagerapplet
     networkmanager_openvpn
-    haskellPackages.xmonad
-    haskellPackages.xmonad-contrib
-    haskellPackages.xmonad-extras
     haskellPackages.taffybar
     xdg_utils
     i3lock
-
-    # graphics
-    gimp
-    blender
-
-    # game
-    steam
   ];
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.pulseaudio = true;
-  nixpkgs.config.chromium.enablePepperFlash = true;
-  nixpkgs.config.chromium.enablePepperPDF = true;
 
   services.redshift = {
     enable = true;
@@ -139,6 +118,12 @@
       xmonad = {
         enable = true;
         enableContribAndExtras = true;
+        extraPackages = haskellPackages: [
+          haskellPackages.xmonad-contrib
+          haskellPackages.xmonad-extras
+          haskellPackages.xmonad
+          haskellPackages.taffybar
+        ];
       };
     };
 
@@ -149,7 +134,7 @@
     };
 
     displayManager.sessionCommands = ''
-      ${pkgs.xorg.xrandr}/bin/xrandr --output eDP1 --dpi 192x192 --mode 3840x2160
+      ${pkgs.xorg.xrandr}/bin/xrandr --output eDP1 --mode 1920x1080
       ${pkgs.xorg.xset}/bin/xset r rate 220 30
       ${pkgs.xorg.xset}/bin/xset dpms 300
       ${pkgs.xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
@@ -159,9 +144,6 @@
 
   environment.variables = {
     VISUAL = "nvim";
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
-    QT_AUTO_SCREEN_SCALE_FACTOR="1";
   };
 
   fonts.fonts = with pkgs; [

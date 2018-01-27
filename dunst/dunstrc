@@ -1,5 +1,5 @@
 [global]
-    font = Noto Font 12
+    font = Roboto 10
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -9,7 +9,7 @@
     #
     # for a complete reference see http://developer.gnome.org/pango/stable/PangoMarkupFormat.html
     # If markup is not allowed, those tags will be stripped out of the message.
-    markup = yes
+    allow_markup = yes
 
     # The format of the message. Possible variables are:
     #   %a  appname
@@ -60,7 +60,7 @@
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
     #geometry = "300x5-30+20"
-    geometry = "640x64-15+60"
+    geometry = "270x20-10+33"
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
     transparency = 0
@@ -96,13 +96,13 @@
 
     # Draw a line of 'separatpr_height' pixel height between two notifications.
     # Set to 0 to disable
-    separator_height = 4
+    separator_height = 2
 
     # padding between text and separator>
-    padding = 24
+    padding = 16
 
     # horizontal padding
-    horizontal_padding = 16
+    horizontal_padding = 2
 
     # Define a color for the separator.
     # possible values are:
@@ -124,8 +124,8 @@
     browser = /usr/bin/firefox -new-tab
 
 [frame]
-    frame_width = 0
-    frame_color = "#FFFFFF"
+    width = 0
+    color = "#FFFFFF"
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key
