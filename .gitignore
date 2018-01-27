@@ -20,3 +20,4 @@ taffybar/taffybar
 __pycache__
 xmonad/xmonad.state
 qutebrowser/autoconfig.yml
+result
