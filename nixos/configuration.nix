@@ -57,6 +57,9 @@
     haskellPackages.taffybar
     xdg_utils
     i3lock
+    cbatticon
+    volumeicon
+    parcellite
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -105,6 +108,10 @@
       ${pkgs.xorg.xset}/bin/xset dpms 300
       ${pkgs.xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
       ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
+      ${pkgs.networkmanagerapplet}/bin/nm-applet &
+      ${pkgs.volumeicon}/bin/volumeicon &
+      ${pkgs.cbatticon}/bin/cbatticon &
+      ${pkgs.blueman}/bin/blueman-applet &
     '';
   };
 

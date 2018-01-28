@@ -9,7 +9,7 @@
     #
     # for a complete reference see http://developer.gnome.org/pango/stable/PangoMarkupFormat.html
     # If markup is not allowed, those tags will be stripped out of the message.
-    allow_markup = yes
+    markup = yes
 
     # The format of the message. Possible variables are:
     #   %a  appname
@@ -124,8 +124,8 @@
     browser = /usr/bin/firefox -new-tab
 
 [frame]
-    width = 0
-    color = "#FFFFFF"
+    frame_width = 0
+    frame_color = "#FFFFFF"
 
 [shortcuts]
     # shortcuts are specified as [modifier+][modifier+]...key

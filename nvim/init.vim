@@ -140,6 +140,10 @@ Plug 'dyng/ctrlsf.vim'
 " theme
 Plug 'ewilazarus/preto'
 
+Plug 'hdima/python-syntax'
+
+Plug 'LnL7/vim-nix'
+
 " end and check install
 call plug#end()
 if exists("s:bootstrap") && s:bootstrap
