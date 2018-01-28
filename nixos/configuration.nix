@@ -1,43 +1,11 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
+      ./hardware.nix
+      ./user.nix
     ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking = {
-    hostName = "nixos";
-    nameservers = [ "8.8.8.8" "8.8.4.4" ];
-    networkmanager = {
-      enable = true;
-      insertNameservers = [ "8.8.8.8" "8.8.4.4" ];
-    };
-  };
-
-  hardware = {
-    cpu.intel.updateMicrocode = true;
-    bumblebee.enable = true;
-    opengl.enable = true;
-    opengl.driSupport32Bit = true;
-    opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    pulseaudio.package = pkgs.pulseaudioFull; # 'full' instead of 'light' for e.g. bluetooth
-    pulseaudio.enable = true;
-    pulseaudio.support32Bit = true;
-    pulseaudio.daemon.config = {
-      flat-volumes = "no";
-    };
-    bluetooth.enable = true;
-  };
 
   # Select internationalisation properties.
   i18n = {
@@ -92,7 +60,6 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.pulseaudio = true;
 
   services.redshift = {
     enable = true;
@@ -107,7 +74,6 @@
   services.openssh.enable = true;
   services.printing.enable = true;
   services.ntp.enable = true;
-  services.tlp.enable = true;
 
   services.xserver = {
     enable = true;
@@ -154,19 +120,6 @@
     dejavu_fonts
   ];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.extraUsers.binh = {
-    createHome = true;
-    home = "/home/binh";
-    group = "users";
-    extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" ];
-    isNormalUser = true;
-    uid = 1000;
-    useDefaultShell = true;
-    shell = pkgs.zsh;
-  };
-
-  security.sudo.enable = true;
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
 
