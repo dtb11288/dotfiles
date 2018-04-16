@@ -47,8 +47,8 @@ netCallback interface sample interval maxNetwork = do
 myGraph :: GraphConfig
 myGraph = defaultGraphConfig
     { graphDataStyles = repeat Line
-    , graphPadding = 2
-    , graphWidth = 48
+    , graphPadding = 5
+    , graphWidth = 95
     }
 
 main :: IO ()
@@ -93,5 +93,5 @@ main = do
     defaultTaffybar defaultTaffybarConfig
         { startWidgets = [ pager ]
         , endWidgets = [ clock, tray, mem, cpu, net, mpris ]
-        , barHeight = 24
+        , barHeight = 52
         }

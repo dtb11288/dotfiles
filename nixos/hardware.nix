@@ -51,6 +51,9 @@
   networking = {
     hostName = "nixos";
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    extraHosts = ''
+      127.0.0.1  biits.lambda
+    '';
     networkmanager = {
       enable = true;
       insertNameservers = [ "8.8.8.8" "8.8.4.4" ];

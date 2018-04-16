@@ -5,7 +5,7 @@
     createHome = true;
     home = "/home/binh";
     group = "users";
-    extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" ];
+    extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" "docker" "vboxusers" ];
     isNormalUser = true;
     uid = 1000;
     useDefaultShell = true;

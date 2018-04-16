@@ -80,14 +80,13 @@ myKeys XConfig {XMonad.modMask = extraKeysModMask} = M.fromList
     , ((0, xF86XK_AudioMute             ), spawn "amixer -q sset Master toggle")
 
     -- media keys
-    , ((0, xF86XK_AudioPrev             ), spawn "cmus-remote -r")
-    , ((0, xF86XK_AudioNext             ), spawn "cmus-remote -n")
-    , ((0, xF86XK_AudioPlay             ), spawn "cmus-remote -u")
-    , ((0, xF86XK_AudioStop             ), spawn "cmus-remote -s")
+    , ((0, xF86XK_AudioPrev             ), spawn "playerctl previous")
+    , ((0, xF86XK_AudioNext             ), spawn "playerctl next")
+    , ((0, xF86XK_AudioPlay             ), spawn "playerctl play-pause")
 
     -- brightness keys
-    , ((0, xF86XK_MonBrightnessUp       ), spawn "xbacklight -inc 5")
-    , ((0, xF86XK_MonBrightnessDown     ), spawn "xbacklight -dec 5")
+    , ((0, xF86XK_MonBrightnessUp       ), spawn "light -A 5")
+    , ((0, xF86XK_MonBrightnessDown     ), spawn "light -U 5")
 
     -- dmenu
     , ((extraKeysModMask, xK_p          ), spawn myDmenu)

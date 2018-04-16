@@ -40,6 +40,11 @@
     lsof
     xdg_utils
     rsync
+    feh
+    busybox
+    mysql
+    mongodb
+    virtualbox
 
     # desktop
     dmenu
@@ -74,9 +79,14 @@
     };
   };
 
+  services.mysql.enable = true;
+  services.mysql.package = pkgs.mariadb;
+  services.mongodb.enable = true;
   services.openssh.enable = true;
   services.printing.enable = true;
   services.ntp.enable = true;
+  virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   services.xserver = {
     enable = true;
@@ -108,8 +118,10 @@
       ${pkgs.xorg.xset}/bin/xset dpms 300
       ${pkgs.xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
       ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
+      ${pkgs.feh}/bin/feh --bg-fill "$HOME/.wallpaper"
       ${pkgs.networkmanagerapplet}/bin/nm-applet &
       ${pkgs.volumeicon}/bin/volumeicon &
+      ${pkgs.parcellite}/bin/parcellite &
       ${pkgs.cbatticon}/bin/cbatticon &
       ${pkgs.blueman}/bin/blueman-applet &
     '';
