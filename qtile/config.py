@@ -6,30 +6,29 @@ from libqtile import layout, bar, widget
 mod = "mod4"
 
 keys = [
-    # Switch between windows in current stack pane
+    # windows management
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "j", lazy.layout.down()),
-
-    # Move windows up or down in current stack
     Key([mod, "control"], "k", lazy.layout.shuffle_up()),
     Key([mod, "control"], "j", lazy.layout.shuffle_down()),
-
-    # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.next_layout()),
-    Key([mod], "Return", lazy.spawn("urxvt -e tmux")),
-
-    # Toggle between different layouts as defined below
     Key([mod], "w", lazy.window.kill()),
 
+    # qtile commands
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
 
-    # Brightness
+    # some commands
+    Key([mod, "shift"], "Return", lazy.spawn("urxvt -e tmux")),
+    Key([mod], "Escape", lazy.spawn("xautolock -locknow")),
+    Key([mod], "p", lazy.spawn("dmenu_run -i -p \">>>\" -fn Noto-14 -nb \"#000\" -nf \"#fff\" -sb \"#4285F4\" -sf \"#fff\"")),
+
+    # brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 5")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 5")),
 
-    # Sound
+    # sound
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q sset Master 5%+ unmute")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q sset Master 5%-")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q sset Master toggle")),
@@ -52,21 +51,24 @@ for i in groups:
 # just use monad tall and max
 layouts = [
     layout.MonadTall(
+        name="Tall",
+        border_width=1,
         border_focus="#8787af",
         border_normal="#202020",
         new_at_current=True,
         single_border_width=False
     ),
-    layout.Max()
+    layout.Max(name="Max")
 ]
 
 widget_defaults = dict(
-    font='sans',
+    font='Noto',
     fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
+# screen
 screens = [
     Screen(
         top=bar.Bar(
@@ -74,6 +76,7 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
+                widget.CurrentLayout(),
                 widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
             ],
@@ -82,7 +85,7 @@ screens = [
     ),
 ]
 
-# Drag floating layouts.
+# drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
