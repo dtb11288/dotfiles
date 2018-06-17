@@ -1,97 +1,85 @@
+module Main where
+
 import System.Taffybar
+import System.Taffybar.Hooks
+import System.Taffybar.Information.CPU
+import System.Taffybar.Information.Memory
+import System.Taffybar.SimpleConfig
+import System.Taffybar.Widget
+import System.Taffybar.Widget.Generic.PollingGraph
+import System.Taffybar.Widget.Generic.PollingLabel
+import System.Taffybar.Widget.Util
+import System.Taffybar.Widget.Workspaces
 
-import System.Taffybar.Pager
-import System.Taffybar.Systray
-import System.Taffybar.TaffyPager
-import System.Taffybar.SimpleClock
-import System.Taffybar.MPRIS
+transparent = (0.0, 0.0, 0.0, 0.0)
+yellow1 = (0.9453125, 0.63671875, 0.2109375, 1.0)
+yellow2 = (0.9921875, 0.796875, 0.32421875, 1.0)
+green1 = (0, 1, 0, 1)
+green2 = (1, 0, 1, 0.5)
+taffyBlue = (0.129, 0.588, 0.953, 1)
 
-import System.Taffybar.Widgets.PollingBar()
-import System.Taffybar.Widgets.PollingGraph
+myGraphConfig = defaultGraphConfig
+  { graphPadding = 3
+  , graphBorderWidth = 1
+  , graphWidth = 60
+  , graphBackgroundColor = transparent
+  }
 
-import System.Information.Memory
-import System.Information.CPU
-import System.Information.Network
+netCfg = myGraphConfig
+  { graphDataColors = [yellow1, yellow2]
+  , graphLabel = Just "net"
+  }
 
-import Graphics.UI.Gtk.General.RcStyle (rcParseString)
-import Data.IORef
+memCfg = myGraphConfig
+  { graphDataColors = [taffyBlue]
+  , graphLabel = Just "mem"
+  }
+
+cpuCfg = myGraphConfig
+  { graphDataColors = [green1, green2]
+  , graphLabel = Just "cpu"
+  }
 
 memCallback :: IO [Double]
 memCallback = do
-    mi <- parseMeminfo
-    return [memoryUsedRatio mi]
+  mi <- parseMeminfo
+  return [memoryUsedRatio mi]
 
-cpuCallback :: IO [Double]
 cpuCallback = do
-    (_userLoad, systemLoad, totalLoad) <- cpuLoad
-    return [totalLoad, systemLoad]
+  (_, systemLoad, totalLoad) <- cpuLoad
+  return [totalLoad, systemLoad]
 
-netCallback :: String -> IORef [Integer] -> Double -> IORef [Double] -> IO [Double]
-netCallback interface sample interval maxNetwork = do
-    maybeThisSample <- getNetInfo interface
-    case maybeThisSample of
-        Just thisSample -> do
-            lastSample <- readIORef sample
-            lastMaxNetwork <- readIORef maxNetwork
-            writeIORef sample thisSample
-            let deltas = map (max 0 . fromIntegral) $ zipWith (-) thisSample lastSample
-                speed = map (/interval) deltas
-                newMaxNetwork = zipWith max speed lastMaxNetwork
-                speedRatio = zipWith (/) speed newMaxNetwork
-            writeIORef maxNetwork newMaxNetwork
-            return speedRatio
-        _ -> do
-            writeIORef maxNetwork [0, 0]
-            return [0, 0]
-
-myGraph :: GraphConfig
-myGraph = defaultGraphConfig
-    { graphDataStyles = repeat Line
-    , graphPadding = 5
-    , graphWidth = 95
-    }
-
-main :: IO ()
 main = do
-    sample <- newIORef [0, 0]
-    maxNetwork <- newIORef [0, 0]
-    let memCfg = myGraph
-            { graphDataColors = [(1, 0, 0, 1)]
-            , graphLabel = Just "mem"
-            }
-        netCfg = myGraph
-            { graphDataColors =
-                [ (0, 1, 0, 1)
-                , (1, 0, 0, 1)
-                ]
-            , graphLabel = Just "net"
-            }
-        cpuCfg = myGraph
-            { graphDataColors =
-                [ (0, 1, 0, 1)
-                , (1, 0, 1, 0.5)
-                ]
-            , graphLabel = Just "cpu"
-            }
-        clock = textClockNew Nothing "<span fgcolor='orange'>%a, %b %d, %Y - %H:%M</span>" 1
-        pager = taffyPagerNew defaultPagerConfig
-            { activeWindow = colorize "#92BA3F" "" . shorten 80 . escape
-            , activeWorkspace = colorize "#87afd7" "" . wrap "[" "]" . escape
-            }
-        mpris = mprisNew defaultMPRISConfig
-        mem = pollingGraphNew memCfg 1 memCallback
-        cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
-        tray = systrayNew
-        net = pollingGraphNew netCfg 0.5 $ netCallback "wlp2s0" sample 0.5 maxNetwork
-
-    rcParseString $ unwords
-        [ "style \"default\" {"
-        , "  font_name = \"Noto Mono 14\""
-        , "}"
-        ]
-
-    defaultTaffybar defaultTaffybarConfig
-        { startWidgets = [ pager ]
-        , endWidgets = [ clock, tray, mem, cpu, net, mpris ]
-        , barHeight = 52
+  let myWorkspacesConfig = defaultWorkspacesConfig
+        { minIcons = 0
+        , widgetGap = 0
+        , showWorkspaceFn = hideEmpty
         }
+      workspaces = workspacesNew myWorkspacesConfig
+      cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
+      mem = pollingGraphNew memCfg 1 memCallback
+      net = networkGraphNew netCfg Nothing
+      clock = textClockNew Nothing "%a %b %_d %r" 1
+      layout = layoutNew defaultLayoutConfig
+      windows = windowsNew defaultWindowsConfig
+          -- See https://github.com/taffybar/gtk-sni-tray#statusnotifierwatcher
+          -- for a better way to set up the sni tray
+      -- tray = sniTrayThatStartsWatcherEvenThoughThisIsABadWayToDoIt
+      tray = sniTrayNew
+      myConfig = defaultSimpleTaffyConfig
+        { startWidgets = workspaces : map (>>= buildContentsBox) [ layout, windows ]
+        , endWidgets = map (>>= buildContentsBox)
+          [ -- batteryIconNew
+          clock
+          , tray
+          , cpu
+          , mem
+          , net
+          , mpris2New
+          ]
+        , barPosition = Top
+        , barPadding = 2
+        , barHeight = 28
+        , widgetSpacing = 0
+        }
+  dyreTaffybar $ withLogServer $ withToggleServer $ toTaffyConfig myConfig

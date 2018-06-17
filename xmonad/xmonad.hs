@@ -4,7 +4,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
-import System.Taffybar.Hooks.PagerHints (pagerHints)
+import System.Taffybar.Support.PagerHints (pagerHints)
 import Graphics.X11.ExtraTypes.XF86
 import Data.Monoid
 import XMonad.Layout.LayoutModifier
@@ -27,6 +27,7 @@ baseConfig = ewmh $ pagerHints desktopConfig
 -- main
 main :: IO ()
 main = do
+    spawn trayBarDaemon
     spawn myBar
     xmonad myConfig
 
@@ -98,6 +99,11 @@ myKeys XConfig {XMonad.modMask = extraKeysModMask} = M.fromList
     , ((extraKeysModMask, xK_q          ), spawn myRestartXmonad)
     ]
 
+trayBarDaemon :: String
+trayBarDaemon = unwords
+    [ "for pid in `pgrep gtk-sni-tray-standalone`; do kill $pid; done;"
+    , "gtk-sni-tray-standalone --watcher &"
+    ]
 -- my bar
 myBar :: String
 myBar = unwords
