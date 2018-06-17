@@ -24,6 +24,18 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
+
+    # Brightness
+    Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 5")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 5")),
+
+    # Sound
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q sset Master 5%+ unmute")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q sset Master 5%-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q sset Master toggle")),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"))
 ]
 
 # from 1 to 0
@@ -39,7 +51,12 @@ for i in groups:
 
 # just use monad tall and max
 layouts = [
-    layout.MonadTall(border_focus="#8787af", border_normal="#202020"),
+    layout.MonadTall(
+        border_focus="#8787af",
+        border_normal="#202020",
+        new_at_current=True,
+        single_border_width=False
+    ),
     layout.Max()
 ]
 
@@ -77,7 +94,7 @@ mouse = [
 dgroups_key_binder = None
 dgroups_app_rules = []
 main = None
-follow_mouse_focus = True
+follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
