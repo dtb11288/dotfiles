@@ -9,10 +9,14 @@ keys = [
     # windows management
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "j", lazy.layout.down()),
-    Key([mod, "control"], "k", lazy.layout.shuffle_up()),
-    Key([mod, "control"], "j", lazy.layout.shuffle_down()),
+    Key([mod], "l", lazy.layout.grow()),
+    Key([mod], "h", lazy.layout.shrink()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod], "space", lazy.next_layout()),
-    Key([mod], "w", lazy.window.kill()),
+    Key([mod], "t", lazy.window.toggle_floating()),
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
+    Key([mod, "shift"], "c", lazy.window.kill()),
 
     # qtile commands
     Key([mod, "control"], "r", lazy.restart()),
@@ -75,10 +79,12 @@ screens = [
             [
                 widget.GroupBox(),
                 widget.Prompt(),
-                widget.WindowName(),
+                widget.TextBox(text="|"),
                 widget.CurrentLayout(),
+                widget.TextBox(text="|"),
+                widget.WindowName(foreground="#92BA3F"),
                 widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+                widget.Clock(foreground="#ffa500", format='%Y-%m-%d %a %I:%M %p'),
             ],
             28,
         ),
