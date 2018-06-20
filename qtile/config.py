@@ -11,6 +11,7 @@ keys = [
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "l", lazy.layout.grow()),
     Key([mod], "h", lazy.layout.shrink()),
+    Key([mod], "Return", lazy.layout.swap_left()),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod], "space", lazy.next_layout()),
