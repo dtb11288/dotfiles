@@ -1,6 +1,6 @@
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget
+from libqtile import layout, bar, widget, hook
 
 # window button
 mod = "mod4"
@@ -89,6 +89,19 @@ screens = [
             28,
         ),
     ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(),
+                widget.TextBox(text="|"),
+                widget.CurrentLayout(),
+                widget.TextBox(text="|"),
+                widget.WindowName(foreground="#92BA3F"),
+                widget.Clock(foreground="#ffa500", format='%Y-%m-%d %a %I:%M %p'),
+            ],
+            28,
+        ),
+    ),
 ]
 
 # drag floating layouts.
@@ -106,25 +119,21 @@ main = None
 follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
-    {'wmclass': 'confirm'},
-    {'wmclass': 'confirm'},
-    {'wmclass': 'dialog'},
-    {'wmclass': 'download'},
-    {'wmclass': 'error'},
-    {'wmclass': 'file_progress'},
-    {'wmclass': 'notification'},
-    {'wmclass': 'splash'},
-    {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},  # gitk
-    {'wmclass': 'makebranch'},  # gitk
-    {'wmclass': 'maketag'},  # gitk
-    {'wname': 'branchdialog'},  # gitk
-    {'wname': 'pinentry'},  # GPG key password entry
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
-])
+floating_layout = layout.Floating(
+    name="Float",
+    border_width=1,
+    border_focus="#8787af",
+    border_normal="#202020",
+)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
 # for java app
 wmname = "LG3D"
+
+@hook.subscribe.client_new
+def floating_dialogs(window):
+    dialog = window.window.get_wm_type() == 'dialog'
+    transient = window.window.get_wm_transient_for()
+    if dialog or transient:
+        window.floating = True
