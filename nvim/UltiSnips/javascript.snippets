@@ -12,12 +12,12 @@ endsnippet
 
 # log promise
 snippet lpr "log Promise"
-.then(require('ramda').tap(data => { console.log(JSON.stringify(data, undefined, 2)) }))
+.then(require('ramda').tap(data => { console.log(JSON.stringify(${1:data}, undefined, 2)) }))
 endsnippet
 
 # log pipe
 snippet lpi "log Pipe"
-require('ramda').tap(data => { console.log(JSON.stringify(data, undefined, 2)) }),
+require('ramda').tap(data => { console.log(JSON.stringify(${1:data}, undefined, 2)) }),
 endsnippet
 
 # normal log

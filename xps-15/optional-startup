@@ -1,4 +1,4 @@
-xrandr && xrandr --output eDP1 --dpi 192x192
+xrandr && xrandr --output eDP-1 --mode 1920x1080
 killall -9 libinput-gestures
 libinput-gestures &
 
