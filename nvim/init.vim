@@ -231,7 +231,7 @@ set expandtab
 
 " title
 set title
-autocmd BufEnter * let &titlestring = expand("%:t")
+set titlestring=%t%(\ -\ [%{substitute(getcwd(),\ $HOME,\ '~',\ '')}]%)
 
 " theme
 set background=dark
