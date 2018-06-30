@@ -62,6 +62,11 @@ bindkey '^[[Z' reverse-menu-complete # shift-tab
 [[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" down-line-or-beginning-search
 setopt promptsubst
 
+# change title bar
+function precmd() {
+    print -Pn "\e]2;%~\a"
+}
+
 # load env source
 if [[ -r $HOME/.env ]]; then
   source $HOME/.env

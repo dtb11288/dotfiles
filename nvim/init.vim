@@ -76,6 +76,9 @@ Plug 'rust-lang/rust.vim'
 " javscript
 Plug 'pangloss/vim-javascript'
 
+" python
+Plug 'vim-python/python-syntax'
+
 " json
 Plug 'elzr/vim-json'
 
@@ -258,7 +261,7 @@ map <Esc>[24~ <F12>
 " plugins configuration
 "*****************************************************************************
 " NERDTree
-nmap <silent><F2> :NERDTreeToggle<CR>
+nmap <silent><F2> :NERDTreeToggle<cr>
 nnoremap <silent><leader><F2> :NERDTreeFind<cr>
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
@@ -359,8 +362,7 @@ let g:airline_section_z=''
 
 " neomake
 call neomake#configure#automake('w')
-let g:neomake_open_list = 2
-let g:neomake_javascript_enabled_makers = ['standard']
+let g:neomake_open_list = 4
 
 " ultisnips
 let g:UltiSnipsSnippetsDir = s:vim_home."/UltiSnips"
@@ -381,6 +383,9 @@ let g:vrc_curl_opts = {
 nnoremap <silent><F5> :MundoToggle<cr>
 let g:mundo_right = 1
 
+" autoformat
+nnoremap <leader>f :Autoformat<cr>
+
 " gitgutter
 let g:gitgutter_max_signs = 1000
 
@@ -398,8 +403,8 @@ set completeopt-=preview
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'python': ['pyls'],
       \ }
-nnoremap <silent><leader>lc :call LanguageClient_contextMenu()<CR>
-nnoremap <silent><leader>lh :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent><leader>ld :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent><leader>lr :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent><leader>lh :call LanguageClient#textDocument_hover()<cr>
+nnoremap <silent><leader>ld :call LanguageClient#textDocument_definition()<cr>
+nnoremap <silent><leader>lr :call LanguageClient#textDocument_rename()<cr>
