@@ -82,6 +82,15 @@ Plug 'vim-python/python-syntax'
 " json
 Plug 'elzr/vim-json'
 
+" elm
+Plug 'ElmCast/elm-vim'
+
+" toml
+Plug 'cespare/vim-toml'
+
+" typescript
+Plug 'leafgarland/typescript-vim'
+
 " html
 Plug 'othree/html5-syntax.vim'
 Plug 'othree/html5.vim'
@@ -403,6 +412,7 @@ set completeopt-=preview
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'typescript': ['tsserver'],
       \ 'python': ['pyls'],
       \ }
 nnoremap <silent><leader>lh :call LanguageClient#textDocument_hover()<cr>
