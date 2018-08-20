@@ -412,7 +412,7 @@ set completeopt-=preview
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'typescript': ['tsserver'],
+      \ 'typescript': ['javascript-typescript-stdio'],
       \ 'python': ['pyls'],
       \ }
 nnoremap <silent><leader>lh :call LanguageClient#textDocument_hover()<cr>
