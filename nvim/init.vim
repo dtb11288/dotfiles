@@ -85,8 +85,14 @@ Plug 'elzr/vim-json'
 " elm
 Plug 'ElmCast/elm-vim'
 
+" dart
+Plug 'dart-lang/dart-vim-plugin'
+
 " toml
 Plug 'cespare/vim-toml'
+
+" haskell
+Plug 'neovimhaskell/haskell-vim'
 
 " typescript
 Plug 'leafgarland/typescript-vim'
@@ -410,11 +416,17 @@ set completeopt-=preview
 
 " lsp
 let g:LanguageClient_serverCommands = {
-      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+      \ 'dart': ['dart_language_server'],
+      \ 'rust': ['rustup', 'run', 'stable', 'rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'typescript': ['javascript-typescript-stdio'],
+      \ 'go': ['go-langserver'],
       \ 'python': ['pyls'],
       \ }
 nnoremap <silent><leader>lh :call LanguageClient#textDocument_hover()<cr>
 nnoremap <silent><leader>ld :call LanguageClient#textDocument_definition()<cr>
 nnoremap <silent><leader>lr :call LanguageClient#textDocument_rename()<cr>
+
+" android
+nnoremap <silent><leader>rr :!adb shell input text "RR"<cr><cr>
+nnoremap <silent><leader>am :!adb shell input keyevent 82<cr><cr>
