@@ -2,4 +2,4 @@
 if [[ -r ~/.startup ]]; then
     ~/.startup
 fi
-exec qtile
+exec xmonad

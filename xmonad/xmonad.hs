@@ -1,14 +1,20 @@
+{-# LANGUAGE OverloadedStrings #-}
 import XMonad
 import XMonad.Config.Desktop
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.Minimize
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
-import System.Taffybar.Support.PagerHints (pagerHints)
 import Graphics.X11.ExtraTypes.XF86
 import Data.Monoid
 import XMonad.Layout.LayoutModifier
 import XMonad.Hooks.SetWMName
+import qualified Codec.Binary.UTF8.String as UTF8
+
+import XMonad.Hooks.DynamicLog
+import qualified DBus as D
+import qualified DBus.Client as D
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
@@ -22,14 +28,45 @@ colorNormalBorder = "#202020"
 
 -- define default config
 baseConfig :: XConfig (ModifiedLayout AvoidStruts (Choose Tall (Choose (Mirror Tall) Full)))
-baseConfig = ewmh $ pagerHints desktopConfig
+baseConfig = ewmh $ desktopConfig
 
 -- main
 main :: IO ()
 main = do
-    spawn trayBarDaemon
     spawn myBar
-    xmonad myConfig
+
+    dbus <- D.connectSession
+    -- Request access to the DBus name
+    D.requestName dbus (D.busName_ "org.xmonad.Log")
+        [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+
+    xmonad myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
+
+-- Override the PP values as you would otherwise, adding colors etc depending
+-- on  the statusbar used
+myLogHook :: D.Client -> PP
+myLogHook dbus = def
+    { ppOutput = dbusOutput dbus
+    , ppCurrent = wrap ("%{F#accaff} [ ") " ] %{F-}"
+    -- , ppVisible = wrap ("%{B#fad07a} ") " %{B-}"
+    , ppUrgent = wrap ("%{F#cf6a4c} ") " %{F-}"
+    , ppHidden = wrap " " " "
+    , ppWsSep = ""
+    , ppSep = " : "
+    , ppTitle = wrap ("%{F#99ad6a} ") " %{F-}" . shorten 120
+    }
+
+-- Emit a DBus signal on log updates
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+    let signal = (D.signal objectPath interfaceName memberName) {
+            D.signalBody = [D.toVariant $ UTF8.decodeString str]
+        }
+    D.emit dbus signal
+  where
+    objectPath = D.objectPath_ "/org/xmonad/Log"
+    interfaceName = D.interfaceName_ "org.xmonad.Log"
+    memberName = D.memberName_ "Update"
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -70,7 +107,7 @@ myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
 -- event hook
 myHandleEventHook :: Event -> X All
-myHandleEventHook = docksEventHook
+myHandleEventHook = docksEventHook <+> minimizeEventHook <+> fullscreenEventHook
 
 -- my keys
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
@@ -99,16 +136,11 @@ myKeys XConfig {XMonad.modMask = extraKeysModMask} = M.fromList
     , ((extraKeysModMask, xK_q          ), spawn myRestartXmonad)
     ]
 
-trayBarDaemon :: String
-trayBarDaemon = unwords
-    [ "for pid in `pgrep gtk-sni-tray-standalone`; do kill $pid; done;"
-    , "gtk-sni-tray-standalone --watcher &"
-    ]
 -- my bar
 myBar :: String
 myBar = unwords
-    [ "for pid in `pgrep taffybar`; do kill $pid; done;"
-    , "taffybar &"
+    [ "for pid in `pgrep polybar`; do kill $pid; done;"
+    , "polybar xmonad &"
     ]
 
 -- dmenu
@@ -120,7 +152,7 @@ myDmenu = unwords
     , "-fn Noto-14"
     , "-nb \"#000\""
     , "-nf \"#fff\""
-    , "-sb \"#4285F4\""
+    , "-sb \"#668799\""
     , "-sf \"#fff\""
     ]
 
@@ -153,4 +185,3 @@ myBorderWidth = 1
 -- workspaces
 myWorkspaces :: [String]
 myWorkspaces = map show ([1..9] :: [Int])
-
