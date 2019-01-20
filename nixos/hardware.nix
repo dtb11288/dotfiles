@@ -9,17 +9,20 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "aes_x86_64" "aesni_intel" "cryptd" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/81818a6e-5a78-47a5-89b1-aea31b4c76d9";
-      fsType = "f2fs";
+    { device = "/dev/disk/by-uuid/725f38ad-a9b1-4261-acb7-2f3a9c6e8e66";
+      fsType = "ext4";
     };
 
+  boot.initrd.luks.devices."nixos".device = "/dev/disk/by-uuid/58044f04-198c-4ab9-9837-4e4e7369ccc1";
+
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/E2B9-D944";
+    { device = "/dev/disk/by-uuid/EF46-339B";
       fsType = "vfat";
     };
 

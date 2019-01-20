@@ -1,3 +1,6 @@
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, pkgs, ... }:
 
 {
@@ -9,7 +12,6 @@
 
   # Select internationalisation properties.
   i18n = {
-    # consoleFont = "Lat2-Terminus16";
     consoleFont = "sun12x22";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
@@ -41,10 +43,6 @@
     xdg_utils
     rsync
     feh
-    busybox
-    mysql
-    mongodb
-    virtualbox
 
     # desktop
     dmenu
@@ -59,12 +57,13 @@
     blueman
     networkmanagerapplet
     networkmanager_openvpn
-    haskellPackages.taffybar
     xdg_utils
     i3lock
     cbatticon
     volumeicon
     parcellite
+    polybar
+    enpass
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -79,31 +78,18 @@
     };
   };
 
-  services.mysql.enable = true;
-  services.mysql.package = pkgs.mariadb;
-  services.mongodb.enable = true;
   services.openssh.enable = true;
   services.printing.enable = true;
   services.ntp.enable = true;
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
 
   services.xserver = {
     enable = true;
     layout = "us";
     videoDrivers = [ "intel" ];
     windowManager = {
-      default = "xmonad";
-      xmonad = {
-        enable = true;
-        enableContribAndExtras = true;
-        extraPackages = haskellPackages: [
-          haskellPackages.xmonad-contrib
-          haskellPackages.xmonad-extras
-          haskellPackages.xmonad
-          haskellPackages.taffybar
-        ];
-      };
+      default = "qtile";
+      qtile.enable = true;
     };
 
     libinput = {
@@ -132,6 +118,7 @@
   };
 
   fonts.fonts = with pkgs; [
+    source-code-pro
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -142,7 +129,10 @@
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
 
-  # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "17.03";
+  # This value determines the NixOS release with which your system is to be
+  # compatible, in order to avoid breaking some software such as database
+  # servers. You should change this only after NixOS release notes say you
+  # should.
+  system.stateVersion = "18.09"; # Did you read the comment?
 
 }

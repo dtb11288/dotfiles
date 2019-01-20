@@ -20,8 +20,8 @@ keys = [
     Key([mod, "shift"], "c", lazy.window.kill()),
 
     # qtile commands
-    Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
+    Key([mod], "q", lazy.restart()),
+    Key([mod, "shift"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
 
     # some commands
