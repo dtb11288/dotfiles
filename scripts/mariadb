@@ -1,0 +1,11 @@
+#!/run/current-system/sw/bin/bash
+
+docker run \
+  -it \
+  --name mariadb \
+  -p 3306:3306 \
+  -v ${HOME}/.mariadb:/var/lib/mysql \
+  -e MYSQL_USER=root \
+  -e MYSQL_PASSWORD=root \
+  -e MYSQL_ROOT_PASSWORD=root \
+  yobasystems/alpine-mariadb

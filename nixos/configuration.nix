@@ -43,6 +43,11 @@
     xdg_utils
     rsync
     feh
+    binutils
+    gcc
+    gnumake
+    openssl
+    pkgconfig
 
     # desktop
     dmenu
@@ -58,11 +63,10 @@
     networkmanagerapplet
     networkmanager_openvpn
     xdg_utils
-    i3lock
+    slock
     cbatticon
     volumeicon
     parcellite
-    polybar
     enpass
   ];
 
@@ -84,6 +88,7 @@
   virtualisation.docker.enable = true;
 
   services.xserver = {
+    dpi = 192;
     enable = true;
     layout = "us";
     videoDrivers = [ "intel" ];
@@ -99,11 +104,12 @@
     };
 
     displayManager.sessionCommands = ''
-      ${pkgs.xorg.xrandr}/bin/xrandr --output eDP1 --mode 1920x1080
-      ${pkgs.xorg.xset}/bin/xset r rate 220 30
+      ${pkgs.xorg.xset}/bin/xset r rate 200 25
       ${pkgs.xorg.xset}/bin/xset dpms 300
       ${pkgs.xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
       ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
+      ${pkgs.xss-lock}/bin/xss-lock -- "slock" &
+      ${pkgs.xautolock}/bin/xautolock -detectsleep -locker "slock" &
       ${pkgs.feh}/bin/feh --bg-fill "$HOME/.wallpaper"
       ${pkgs.networkmanagerapplet}/bin/nm-applet &
       ${pkgs.volumeicon}/bin/volumeicon &
@@ -113,10 +119,15 @@
     '';
   };
 
+  security.wrappers.slock.source = "${pkgs.slock.out}/bin/slock";
+
   environment.variables = {
     VISUAL = "nvim";
+    PATH = "$PATH:$HOME/opt/bin";
+    XCURSOR_SIZE = "32";
   };
 
+  fonts.fontconfig.dpi = 180;
   fonts.fonts = with pkgs; [
     source-code-pro
     noto-fonts

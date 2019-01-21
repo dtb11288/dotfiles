@@ -1,7 +1,3 @@
-! import color scheme
-#include ".Xresources.theme"
-#include ".Xresources.optional"
-
 ! rxvt settings
 ! run "fc-list" for a list of available fonts
 URxvt*font:                 xft:Source Code Pro:style=Regular:size=11
@@ -22,3 +18,41 @@ URxvt.secondaryScreen:      1
 URxvt.secondaryScroll:      0
 URxvt*buffered:             false
 URxvt*letterSpace:          0
+
+!! terminal colors
+*background: #151515
+*foreground: #888888
+! black
+*color0: #292929
+*color8: #525252
+! red
+*color1: #cf6a4c
+*color9: #ff9d80
+! green
+*color2: #99ad6a
+*color10: #c3e6ad
+! yellow
+*color3: #fad07a
+*color11: #ffefbf
+! blue
+*color4: #8197bf
+*color12: #accaff
+! magenta
+*color5: #8787af
+*color13: #c4c4ff
+! cyan
+*color6: #668799
+*color14: #80bfaf
+! white
+*color7: #888888
+*color15: #e8e8d3
+
+!! scaling
+Xft.dpi: 192
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+

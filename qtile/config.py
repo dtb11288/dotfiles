@@ -27,11 +27,11 @@ keys = [
     # some commands
     Key([mod, "shift"], "Return", lazy.spawn("urxvt -e tmux")),
     Key([mod], "Escape", lazy.spawn("xautolock -locknow")),
-    Key([mod], "p", lazy.spawn("dmenu_run -i -p \">>>\" -fn Noto-14 -nb \"#000\" -nf \"#fff\" -sb \"#4285F4\" -sf \"#fff\"")),
+    Key([mod], "p", lazy.spawn("dmenu_run -i -p \">>>\" -fn Noto-16 -nb \"#000\" -nf \"#fff\" -sb \"#4285F4\" -sf \"#fff\"")),
 
     # brightness
-    Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 5")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 5")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
 
     # sound
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q sset Master 5%+ unmute")),
@@ -68,8 +68,8 @@ layouts = [
 
 widget_defaults = dict(
     font='Noto',
-    fontsize=14,
-    padding=3,
+    fontsize=32,
+    padding=6,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -87,7 +87,7 @@ screens = [
                 widget.Systray(),
                 widget.Clock(foreground="#ffa500", format='%Y-%m-%d %a %I:%M %p'),
             ],
-            28,
+            52,
         ),
     ),
     Screen(
@@ -100,7 +100,7 @@ screens = [
                 widget.WindowName(foreground="#92BA3F"),
                 widget.Clock(foreground="#ffa500", format='%Y-%m-%d %a %I:%M %p'),
             ],
-            28,
+            52,
         ),
     ),
 ]
