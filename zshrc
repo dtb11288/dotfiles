@@ -34,6 +34,8 @@ zplug "plugins/web-search", from:oh-my-zsh
 zplug "themes/kardan", from:oh-my-zsh
 
 # others
+zplug "chisui/zsh-nix-shell"
+zplug "spwhitt/nix-zsh-completions"
 zplug "tarruda/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -61,6 +63,9 @@ bindkey '^[[Z' reverse-menu-complete # shift-tab
 [[ -n "${key[Up]}" ]] && bindkey "${key[Up]}" up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" down-line-or-beginning-search
 setopt promptsubst
+
+# nix-shell prefix
+prompt_nix_shell_setup
 
 # change title bar
 function precmd() {

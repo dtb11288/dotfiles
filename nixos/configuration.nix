@@ -67,6 +67,8 @@
     cbatticon
     volumeicon
     parcellite
+    xdotool
+    wmctrl
     enpass
   ];
 
@@ -124,7 +126,15 @@
   environment.variables = {
     VISUAL = "nvim";
     PATH = "$PATH:$HOME/opt/bin";
-    XCURSOR_SIZE = "32";
+    XCURSOR_SIZE = "64";
+    XCURSOR_PATH = [
+      "${config.system.path}/share/icons"
+      "$HOME/.icons"
+      "$HOME/.nix-profile/share/icons/"
+    ];
+    GTK_DATA_PREFIX = [
+      "${config.system.path}"
+    ];
   };
 
   fonts.fontconfig.dpi = 180;

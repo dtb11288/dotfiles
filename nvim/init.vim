@@ -108,6 +108,8 @@ Plug 'hail2u/vim-css3-syntax'
 
 " markdown
 Plug 'gabrielelana/vim-markdown'
+"
+Plug 'LnL7/vim-nix'
 
 " end and check install
 call plug#end()

@@ -1,5 +1,5 @@
 [global]
-    font = Noto Font 12
+    font = Noto Font 14
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -60,7 +60,7 @@
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
     #geometry = "300x5-30+20"
-    geometry = "270x20-10+33"
+    geometry = "1000x100-10+60"
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
     transparency = 0
@@ -99,10 +99,10 @@
     separator_height = 2
 
     # padding between text and separator>
-    padding = 16
+    padding = 32
 
     # horizontal padding
-    horizontal_padding = 24
+    horizontal_padding = 48
 
     # Define a color for the separator.
     # possible values are:
