@@ -28,7 +28,11 @@ zplug "plugins/node", from:oh-my-zsh
 zplug "plugins/npm", from:oh-my-zsh
 zplug "plugins/adb", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/docker-machine", from:oh-my-zsh
+zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/web-search", from:oh-my-zsh
+zplug "plugins/rust", from:oh-my-zsh
+zplug "plugins/cargo", from:oh-my-zsh
 
 # theme
 zplug "themes/kardan", from:oh-my-zsh

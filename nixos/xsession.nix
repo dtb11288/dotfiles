@@ -20,7 +20,8 @@
     volumeicon
     parcellite
     xdotool
-    enpass
+
+    # for libinput-gestures
     python3
   ];
 
@@ -32,6 +33,11 @@
       day = 4100;
       night = 3100;
     };
+  };
+
+  i18n.inputMethod = {
+    enabled = "fcitx";
+    fcitx.engines = with pkgs.fcitx-engines; [ unikey ];
   };
 
   services.xserver = {
