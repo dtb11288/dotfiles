@@ -36,7 +36,6 @@
     lsof
     xdg_utils
     rsync
-    feh
     binutils
     gcc
     gnumake

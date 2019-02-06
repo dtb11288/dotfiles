@@ -1,12 +1,10 @@
 {
   allowUnfree = true;
-    firefox = {
-      enableGoogleTalkPlugin = true;
-      enableAdobeFlash = true;
-    };
-
-    chromium = {
-      enablePepperFlash = true;
-      enablePepperPDF = true;
-    };
+  firefox = {
+    enableGoogleTalkPlugin = true;
+    enableAdobeFlash = true;
+  };
+  packageOverrides = pkgs: rec {
+    enpass = import ./enpass/default.nix;
+  };
 }

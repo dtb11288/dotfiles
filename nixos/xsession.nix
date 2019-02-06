@@ -20,6 +20,8 @@
     volumeicon
     parcellite
     xdotool
+    playerctl
+    feh
 
     # for libinput-gestures
     python3
