@@ -18,6 +18,7 @@
       freefont_ttf
       dejavu_fonts
       liberation_ttf
+      corefonts
     ];
   };
 }

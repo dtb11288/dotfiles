@@ -13,6 +13,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "aes_x86_64" "aesni_intel" "cryptd" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/725f38ad-a9b1-4261-acb7-2f3a9c6e8e66";
@@ -60,6 +61,7 @@
     networkmanager = {
       enable = true;
       insertNameservers = [ "8.8.8.8" "8.8.4.4" ];
+      packages = [ pkgs.networkmanager_openvpn ];
     };
   };
 
