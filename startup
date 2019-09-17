@@ -24,8 +24,8 @@ cbatticon &
 nm-applet &
 
 # ibus
-killall -9 ibus-daemon
-ibus-daemon -dx
+killall -9 fcitx
+fcitx &
 
 # Xresource
 xrdb -merge "$HOME/.Xresources"
