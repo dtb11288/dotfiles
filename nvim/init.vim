@@ -1,11 +1,6 @@
 " vim home
-let s:vim_home=expand("~/.config/nvim")
-
-"*****************************************************************************
-" vim_plug install packages
-"*****************************************************************************
-" install dein
-let s:bundle_home=s:vim_home."/bundle"
+let g:vim_home=expand("~/.config/nvim")
+let s:bundle_home=g:vim_home."/bundle"
 let s:vim_plug_repo="junegunn/vim-plug"
 let s:plug_tool_home=s:bundle_home."/vim-plug"
 if !isdirectory(s:plug_tool_home."/.git")
@@ -26,7 +21,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'j5shi/ctrlp_bdelete.vim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'haya14busa/incsearch.vim'
 Plug 'dyng/ctrlsf.vim'
@@ -140,9 +134,9 @@ set nobackup
 set noswapfile
 
 " undo settings
-exec "set undodir=".s:vim_home."/undofiles"
-if (filewritable(s:vim_home."/undofiles") != 2)
-  exec "silent !mkdir -p ".s:vim_home."/undofiles"
+exec "set undodir=".g:vim_home."/undofiles"
+if (filewritable(g:vim_home."/undofiles") != 2)
+  exec "silent !mkdir -p ".g:vim_home."/undofiles"
   redraw!
 endif
 set undofile
@@ -313,7 +307,6 @@ let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_open_multiple_files = 'i'
 let g:ctrlp_extensions = ['tag']
 let g:ctrlp_match_window = 'results:100'
-call ctrlp_bdelete#init()
 
 " incsearch
 nmap / <Plug>(incsearch-forward)
@@ -337,55 +330,16 @@ nmap <silent><F3> :CtrlSFToggle<cr>
 
 " better-whitespaces
 autocmd BufWritePre * StripWhitespace
-
-" session automatically load and save session on start/exit.
-function! MakeSession()
-  if g:sessionfile != ""
-    echo "Saving."
-    if (filewritable(g:sessiondir) != 2)
-      exec "silent !mkdir -p ".g:sessiondir
-      redraw!
-    endif
-    exe "mksession! ".g:sessionfile
-  endif
-endfunction
-function! LoadSession()
-  if argc() == 0
-    let g:sessiondir = s:vim_home."/sessions".getcwd()
-    let g:sessionfile = g:sessiondir."/session.vim"
-    if (filereadable(g:sessionfile))
-      exe "source ".g:sessionfile
-    else
-      echo "No session loaded."
-    endif
-  else
-    let g:sessionfile = ""
-    let g:sessiondir = ""
-  endif
-endfunction
-au VimEnter * nested :call LoadSession()
-au VimLeave * :call MakeSession()
-
-" airline
-let g:airline#extensions#branch#enabled = 1
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#branch#format = 'Git_flow_branch_format'
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='minimalist'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_z=''
-
 " neomake
 call neomake#configure#automake('w')
 let g:neomake_open_list = 4
 
 " ultisnips
-let g:UltiSnipsSnippetsDir = s:vim_home."/UltiSnips"
+let g:UltiSnipsSnippetsDir = g:vim_home."/UltiSnips"
 
 " rest
 let g:vrc_curl_opts = {
+      \ '--compressed': '',
       \ '--connect-timeout' : 10,
       \ '-b': '/tmp/vrc_cookie_jar',
       \ '-c': '/tmp/vrc_cookie_jar',
@@ -409,26 +363,10 @@ let g:gitgutter_max_signs = 1000
 " vim magit
 let g:magit_discard_untracked_do_delete=1
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_start_length = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#enable_smart_case = 1
-set completeopt-=preview
-
-" lsp
-let g:LanguageClient_serverCommands = {
-      \ 'dart': ['dart_language_server'],
-      \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'typescript': ['javascript-typescript-stdio'],
-      \ 'go': ['go-langserver'],
-      \ 'python': ['pyls'],
-      \ }
-nnoremap <silent><leader>lh :call LanguageClient#textDocument_hover()<cr>
-nnoremap <silent><leader>ld :call LanguageClient#textDocument_definition()<cr>
-nnoremap <silent><leader>lr :call LanguageClient#textDocument_rename()<cr>
-
 " android
 nnoremap <silent><leader>rr :!adb shell input text "RR"<cr><cr>
 nnoremap <silent><leader>am :!adb shell input keyevent 82<cr><cr>
+
+for f in split(glob(g:vim_home.'/config/*.vim'), '\n')
+  exe 'source' f
+endfor

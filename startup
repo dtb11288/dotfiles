@@ -4,28 +4,34 @@ if [[ -r $HOME/.optional-startup ]]; then
     $HOME/.optional-startup
 fi
 
+# compositor
+if [ -x "$(command -v picom)" ]; then
+  picom &> /dev/null &
+fi
+
 # wallpaper
-feh --bg-fill "$HOME/.wallpaper"
+if [ -x "$(command -v feh)" ]; then
+  feh --bg-fill "$HOME/.wallpaper"
+fi
 
 # filter screen
-#redshift &
-redshift-gtk &
+redshift-gtk &> /dev/null &
 
 # aria2
 aria2c
 
 # volume icon
-volumeicon &
+volumeicon &> /dev/null &
 
 # battery icon
-cbatticon &
+cbatticon &> /dev/null &
 
 # networkmanager
-nm-applet &
+nm-applet &> /dev/null &
 
 # ibus
 killall -9 fcitx
-fcitx &
+fcitx &> /dev/null &
 
 # Xresource
 xrdb -merge "$HOME/.Xresources"
@@ -40,30 +46,29 @@ xset r rate 200 25
 xset dpms 300
 
 # init lockscreen
-xautolock -detectsleep -locker "lockscreen" &
+xautolock -detectsleep -locker "slock" &> /dev/null &
 
 # lock screen after suspend or hibernate
 killall -9 xss-lock
-xss-lock -- "lockscreen" &
+xss-lock -- "lockscreen" &> /dev/null &
 
 # polkit
-lxpolkit &
+lxpolkit &> /dev/null &
 
 # udiskie automount
-udiskie -C0ansf $(which thunar) &
+udiskie -C0ansf $(which thunar) &> /dev/null &
 
 # notification daemon
-dunst &
+dunst &> /dev/null &
 
 # clipboad manager
-parcellite &
+parcellite &> /dev/null &
 
 # caffeine
-caffeine &
+caffeine &> /dev/null &
 
 # bluetooth
-blueman-applet &
+blueman-applet &> /dev/null &
 
 # gnome keyring
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-

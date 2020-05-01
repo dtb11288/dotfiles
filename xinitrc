@@ -2,4 +2,4 @@
 if [[ -r ~/.startup ]]; then
     ~/.startup
 fi
-exec xmonad
+exec dbus-launch xmonad
