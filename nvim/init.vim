@@ -244,10 +244,6 @@ set expandtab
 set title
 set titlestring=%t%(\ -\ [%{substitute(getcwd(),\ $HOME,\ '~',\ '')}]%)
 
-" theme
-set background=dark
-colorscheme preto
-
 " fix function keys
 map <Esc>OP <F1>
 map <Esc>OQ <F2>
