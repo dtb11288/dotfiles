@@ -1,3 +1,5 @@
 set surround
 set multiple-cursors
 set ideajoin
+set number
+set relativenumber

@@ -159,8 +159,8 @@ myDmenu = unwords
 -- terminal
 myTerminal :: String
 myTerminal = unwords
-    [ "urxvt"
-    , "-e tmux"
+    [
+      "alacritty"
     ]
 
 -- lockscreen

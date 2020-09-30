@@ -5,8 +5,8 @@ if [[ -r $HOME/.optional-startup ]]; then
 fi
 
 # compositor
-if [ -x "$(command -v picom)" ]; then
-  picom &> /dev/null &
+if [ -x "$(command -v xcompmgr)" ]; then
+  xcompmgr -c &> /dev/null &
 fi
 
 # wallpaper
