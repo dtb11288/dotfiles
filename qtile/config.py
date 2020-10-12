@@ -25,7 +25,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd()),
 
     # some commands
-    Key([mod, "shift"], "Return", lazy.spawn("urxvt -e tmux")),
+    Key([mod, "shift"], "Return", lazy.spawn("alacritty")),
     Key([mod], "Escape", lazy.spawn("xautolock -locknow")),
     Key([mod], "p", lazy.spawn("dmenu_run -i -p \">>>\" -fn Noto-16 -nb \"#000\" -nf \"#fff\" -sb \"#4285F4\" -sf \"#fff\"")),
 
@@ -84,7 +84,7 @@ screens = [
                 widget.CurrentLayout(),
                 widget.TextBox(text="|"),
                 widget.WindowName(foreground="#92BA3F"),
-                widget.Systray(),
+                widget.Systray(icon_size = 40, padding = 5),
                 widget.Clock(foreground="#ffa500", format='%Y-%m-%d %a %I:%M %p'),
             ],
             52,

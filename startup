@@ -5,9 +5,9 @@ if [[ -r $HOME/.optional-startup ]]; then
 fi
 
 # compositor
-if [ -x "$(command -v xcompmgr)" ]; then
-  xcompmgr -c &> /dev/null &
-fi
+# if [ -x "$(command -v xcompmgr)" ]; then
+#   xcompmgr -c &> /dev/null &
+# fi
 
 # wallpaper
 if [ -x "$(command -v feh)" ]; then

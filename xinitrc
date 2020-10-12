@@ -2,4 +2,4 @@
 if [[ -r ~/.startup ]]; then
     ~/.startup
 fi
-exec dbus-launch xmonad
+exec dbus-launch qtile
