@@ -22,3 +22,5 @@ xmonad/xmonad.state
 qutebrowser/autoconfig.yml
 result
 qtile/config.pyc
+pulse/*
+!pulse/daemon.conf
