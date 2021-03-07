@@ -2,9 +2,9 @@
 
 {
   # Select internationalisation properties.
+  console.font = "sun12x22";
+  console.keyMap = "us";
   i18n = {
-    consoleFont = "sun12x22";
-    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
 

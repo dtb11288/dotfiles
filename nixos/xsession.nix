@@ -27,10 +27,12 @@
     python3
   ];
 
+    location = {
+      latitude = 21.0;
+      longitude = 105.0;
+    };
   services.redshift = {
     enable = true;
-    latitude = "21";
-    longitude = "105";
     temperature = {
       day = 4100;
       night = 3100;
@@ -55,21 +57,20 @@
     };
 
     windowManager = {
-      default = "qtile";
       qtile.enable = true;
     };
 
     desktopManager = {
       xterm.enable = false;
-      default = "none";
     };
 
     displayManager = {
+      defaultSession = "none+qtile";
       lightdm = {
         enable = true;
-        autoLogin.enable = true;
-        autoLogin.user = "binh";
       };
+      autoLogin.enable = true;
+      autoLogin.user = "binh";
 
       sessionCommands = ''
         ${pkgs.xorg.xset}/bin/xset r rate 200 25
@@ -92,14 +93,14 @@
   security.wrappers.slock.source = "${pkgs.slock.out}/bin/slock";
 
   environment.variables = {
-    XCURSOR_SIZE = "64";
-    XCURSOR_PATH = [
-      "${config.system.path}/share/icons"
-      "$HOME/.icons"
-      "$HOME/.nix-profile/share/icons/"
-    ];
-    GTK_DATA_PREFIX = [
-      "${config.system.path}"
-    ];
+    #XCURSOR_SIZE = "64";
+    #XCURSOR_PATH = [
+    #  "${config.system.path}/share/icons"
+    #  "$HOME/.icons"
+    #  "$HOME/.nix-profile/share/icons/"
+    #];
+    #GTK_DATA_PREFIX = [
+    #  "${config.system.path}"
+    #];
   };
 }
