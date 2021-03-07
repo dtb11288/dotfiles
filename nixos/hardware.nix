@@ -35,6 +35,8 @@
   swapDevices = [ ];
 
   hardware = {
+    logitech.wireless.enable = true;
+    logitech.wireless.enableGraphical = true;
     cpu.intel.updateMicrocode = true;
     bumblebee.enable = true;
     opengl.enable = true;

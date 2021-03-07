@@ -22,6 +22,7 @@
     xdotool
     playerctl
     feh
+    solaar
 
     # for libinput-gestures
     python3
@@ -86,6 +87,7 @@
         ${pkgs.cbatticon}/bin/cbatticon &
         ${pkgs.blueman}/bin/blueman-applet &
         ${pkgs.libinput-gestures}/bin/libinput-gestures &
+        ${pkgs.solaar}/bin/solaar &
       '';
     };
   };
@@ -93,14 +95,14 @@
   security.wrappers.slock.source = "${pkgs.slock.out}/bin/slock";
 
   environment.variables = {
-    #XCURSOR_SIZE = "64";
-    #XCURSOR_PATH = [
+    XCURSOR_SIZE = "64";
+    # XCURSOR_PATH = [
     #  "${config.system.path}/share/icons"
     #  "$HOME/.icons"
     #  "$HOME/.nix-profile/share/icons/"
-    #];
-    #GTK_DATA_PREFIX = [
-    #  "${config.system.path}"
-    #];
+    # ];
+    GTK_DATA_PREFIX = [
+     "${config.system.path}"
+    ];
   };
 }

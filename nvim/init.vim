@@ -101,6 +101,9 @@ Plug 'alvan/vim-closetag'
 Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
 
+" table mode
+Plug 'dhruvasagar/vim-table-mode'
+
 " markdown
 Plug 'gabrielelana/vim-markdown'
 "
