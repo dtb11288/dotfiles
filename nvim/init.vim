@@ -103,8 +103,12 @@ Plug 'hail2u/vim-css3-syntax'
 
 " markdown
 Plug 'gabrielelana/vim-markdown'
-"
+
+" nix
 Plug 'LnL7/vim-nix'
+
+" solidity
+Plug 'tomlion/vim-solidity'
 
 " end and check install
 call plug#end()
@@ -320,6 +324,17 @@ let g:vrc_curl_opts = {
       \ '--ipv4': '',
       \ '-k': '',
       \}
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
 
 " mundo
 nnoremap <silent><F5> :MundoToggle<cr>
