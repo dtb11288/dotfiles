@@ -27,8 +27,7 @@ colorNormalBorder :: String
 colorNormalBorder = "#202020"
 
 -- define default config
-baseConfig :: XConfig (ModifiedLayout AvoidStruts (Choose Tall (Choose (Mirror Tall) Full)))
-baseConfig = ewmh $ desktopConfig
+baseConfig = ewmh desktopConfig
 
 -- main
 main :: IO ()
@@ -72,7 +71,6 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 -- my config
-myConfig :: XConfig (ModifiedLayout AvoidStruts (ModifiedLayout SmartBorder (ModifiedLayout AvoidStruts (Choose Tall (Choose (Mirror Tall) Full)))))
 myConfig = baseConfig
     { modMask = myModMask
     , terminal = myTerminal
@@ -102,7 +100,6 @@ myManageHook = manageDocks <+> manageHookConfig <+> composeOne
     where manageHookConfig = manageHook baseConfig
 
 -- layouts
-myLayoutHook :: ModifiedLayout AvoidStruts (ModifiedLayout SmartBorder (ModifiedLayout AvoidStruts (Choose Tall (Choose (Mirror Tall) Full)))) Window
 myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
 -- event hook

@@ -1,4 +1,12 @@
 {
   "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
-  "tsserver.maxTsServerMemory": 1024
+  "tsserver.maxTsServerMemory": 1024,
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+      "filetypes": ["haskell", "lhaskell"]
+    }
+  }
 }
