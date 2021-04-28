@@ -22,7 +22,6 @@
     xdotool
     playerctl
     feh
-    solaar
 
     # for libinput-gestures
     python3
@@ -53,8 +52,8 @@
 
     libinput = {
       enable = true;
-      naturalScrolling = true;
-      disableWhileTyping = true;
+      touchpad.naturalScrolling = true;
+      touchpad.disableWhileTyping = true;
     };
 
     windowManager = {
@@ -87,7 +86,7 @@
         ${pkgs.cbatticon}/bin/cbatticon &
         ${pkgs.blueman}/bin/blueman-applet &
         ${pkgs.libinput-gestures}/bin/libinput-gestures &
-        ${pkgs.solaar}/bin/solaar &
+        ${pkgs.rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive"
       '';
     };
   };
@@ -95,7 +94,7 @@
   security.wrappers.slock.source = "${pkgs.slock.out}/bin/slock";
 
   environment.variables = {
-    XCURSOR_SIZE = "64";
+    # XCURSOR_SIZE = "64";
     # XCURSOR_PATH = [
     #  "${config.system.path}/share/icons"
     #  "$HOME/.icons"
