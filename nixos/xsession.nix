@@ -86,6 +86,7 @@
         ${pkgs.cbatticon}/bin/cbatticon &
         ${pkgs.blueman}/bin/blueman-applet &
         ${pkgs.libinput-gestures}/bin/libinput-gestures &
+        ${pkgs.caffeine-ng}/bin/caffeine &
         ${pkgs.rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive"
       '';
     };

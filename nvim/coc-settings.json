@@ -1,5 +1,5 @@
 {
-  "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
+  "rust-analyzer.serverPath": "rust-analyzer",
   "tsserver.maxTsServerMemory": 1024,
   "languageserver": {
     "haskell": {

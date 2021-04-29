@@ -10,7 +10,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "aes_x86_64" "aesni_intel" "cryptd" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" "aesni_intel" "cryptd" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
@@ -38,7 +38,6 @@
     logitech.wireless.enable = true;
     logitech.wireless.enableGraphical = true;
     cpu.intel.updateMicrocode = true;
-    bumblebee.enable = true;
     opengl.enable = true;
     opengl.driSupport32Bit = true;
     opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
@@ -46,6 +45,7 @@
     pulseaudio.package = pkgs.pulseaudioFull; # 'full' instead of 'light' for e.g. bluetooth
     pulseaudio.enable = true;
     pulseaudio.support32Bit = true;
+    pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
     pulseaudio.daemon.config = {
       flat-volumes = "no";
     };
@@ -67,6 +67,7 @@
     };
   };
 
+  services.blueman.enable = true;
   services.tlp.enable = true;
 
   nix.maxJobs = lib.mkDefault 8;

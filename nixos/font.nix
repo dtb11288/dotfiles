@@ -9,7 +9,6 @@
   };
 
   fonts = {
-    fontconfig.dpi = 192;
     fonts = with pkgs; [
       source-code-pro
       noto-fonts
