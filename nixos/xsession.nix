@@ -27,10 +27,11 @@
     python3
   ];
 
-    location = {
-      latitude = 21.0;
-      longitude = 105.0;
-    };
+  location = {
+    latitude = 21.0;
+    longitude = 105.0;
+  };
+
   services.redshift = {
     enable = true;
     temperature = {
@@ -87,7 +88,7 @@
         ${pkgs.blueman}/bin/blueman-applet &
         ${pkgs.libinput-gestures}/bin/libinput-gestures &
         ${pkgs.caffeine-ng}/bin/caffeine &
-        ${pkgs.rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive"
+        ${pkgs.rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive" &
       '';
     };
   };

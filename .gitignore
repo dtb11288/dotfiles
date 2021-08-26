@@ -25,3 +25,4 @@ qtile/config.pyc
 pulse/*
 !pulse/daemon.conf
 aria2/input.conf
+nixos/hardware-configuration.nix
