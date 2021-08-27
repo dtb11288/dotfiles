@@ -143,14 +143,9 @@ myBar = unwords
 -- dmenu
 myDmenu :: String
 myDmenu = unwords
-    [ "dmenu_run"
-    , "-i"
-    , "-p \">>>\""
-    , "-fn Noto-14"
-    , "-nb \"#000\""
-    , "-nf \"#fff\""
-    , "-sb \"#668799\""
-    , "-sf \"#fff\""
+    [ "rofi"
+    , "-show"
+    , "combi"
     ]
 
 -- terminal

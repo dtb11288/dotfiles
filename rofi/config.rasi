@@ -1,0 +1,5 @@
+configuration {
+  modi: "drun,run,combi";
+  show-icons: true;
+  combi-modi: [drun,run];
+}

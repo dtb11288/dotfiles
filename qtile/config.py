@@ -27,7 +27,7 @@ keys = [
     # some commands
     Key([mod, "shift"], "Return", lazy.spawn("prime-run alacritty")),
     Key([mod], "Escape", lazy.spawn("xautolock -locknow")),
-    Key([mod], "p", lazy.spawn("dmenu_run -i -p \">>>\" -fn Noto-16 -nb \"#000\" -nf \"#fff\" -sb \"#4285F4\" -sf \"#fff\"")),
+    Key([mod], "p", lazy.spawn("rofi -show combi")),
 
     # brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
