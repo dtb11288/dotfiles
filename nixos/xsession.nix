@@ -7,6 +7,7 @@
     xmonad-log
     xorg.xbacklight
     rxvt_unicode
+    alacritty
     xss-lock
     xautolock
     xsel
