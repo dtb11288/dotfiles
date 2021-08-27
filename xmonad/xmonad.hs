@@ -145,7 +145,7 @@ myDmenu :: String
 myDmenu = unwords
     [ "rofi"
     , "-show"
-    , "combi"
+    , "run"
     ]
 
 -- terminal
