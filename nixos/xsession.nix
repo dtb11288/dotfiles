@@ -81,22 +81,22 @@
       autoLogin.enable = true;
       autoLogin.user = "binh";
 
-      sessionCommands = ''
-        ${pkgs.xorg.xset}/bin/xset r rate 200 25
-        ${pkgs.xorg.xset}/bin/xset dpms 300
-        ${pkgs.xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
-        ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
-        ${pkgs.xss-lock}/bin/xss-lock -- "slock" &
-        ${pkgs.xautolock}/bin/xautolock -detectsleep -locker "slock" &
-        ${pkgs.feh}/bin/feh --bg-fill "$HOME/.wallpaper"
-        ${pkgs.networkmanagerapplet}/bin/nm-applet &
-        ${pkgs.volumeicon}/bin/volumeicon &
-        ${pkgs.parcellite}/bin/parcellite &
-        ${pkgs.cbatticon}/bin/cbatticon &
-        ${pkgs.blueman}/bin/blueman-applet &
-        ${pkgs.libinput-gestures}/bin/libinput-gestures &
-        ${pkgs.caffeine-ng}/bin/caffeine &
-        ${pkgs.rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive" &
+      sessionCommands = with pkgs; ''
+        ${xorg.xset}/bin/xset r rate 200 25
+        ${xorg.xset}/bin/xset dpms 300
+        ${xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
+        ${xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
+        ${xss-lock}/bin/xss-lock -- "slock" &
+        ${xautolock}/bin/xautolock -detectsleep -locker "slock" &
+        ${feh}/bin/feh --bg-fill "$HOME/.wallpaper"
+        ${networkmanagerapplet}/bin/nm-applet &
+        ${volumeicon}/bin/volumeicon &
+        ${parcellite}/bin/parcellite &
+        ${cbatticon}/bin/cbatticon &
+        ${blueman}/bin/blueman-applet &
+        ${libinput-gestures}/bin/libinput-gestures &
+        ${caffeine-ng}/bin/caffeine &
+        ${rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive" &
       '';
     };
   };
