@@ -24,6 +24,7 @@
     xdotool
     playerctl
     feh
+    rclone
 
     # for libinput-gestures
     python3
