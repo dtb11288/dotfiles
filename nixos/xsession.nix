@@ -49,6 +49,8 @@
     fcitx.engines = with pkgs.fcitx-engines; [ unikey ];
   };
 
+  services.picom.enable = true;
+
   services.xserver = {
     dpi = 192;
     enable = true;
