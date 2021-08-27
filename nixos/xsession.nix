@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    dmenu
+    rofi
     xorg.xbacklight
     rxvt_unicode
     xss-lock
