@@ -3,6 +3,8 @@
 {
   environment.systemPackages = with pkgs; [
     rofi
+    polybar
+    xmonad-log
     xorg.xbacklight
     rxvt_unicode
     xss-lock
@@ -57,8 +59,14 @@
       touchpad.disableWhileTyping = true;
     };
 
-    windowManager = {
-      qtile.enable = true;
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      extraPackages = hp: [
+        hp.dbus
+        hp.monad-logger
+        hp.xmonad-contrib
+      ];
     };
 
     desktopManager = {
@@ -66,7 +74,7 @@
     };
 
     displayManager = {
-      defaultSession = "none+qtile";
+      defaultSession = "none+xmonad";
       lightdm = {
         enable = true;
       };
