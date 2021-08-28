@@ -31,6 +31,10 @@
     zathura
     mpv
     rclone
+    postman
+    gimp
+    spotify
+    virt-manager
   ];
 
   # This value determines the Home Manager release that your

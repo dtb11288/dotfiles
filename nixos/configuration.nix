@@ -41,6 +41,7 @@
     wget
     curl
     git
+    alsaUtils
   ];
 
   hardware.logitech.wireless = {
@@ -55,8 +56,17 @@
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      libvdpau-va-gl
+      vaapiVdpau
+    ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [
+      vaapiIntel
+      libvdpau-va-gl
+      vaapiVdpau
+    ];
   };
 
   security.rtkit.enable = true;
@@ -71,7 +81,12 @@
   services.openssh.enable = true;
   services.printing.enable = true;
   services.ntp.enable = true;
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "zfs";
+  };
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
   #services.flatpak.enable = true;
 
   networking = {

@@ -1,13 +1,17 @@
 { pkgs, config, ... }:
 
 {
+  imports =
+    [
+      ./nvidia-xps-15.nix
+    ];
+
   environment.systemPackages = with pkgs; [
     rofi
     polybar
     xmonad-log
     xorg.xbacklight
     rxvt_unicode
-    alacritty
     xss-lock
     xautolock
     xsel
@@ -25,7 +29,6 @@
     xdotool
     playerctl
     feh
-    rclone
 
     # for libinput-gestures
     python3
@@ -55,7 +58,7 @@
     dpi = 192;
     enable = true;
     layout = "us";
-    videoDrivers = [ "intel" ];
+    # videoDrivers = [ "intel" ];
 
     libinput = {
       enable = true;
@@ -66,10 +69,10 @@
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      extraPackages = hp: [
-        hp.dbus
-        hp.monad-logger
-        hp.xmonad-contrib
+      extraPackages = hp: with hp; [
+        dbus
+        monad-logger
+        xmonad-contrib
       ];
     };
 
@@ -100,7 +103,7 @@
         ${blueman}/bin/blueman-applet &
         ${libinput-gestures}/bin/libinput-gestures &
         ${caffeine-ng}/bin/caffeine &
-        ${rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive" &
+        ${rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive" --config "$HOME/.config/rclone/config.conf" &
       '';
     };
   };
