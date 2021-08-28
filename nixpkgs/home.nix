@@ -9,6 +9,30 @@
   home.username = "binh";
   home.homeDirectory = "/home/binh";
 
+  home.packages = with pkgs; [
+    enpass
+    firefox
+    google-chrome
+    rustup
+    dbeaver
+    tdesktop
+    slack
+    silver-searcher
+    deadbeef
+    thunderbird
+    lm_sensors
+    pciutils
+    xfce.thunar
+    lshw
+    nmap-graphical
+    wireshark
+    transmission-gtk
+    zoom
+    zathura
+    mpv
+    rclone
+  ];
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards

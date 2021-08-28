@@ -43,25 +43,29 @@
     git
   ];
 
-  hardware = {
-    logitech.wireless.enable = true;
-    logitech.wireless.enableGraphical = true;
-    cpu.intel.updateMicrocode = true;
-    opengl.enable = true;
-    opengl.driSupport32Bit = true;
-    opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
-    pulseaudio.package = pkgs.pulseaudioFull; # 'full' instead of 'light' for e.g. bluetooth
-    pulseaudio.enable = true;
-    pulseaudio.support32Bit = true;
-    pulseaudio.extraModules = [ pkgs.pulseaudio-modules-bt ];
-    pulseaudio.daemon.config = {
-      flat-volumes = "no";
-    };
-    bluetooth.enable = true;
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
   };
 
-  nixpkgs.config.pulseaudio = true;
+  hardware.cpu.intel.updateMicrocode = true;
+
+  hardware.bluetooth.enable = true;
+
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+  };
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
   services.openssh.enable = true;
