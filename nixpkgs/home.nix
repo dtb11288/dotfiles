@@ -35,6 +35,14 @@
     gimp
     spotify
     virt-manager
+    light
+    mariadb-client
+    nodejs-14_x
+    rust-analyzer
+    pkg-config
+    openssl
+    haskell-language-server
+    libreoffice
   ];
 
   # This value determines the Home Manager release that your
