@@ -22,7 +22,9 @@
     thunderbird
     lm_sensors
     pciutils
-    xfce.thunar
+    (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
+    xfce.xfconf
+    xfce.exo
     lshw
     nmap-graphical
     wireshark
@@ -35,7 +37,6 @@
     gimp
     spotify
     virt-manager
-    light
     mariadb-client
     nodejs-14_x
     rust-analyzer
@@ -43,6 +44,12 @@
     openssl
     haskell-language-server
     libreoffice
+    flameshot
+    unzip
+    unrar
+    nomacs
+    darktable
+    hugin
   ];
 
   # This value determines the Home Manager release that your

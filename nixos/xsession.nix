@@ -10,7 +10,6 @@
     rofi
     polybar
     xmonad-log
-    xorg.xbacklight
     rxvt_unicode
     xss-lock
     xautolock
@@ -35,9 +34,12 @@
   ];
 
   location = {
+    provider = "geoclue2";
     latitude = 21.0;
     longitude = 105.0;
   };
+
+  programs.light.enable = true;
 
   services.redshift = {
     enable = true;
@@ -91,8 +93,8 @@
       sessionCommands = with pkgs; ''
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
-        ${xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
         ${xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
+        ${xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
         ${xss-lock}/bin/xss-lock -- "slock" &
         ${xautolock}/bin/xautolock -detectsleep -locker "slock" &
         ${feh}/bin/feh --bg-fill "$HOME/.wallpaper"
@@ -108,7 +110,7 @@
     };
   };
 
-  security.wrappers.slock.source = "${pkgs.slock.out}/bin/slock";
+  programs.slock.enable = true;
 
   environment.variables = {
     # XCURSOR_SIZE = "64";

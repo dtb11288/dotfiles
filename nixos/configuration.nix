@@ -26,7 +26,7 @@
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.wlp2s0.useDHCP = true;
-  networking.hostId = "4eb6d6d2";
+  networking.hostId = "8556b001";
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -105,15 +105,18 @@
   services.blueman.enable = true;
   services.tlp.enable = true;
 
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
+
   environment.variables = {
     VISUAL = "nvim";
-    PATH = "$PATH:$HOME/opt/bin";
+    PATH = "$PATH:$HOME/opt/bin:$HOME/.cargo/bin";
   };
 
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
 
-  nix.maxJobs = lib.mkDefault 8;
+  nix.settings.max-jobs = lib.mkDefault 8;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

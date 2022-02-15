@@ -1,9 +1,13 @@
 {
   "rust-analyzer.serverPath": "rust-analyzer",
   "tsserver.maxTsServerMemory": 1024,
+  "tsserver.watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents"
+  },
   "languageserver": {
     "haskell": {
-      "command": "haskell-language-server-wrapper",
+      "command": "haskell-language-server",
       "args": ["--lsp"],
       "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
       "filetypes": ["haskell", "lhaskell"]
