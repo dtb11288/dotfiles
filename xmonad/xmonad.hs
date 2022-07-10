@@ -39,7 +39,7 @@ main = do
     D.requestName dbus (D.busName_ "org.xmonad.Log")
         [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
 
-    xmonad myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
+    xmonad $ ewmh . docks $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
 
 -- Override the PP values as you would otherwise, adding colors etc depending
 -- on  the statusbar used
@@ -76,7 +76,6 @@ myConfig = baseConfig
     , terminal = myTerminal
     , startupHook = setWMName "LG3D"
     , focusFollowsMouse = False
-    , handleEventHook = myHandleEventHook
     , workspaces = myWorkspaces
     , manageHook = myManageHook
     , layoutHook = myLayoutHook
