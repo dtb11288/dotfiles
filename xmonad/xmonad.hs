@@ -39,7 +39,7 @@ main = do
     D.requestName dbus (D.busName_ "org.xmonad.Log")
         [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
 
-    xmonad $ ewmh . docks $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
+    xmonad $ ewmhFullscreen . docks $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
 
 -- Override the PP values as you would otherwise, adding colors etc depending
 -- on  the statusbar used
@@ -101,17 +101,13 @@ myManageHook = manageDocks <+> manageHookConfig <+> composeOne
 -- layouts
 myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
--- event hook
-myHandleEventHook :: Event -> X All
-myHandleEventHook = docksEventHook <+> minimizeEventHook <+> fullscreenEventHook
-
 -- my keys
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys XConfig {XMonad.modMask = extraKeysModMask} = M.fromList
     -- volumn keys
-    [ ((0, xF86XK_AudioLowerVolume      ), spawn "amixer -q sset Master 5%-")
-    , ((0, xF86XK_AudioRaiseVolume      ), spawn "amixer -q sset Master 5%+ unmute")
-    , ((0, xF86XK_AudioMute             ), spawn "amixer -q sset Master toggle")
+    [ ((0, xF86XK_AudioLowerVolume      ), spawn "pamixer -d 5")
+    , ((0, xF86XK_AudioRaiseVolume      ), spawn "pamixer -u -i 5")
+    , ((0, xF86XK_AudioMute             ), spawn "pamixer -t")
 
     -- media keys
     , ((0, xF86XK_AudioPrev             ), spawn "playerctl previous")
