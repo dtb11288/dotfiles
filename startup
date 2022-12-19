@@ -56,7 +56,7 @@ xss-lock -- "lockscreen" &> /dev/null &
 lxpolkit &> /dev/null &
 
 # udiskie automount
-udiskie -C0ansf $(which thunar) &> /dev/null &
+udiskie -Cansf $(which thunar) &> /dev/null &
 
 # notification daemon
 dunst &> /dev/null &
