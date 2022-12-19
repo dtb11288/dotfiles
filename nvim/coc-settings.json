@@ -1,5 +1,6 @@
 {
   "rust-analyzer.serverPath": "rust-analyzer",
+  "tsserver.tsconfigPath": "typescript-language-server",
   "tsserver.maxTsServerMemory": 1024,
   "tsserver.watchOptions": {
     "watchFile": "useFsEvents",
