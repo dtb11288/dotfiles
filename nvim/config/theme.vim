@@ -26,7 +26,7 @@ set noshowmode
 
 " theme
 set background=dark
-colorscheme preto
+colorscheme coal
 
 " airline
 let g:airline#extensions#branch#enabled = 1

@@ -55,7 +55,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'diepm/vim-rest-console'
 
 " theme
-Plug 'ewilazarus/preto'
+Plug 'cranberry-clockworks/coal.nvim'
 
 " git
 Plug 'tpope/vim-fugitive'
