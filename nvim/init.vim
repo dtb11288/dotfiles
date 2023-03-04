@@ -110,6 +110,9 @@ Plug 'gabrielelana/vim-markdown'
 " nix
 Plug 'LnL7/vim-nix'
 
+" ron
+Plug 'ron-rs/ron.vim'
+
 " solidity
 Plug 'tomlion/vim-solidity'
 

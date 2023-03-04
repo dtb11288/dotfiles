@@ -27,7 +27,7 @@ volumeicon &> /dev/null &
 cbatticon &> /dev/null &
 
 # networkmanager
-nm-applet &> /dev/null &
+# nm-applet &> /dev/null &
 
 # ibus
 killall -9 fcitx
@@ -68,7 +68,7 @@ parcellite &> /dev/null &
 caffeine &> /dev/null &
 
 # bluetooth
-blueman-applet &> /dev/null &
+# blueman-applet &> /dev/null &
 
 # gnome keyring
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
