@@ -1,5 +1,8 @@
 {
-  "rust-analyzer.serverPath": "rust-analyzer",
+  "rust-analyzer": {
+    "serverPath": "rust-analyzer",
+    "completion.autoimport.enable": true
+  },
   "tsserver.tsconfigPath": "typescript-language-server",
   "tsserver.maxTsServerMemory": 1024,
   "tsserver.watchOptions": {
