@@ -18,7 +18,7 @@ o.backspace = 'indent,eol,start'
 o.hidden = true
 
 -- No swap, no backup
-o.backup = true
+o.backup = false
 o.swapfile = false
 
 -- Number of screen lines to keep above and below the cursor

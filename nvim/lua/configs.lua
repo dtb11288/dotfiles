@@ -13,7 +13,6 @@ require('noirbuddy').setup {
 require('nvim-web-devicons').setup()
 require('lualine').setup({
   options = {
-    theme = 'base16',
     disabled_filetypes = { 'NvimTree', 'packer', 'Mundo' }
   }
 })
@@ -94,3 +93,6 @@ vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 
 -- FzF
 vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
+
+-- Autocomplete cmp
+require('./configs/autocomplete')
