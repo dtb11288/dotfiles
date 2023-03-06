@@ -37,7 +37,6 @@ return require('packer').startup({
     use 'nvim-lua/plenary.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'sindrets/diffview.nvim'
-    use 'TimUntersberger/neogit'
 
     -- Autocomplete
     use 'neovim/nvim-lspconfig'
