@@ -18,9 +18,8 @@ if (vim.fn.empty(vim.fn.glob(packer_path))) > 0 then
   print('Packer not found, clone repository...')
   vim.fn.system({'mkdir', '-p', bundle_home})
   vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_path})
+  vim.cmd [[ packadd packer.nvim ]]
 end
-
-vim.cmd [[ packadd packer.nvim ]]
 
 return require('packer').startup({
   function(use)
@@ -45,6 +44,7 @@ return require('packer').startup({
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
+    use 'saadparwaiz1/cmp_luasnip'
 
     -- Control
     use 'nvim-lualine/lualine.nvim'
@@ -52,7 +52,6 @@ return require('packer').startup({
     use 'haya14busa/incsearch.vim'
     use 'ibhagwan/fzf-lua'
     use 'dyng/ctrlsf.vim'
-
 
     -- Editor
     use 'tomtom/tcomment_vim'
@@ -64,9 +63,8 @@ return require('packer').startup({
     use 'Chiel92/vim-autoformat'
     use 'moll/vim-bbye'
     use 'jiangmiao/auto-pairs'
-    use 'SirVer/ultisnips'
-    use 'honza/vim-snippets'
     use 'neomake/neomake'
+    use 'L3MON4D3/LuaSnip'
 
     -- Session
     use 'rmagatti/auto-session'
