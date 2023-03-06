@@ -31,10 +31,10 @@ o.cursorline = true
 o.title = true
 
 -- Interval update time
-o.updatetime=100
+o.updatetime = 100
 
 -- Search
-o.grepprg='ag --nogroup --nocolor'
+o.grepprg = 'ag --nogroup --nocolor'
 o.incsearch = true
 o.hlsearch = true
 o.ignorecase = true
