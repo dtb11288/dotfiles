@@ -1,6 +1,6 @@
 ! rxvt settings
 ! run "fc-list" for a list of available fonts
-URxvt*font:                 xft:Source Code Pro:style=Regular:size=11
+URxvt*font:                 xft:Source Code Pro:style=Regular:size=11,xft:NotoSans Nerd Font:5
 URxvt*foreground:           white
 URxvt*background:           black
 URxvt*scrollBar:            false
