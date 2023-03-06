@@ -41,7 +41,6 @@ return require('packer').startup({
 
     -- Control
     use 'nvim-lualine/lualine.nvim'
-    use 'scrooloose/nerdtree'
     use 'simnalamburt/vim-mundo'
     use 'haya14busa/incsearch.vim'
     use 'ibhagwan/fzf-lua'
@@ -51,8 +50,7 @@ return require('packer').startup({
     -- Editor
     use 'tomtom/tcomment_vim'
     use 'terryma/vim-multiple-cursors'
-    use 'tpope/vim-surround'
-    use 'tpope/vim-repeat'
+    use 'kylechui/nvim-surround'
     use 'junegunn/vim-easy-align'
     use 'ntpeters/vim-better-whitespace'
     use 'djoshea/vim-autoread'

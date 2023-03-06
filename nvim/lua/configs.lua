@@ -1,9 +1,9 @@
--- Disable netrw at the very start of your init.lua (strongly advised)
+-- Neovim tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
--- Empty setup using defaults
 require("nvim-tree").setup()
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
+vim.keymap.set('n', '<leader>f', '<cmd>NvimTreeFindFile<cr>')
 
 -- Theme
 vim.o.background = 'dark'
@@ -12,8 +12,14 @@ require('noirbuddy').setup {
 }
 require('nvim-web-devicons').setup()
 require('lualine').setup({
-  options = { theme = 'base16' }
+  options = {
+    theme = 'base16',
+    disabled_filetypes = { 'NvimTree', 'packer', 'Mundo' }
+  }
 })
+
+-- Surround
+require('nvim-surround').setup()
 
 -- Git
 require('gitsigns').setup({
@@ -84,6 +90,7 @@ require('auto-session').setup({
 -- Undo
 vim.o.undodir = vim.g.vim_home .. '/undofiles'
 vim.o.undofile = true
+vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 
 -- FzF
-vim.api.nvim_set_keymap('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
