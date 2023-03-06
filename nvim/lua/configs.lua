@@ -43,10 +43,10 @@ local lazygit = Terminal:new({
   end,
 })
 
-function _lazygit_toggle()
+local function lazygit_toggle()
   lazygit:toggle()
 end
-vim.keymap.set("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>g", lazygit_toggle, { noremap = true, silent = true })
 
 -- Git
 require('gitsigns').setup({
