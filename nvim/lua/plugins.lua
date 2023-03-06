@@ -27,71 +27,52 @@ return require('packer').startup({
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    -- -- Simple plugins can be specified as strings
-    -- use 'rstacruz/vim-closer'
-    --
-    -- -- Lazy loading:
-    -- -- Load on specific commands
-    -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
-    --
-    -- -- Load on an autocommand event
-    -- use {'andymass/vim-matchup', event = 'VimEnter'}
-    --
-    -- -- Load on a combination of conditions: specific filetypes or commands
-    -- -- Also run code after load (see the "config" key)
-    -- use {
-    --   'w0rp/ale',
-    --   ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
-    --   cmd = 'ALEEnable',
-    --   config = 'vim.cmd[[ALEEnable]]'
-    -- }
-    --
-    -- -- Plugins can have dependencies on other plugins
-    -- use {
-    --   'haorenW1025/completion-nvim',
-    --   opt = true,
-    --   requires = {{'hrsh7th/vim-vsnip', opt = true}, {'hrsh7th/vim-vsnip-integ', opt = true}}
-    -- }
-    --
-    -- -- Plugins can also depend on rocks from luarocks.org:
-    -- use {
-    --   'my/supercoolplugin',
-    --   rocks = {'lpeg', {'lua-cjson', version = '2.1.0'}}
-    -- }
-    --
-    -- -- You can specify rocks in isolation
-    -- use_rocks 'penlight'
-    -- use_rocks {'lua-resty-http', 'lpeg'}
-    --
-    -- -- Local plugins can be included
-    -- use '~/projects/personal/hover.nvim'
-    --
-    -- -- Plugins can have post-install/update hooks
-    -- use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
-    --
-    -- -- Post-install/update hook with neovim command
-    -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    --
-    -- -- Post-install/update hook with call of vimscript function with argument
-    -- use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
-    --
-    -- -- Use specific branch, dependency and run lua file after load
-    -- use {
-    --   'glepnir/galaxyline.nvim', branch = 'main', config = function() require'statusline' end,
-    --   requires = {'kyazdani42/nvim-web-devicons'}
-    -- }
-    --
-    -- -- Use dependency and run lua function after load
-    -- use {
-    --   'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
-    --   config = function() require('gitsigns').setup() end
-    -- }
-    --
-    -- -- You can specify multiple plugins in a single call
-    -- use {'tjdevries/colorbuddy.vim', {'nvim-treesitter/nvim-treesitter', opt = true}}
-    --
-    -- -- You can alias plugin names
-    -- use {'dracula/vim', as = 'dracula'}
+    -- File explorer
+    use 'nvim-tree/nvim-tree.lua'
+
+    -- Git support
+    use 'nvim-lua/plenary.nvim'
+    use 'lewis6991/gitsigns.nvim'
+    use 'sindrets/diffview.nvim'
+    use 'TimUntersberger/neogit'
+
+    -- Autocomplete
+    use 'hrsh7th/nvim-cmp'
+
+    -- Control
+    use 'nvim-lualine/lualine.nvim'
+    use 'scrooloose/nerdtree'
+    use 'simnalamburt/vim-mundo'
+    use 'haya14busa/incsearch.vim'
+    use 'ibhagwan/fzf-lua'
+    use 'dyng/ctrlsf.vim'
+
+
+    -- Editor
+    use 'tomtom/tcomment_vim'
+    use 'terryma/vim-multiple-cursors'
+    use 'tpope/vim-surround'
+    use 'tpope/vim-repeat'
+    use 'junegunn/vim-easy-align'
+    use 'ntpeters/vim-better-whitespace'
+    use 'djoshea/vim-autoread'
+    use 'Chiel92/vim-autoformat'
+    use 'moll/vim-bbye'
+    use 'jiangmiao/auto-pairs'
+    use 'SirVer/ultisnips'
+    use 'honza/vim-snippets'
+    use 'neomake/neomake'
+
+    -- Session
+    use 'rmagatti/auto-session'
+
+    -- Post-install/update hook with neovim command
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+    -- Theme
+    use 'tjdevries/colorbuddy.nvim'
+    use 'jesseleite/nvim-noirbuddy'
+    use 'nvim-tree/nvim-web-devicons'
   end,
   config = {
     package_root = bundle_home

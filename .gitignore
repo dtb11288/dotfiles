@@ -1,3 +1,4 @@
+nvim/pack/
 nvim/bundle/
 nvim/sessions/
 nvim/undofiles/
@@ -26,3 +27,4 @@ pulse/*
 !pulse/daemon.conf
 aria2/input.conf
 nixos/hardware-configuration.nix
+nvim/parsers/

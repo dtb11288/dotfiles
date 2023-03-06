@@ -1,6 +1,5 @@
 local g = vim.g
-local o = vim.o
-local a = vim.api
+local o = vim.opt
 
 -- Map <leader> to space
 g.mapleader = ' '
@@ -19,11 +18,14 @@ o.backspace = 'indent,eol,start'
 o.hidden = true
 
 -- No swap, no backup
-o.nobackup = true
-o.noswapfile = true
+o.backup = true
+o.swapfile = false
 
 -- Number of screen lines to keep above and below the cursor
 o.scrolloff = 8
+o.number = true
+o.relativenumber = true
+o.cursorline = true
 
 -- Title
 o.title = true
@@ -49,13 +51,15 @@ o.softtabstop = 2
 o.shiftwidth = 2
 o.expandtab = true
 
+-- Hide modes
+o.showmode = false
+
 -- Jump to the last place in the file before exiting
-a.nvim_create_autocmd('BufReadPost', {
-    group = num_au,
-    callback = function(data)
-        local last_pos = A.nvim_buf_get_mark(data.buf, '"')
-        if last_pos[1] > 0 and last_pos[1] <= A.nvim_buf_line_count(data.buf) then
-            A.nvim_win_set_cursor(0, last_pos)
-        end
-    end,
+vim.api.nvim_create_autocmd('BufReadPost', {
+  callback = function(data)
+    local last_pos = vim.api.nvim_buf_get_mark(data.buf, '"')
+    if last_pos[1] > 0 and last_pos[1] <= vim.api.nvim_buf_line_count(data.buf) then
+      vim.api.nvim_win_set_cursor(0, last_pos)
+    end
+  end,
 })
