@@ -30,6 +30,9 @@ return require('packer').startup({
     -- File explorer
     use 'nvim-tree/nvim-tree.lua'
 
+    -- Terminal
+    use 'akinsho/toggleterm.nvim'
+
     -- Git support
     use 'nvim-lua/plenary.nvim'
     use 'lewis6991/gitsigns.nvim'
