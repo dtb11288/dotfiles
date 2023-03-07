@@ -15,7 +15,7 @@ vim.keymap.set('n', '<F2>', '<cmd>NvimTreeToggle<cr>')
 vim.keymap.set('n', '<leader><F2>', '<cmd>NvimTreeFindFile<cr>')
 
 -- Theme
-vim.o.background = 'dark'
+vim.opt.background = 'dark'
 require('noirbuddy').setup {
   preset = 'slate',
 }
@@ -120,8 +120,8 @@ require('auto-session').setup({
 })
 
 -- Undo
-vim.o.undodir = vim.g.vim_home .. '/undofiles'
-vim.o.undofile = true
+vim.opt.undodir = vim.g.vim_home .. '/undofiles'
+vim.opt.undofile = true
 vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 
 -- FzF

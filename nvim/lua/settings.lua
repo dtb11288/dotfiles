@@ -5,6 +5,7 @@ local o = vim.opt
 g.mapleader = ' '
 g.maplocalleader = ' '
 
+-- Set color
 o.termguicolors = true
 
 -- Encoding
