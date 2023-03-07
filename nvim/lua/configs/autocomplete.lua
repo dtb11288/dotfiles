@@ -15,13 +15,14 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
+    { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
     -- { name = 'vsnip' }, -- For vsnip users.
@@ -51,13 +52,19 @@ cmp.setup.cmdline(':', {
   })
 })
 
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
+
 local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -77,14 +84,32 @@ end
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspconfig = require('lspconfig')
+local lsp_defaults = lspconfig.util.default_config
+lsp_defaults.on_attach = on_attach
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+  'force',
+  lsp_defaults.capabilities,
+  capabilities
+)
 
-require('lspconfig')['tsserver'].setup {
-  on_attach = on_attach,
-  capabilities = capabilities
+local rust_tools = require('rust-tools')
+rust_tools.setup()
+rust_tools.inlay_hints.enable()
+
+lspconfig.lua_ls.setup {}
+lspconfig.tsserver.setup {}
+lspconfig.lua_ls.setup {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' },
+      }
+    }
+  }
 }
 
 require("null-ls").setup()
-
 require("eslint").setup({
   bin = 'eslint', -- or `eslint_d`
   code_actions = {
@@ -104,29 +129,3 @@ require("eslint").setup({
     run_on = "type", -- or `save`
   },
 })
-
-require('lspconfig')['rust_analyzer'].setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-
-require('lspconfig')['lua_ls'].setup {
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = {'vim'},
-      }
-    }
-  },
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-local rust_tools = require('rust-tools')
-rust_tools.setup({
-  server = {
-    on_attach = on_attach,
-    capabilities = capabilities
-  },
-})
-rust_tools.inlay_hints.enable()
