@@ -1,19 +1,12 @@
 local g = vim.g
 local opt = vim.opt
-
--- Automatically run :PackerCompile whenever plugins.lua is updated with an autocommand:
-vim.api.nvim_create_autocmd('BufWritePost', {
-  group = vim.api.nvim_create_augroup('PACKER', { clear = true }),
-  pattern = 'plugins.lua',
-  command = 'source <afile> | PackerCompile',
-})
-
 local packpath = g.vim_home
+local bundle_home = packpath .. '/pack'
+local packer_path = bundle_home .. '/packer/start/packer.nvim'
+
 opt.runtimepath:append(packpath)
 opt.packpath = packpath
 
-local bundle_home = packpath .. '/pack'
-local packer_path = bundle_home .. '/packer/start/packer.nvim'
 if (vim.fn.empty(vim.fn.glob(packer_path))) > 0 then
   print('Packer not found, clone repository...')
   vim.fn.system({'mkdir', '-p', bundle_home})
