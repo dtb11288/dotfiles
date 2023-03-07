@@ -11,8 +11,8 @@ require("nvim-tree").setup({
 vim.api.nvim_create_autocmd({ "QuitPre" }, {
   callback = function() vim.cmd("NvimTreeClose") end,
 })
-vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
-vim.keymap.set('n', '<leader>E', '<cmd>NvimTreeFindFile<cr>')
+vim.keymap.set('n', '<F2>', '<cmd>NvimTreeToggle<cr>')
+vim.keymap.set('n', '<leader><F2>', '<cmd>NvimTreeFindFile<cr>')
 
 -- Theme
 vim.o.background = 'dark'

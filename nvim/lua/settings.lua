@@ -54,6 +54,9 @@ o.expandtab = true
 -- Hide modes
 o.showmode = false
 
+-- Hightlight current line
+o.cursorline = true
+
 -- Jump to the last place in the file before exiting
 vim.api.nvim_create_autocmd('BufReadPost', {
   callback = function(data)
