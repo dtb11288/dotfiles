@@ -1,11 +1,26 @@
 -- Load snippets
 require("luasnip.loaders.from_snipmate").lazy_load()
 
+-- LSP diagnostics setup
+local sign = function(opts)
+  vim.fn.sign_define(opts.name, {
+    texthl = opts.name,
+    text = opts.text,
+    numhl = ''
+  })
+end
+
+sign({name = 'DiagnosticSignError', text = ''})
+sign({name = 'DiagnosticSignWarn', text = ''})
+sign({name = 'DiagnosticSignHint', text = ''})
+sign({name = 'DiagnosticSignInfo', text = ''})
+
 -- Cmp config
 local cmp = require('cmp')
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 local luasnip = require('luasnip')
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.shortmess = vim.opt.shortmess + { c = true }
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -13,11 +28,22 @@ cmp.setup({
     end,
   },
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
   },
   formatting = {
-    fields = { 'menu', 'abbr', 'kind' }
+    fields = {'menu', 'abbr', 'kind'},
+    format = function(entry, item)
+      local menu_icon ={
+        nvim_lsp = 'λ',
+        luasnip = '⋗',
+        buffer = 'Ω',
+        path = '🖫',
+        cmdline = '󰞷'
+      }
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end,
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
@@ -25,7 +51,7 @@ cmp.setup({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<ESC>'] = cmp.mapping.close(),
+    ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
     ['<C-f>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
