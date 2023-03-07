@@ -1,5 +1,9 @@
 vim.opt.completeopt = { 'menuone', 'noselect', 'noinsert' }
 
+vim.diagnostic.config {
+  -- float = { border = 'rounded' },
+}
+
 local cmp = require('cmp')
 cmp.setup({
   snippet = {
@@ -11,8 +15,8 @@ cmp.setup({
     end,
   },
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
