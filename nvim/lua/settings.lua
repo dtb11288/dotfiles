@@ -52,9 +52,6 @@ o.softtabstop = 2
 o.shiftwidth = 2
 o.expandtab = true
 
--- Hide modes
-o.showmode = false
-
 -- Hightlight current line
 o.cursorline = true
 

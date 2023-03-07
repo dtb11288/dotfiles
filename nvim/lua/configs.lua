@@ -16,6 +16,7 @@ vim.keymap.set('n', '<leader><F2>', '<cmd>NvimTreeFindFile<cr>')
 
 -- Theme
 vim.opt.background = 'dark'
+vim.opt.showmode = false
 require('noirbuddy').setup {
   preset = 'slate',
 }
