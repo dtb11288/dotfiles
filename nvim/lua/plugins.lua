@@ -15,8 +15,14 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 if (vim.fn.empty(vim.fn.glob(packer_path))) > 0 then
   print('Packer not found, clone repository...')
-  vim.fn.system({'mkdir', '-p', bundle_home})
-  vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_path})
+  vim.fn.system({ 'mkdir', '-p', bundle_home })
+  PACKER_BOOTSTRAP = vim.fn.system({
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim', packer_path
+  })
   vim.cmd [[ packadd packer.nvim ]]
 end
 
@@ -85,6 +91,10 @@ return require('packer').startup({
     use 'tjdevries/colorbuddy.nvim'
     use 'jesseleite/nvim-noirbuddy'
     use 'nvim-tree/nvim-web-devicons'
+
+    if PACKER_BOOTSTRAP then
+      require("packer").sync()
+    end
   end,
   config = {
     package_root = bundle_home
