@@ -43,6 +43,10 @@ return require('packer').startup({
     -- Rust
     use 'simrat39/rust-tools.nvim'
 
+    -- Javascript
+    use 'jose-elias-alvarez/null-ls.nvim'
+    use 'MunifTanjim/eslint.nvim'
+
     -- Control
     use 'nvim-lualine/lualine.nvim'
     use 'ibhagwan/fzf-lua'

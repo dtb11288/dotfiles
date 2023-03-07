@@ -38,7 +38,7 @@ o.grepprg = 'ag --nogroup --nocolor'
 o.incsearch = true
 o.hlsearch = true
 o.ignorecase = true
--- nnoremap <silent><esc> :noh<cr><esc>
+vim.keymap.set('n', '<esc>', '<cmd>noh<cr><esc>', { silent = true, noremap = true })
 
 -- Don't wrap line
 o.wrap = true
