@@ -57,6 +57,10 @@ o.showmode = false
 -- Hightlight current line
 o.cursorline = true
 
+-- Clipboard support
+vim.keymap.set({'n', 'v'}, '<leader>y', '"+y')
+vim.keymap.set({'n', 'v'}, '<leader>p', '"+p')
+
 -- Jump to the last place in the file before exiting
 vim.api.nvim_create_autocmd('BufReadPost', {
   callback = function(data)
