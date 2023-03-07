@@ -7,6 +7,12 @@ local packer_path = bundle_home .. '/packer/start/packer.nvim'
 opt.runtimepath:append(packpath)
 opt.packpath = packpath
 
+-- Automatically run :PackerCompile whenever plugins.lua is updated with an autocommand:
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = 'plugins.lua',
+  command = 'source <afile> | PackerCompile',
+})
+
 if (vim.fn.empty(vim.fn.glob(packer_path))) > 0 then
   print('Packer not found, clone repository...')
   vim.fn.system({'mkdir', '-p', bundle_home})
@@ -18,6 +24,9 @@ return require('packer').startup({
   function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+
+    -- Perfomance
+    use 'lewis6991/impatient.nvim'
 
     -- File explorer
     use 'nvim-tree/nvim-tree.lua'

@@ -29,3 +29,5 @@ pulse/*
 !pulse/daemon.conf
 aria2/input.conf
 nixos/hardware-configuration.nix
+nvim/luacache_chunks
+nvim/luacache_modpaths

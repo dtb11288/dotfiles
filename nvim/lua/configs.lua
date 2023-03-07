@@ -134,3 +134,16 @@ vim.keymap.set('n', '<F3>', '<cmd>CtrlSFToggle<cr>', { noremap = true, silent = 
 
 -- Autocomplete cmp
 require('./configs/autocomplete')
+
+-- Perfomance
+_G.__luacache_config = {
+  chunks = {
+    enable = true,
+    path = vim.g.vim_home .. '/luacache_chunks',
+  },
+  modpaths = {
+    enable = true,
+    path = vim.g.vim_home .. '/luacache_modpaths',
+  }
+}
+require('impatient')
