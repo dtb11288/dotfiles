@@ -52,14 +52,12 @@ return require('packer').startup({
 
     -- Control
     use 'nvim-lualine/lualine.nvim'
-    use 'simnalamburt/vim-mundo'
-    use 'haya14busa/incsearch.vim'
     use 'ibhagwan/fzf-lua'
     use 'dyng/ctrlsf.vim'
 
     -- Editor
     use 'tomtom/tcomment_vim'
-    use 'terryma/vim-multiple-cursors'
+    use 'mg979/vim-visual-multi'
     use 'kylechui/nvim-surround'
     use 'junegunn/vim-easy-align'
     use 'ntpeters/vim-better-whitespace'
@@ -70,8 +68,9 @@ return require('packer').startup({
     use 'neomake/neomake'
     use 'L3MON4D3/LuaSnip'
 
-    -- Session
+    -- History & Session
     use 'rmagatti/auto-session'
+    use 'simnalamburt/vim-mundo'
 
     -- Post-install/update hook with neovim command
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

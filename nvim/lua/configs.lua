@@ -13,7 +13,7 @@ require('noirbuddy').setup {
 require('nvim-web-devicons').setup()
 require('lualine').setup({
   options = {
-    disabled_filetypes = { 'NvimTree', 'packer', 'Mundo' }
+    disabled_filetypes = { 'NvimTree', 'packer', 'Mundo', 'ctrlsf' }
   }
 })
 
@@ -72,6 +72,11 @@ vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 
 -- FzF
 vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
+
+-- Search
+vim.keymap.set('n', '<leader>/', '<Plug>CtrlSFPrompt', { noremap = true })
+vim.keymap.set('v', '<leader>/', '<Plug>CtrlSFVwordPath', { noremap = true })
+vim.keymap.set('n', '<F3>', '<cmd>CtrlSFToggle<cr>', { noremap = true, silent = true })
 
 -- Autocomplete cmp
 require('./configs/autocomplete')
