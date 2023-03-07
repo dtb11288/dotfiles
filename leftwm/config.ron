@@ -38,10 +38,9 @@
     disable_current_tag_swap: false,
     disable_tile_drag: false,
     disable_window_snap: true,
-    focus_behaviour: Sloppy,
+    focus_behaviour: ClickTo,
     focus_new_windows: true,
-    single_window_border: true,
-    sloppy_mouse_follows_focus: true,
+    single_window_border: false,
     auto_derive_workspaces: true,
     keybind: [
         (command: Execute, value: "rofi -show run", modifier: ["modkey"], key: "p"),
