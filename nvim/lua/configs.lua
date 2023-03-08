@@ -1,3 +1,4 @@
+
 -- Neovim tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -14,17 +15,10 @@ vim.api.nvim_create_autocmd({ "QuitPre" }, {
 vim.keymap.set('n', '<F2>', '<cmd>NvimTreeToggle<cr>')
 vim.keymap.set('n', '<leader><F2>', '<cmd>NvimTreeFindFile<cr>')
 
+-- Autocomplete cmp
+require('./configs/autocomplete')
+
 -- Theme
-BORDER = {
-  { '╔', 'CmpBorder' },
-  { '═', 'CmpBorder' },
-  { '╗', 'CmpBorder' },
-  { '║', 'CmpBorder' },
-  { '╝', 'CmpBorder' },
-  { '═', 'CmpBorder' },
-  { '╚', 'CmpBorder' },
-  { '║', 'CmpBorder' },
-}
 require('./configs/theme')
 
 -- Surround
@@ -104,7 +98,7 @@ end
 vim.keymap.set("n", "<leader>g", lazygit_toggle, { noremap = true, silent = true })
 
 -- Tree sitter
-local parsers_dir = vim.g.vim_home .. '/parsers'
+local parsers_dir = VIM_HOME .. '/parsers'
 require('nvim-treesitter.configs').setup {
   auto_install = true,
   parser_install_dir = parsers_dir,
@@ -117,11 +111,11 @@ vim.opt.runtimepath:append(parsers_dir)
 
 -- Sessions
 require('auto-session').setup({
-  auto_session_root_dir = vim.g.vim_home .. '/sessions/'
+  auto_session_root_dir = VIM_HOME .. '/sessions/'
 })
 
 -- Undo
-vim.opt.undodir = vim.g.vim_home .. '/undofiles'
+vim.opt.undodir = VIM_HOME .. '/undofiles'
 vim.opt.undofile = true
 vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 
@@ -155,18 +149,15 @@ vim.cmd[[vnoremap <leader>s <esc>:lua require('spectre').open_visual()<CR>]]
 -- search in current file
 vim.cmd[[nnoremap <leader>sp viw:lua require('spectre').open_file_search()<cr>]]
 
--- Autocomplete cmp
-require('./configs/autocomplete')
-
 -- Perfomance
 _G.__luacache_config = {
   chunks = {
     enable = true,
-    path = vim.g.vim_home .. '/luacache_chunks',
+    path = VIM_HOME .. '/luacache_chunks',
   },
   modpaths = {
     enable = true,
-    path = vim.g.vim_home .. '/luacache_modpaths',
+    path = VIM_HOME .. '/luacache_modpaths',
   }
 }
 require('impatient')

@@ -1,11 +1,9 @@
-local g = vim.g
-local opt = vim.opt
-local packpath = g.vim_home
+local packpath = VIM_HOME
 local bundle_home = packpath .. '/pack'
 local packer_path = bundle_home .. '/packer/start/packer.nvim'
 
-opt.runtimepath:append(packpath)
-opt.packpath = packpath
+vim.opt.runtimepath:append(packpath)
+vim.opt.packpath = packpath
 
 -- Automatically run :PackerCompile whenever plugins.lua is updated with an autocommand:
 vim.api.nvim_create_autocmd('BufWritePost', {
