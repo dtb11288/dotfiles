@@ -11,5 +11,5 @@ require('lualine').setup({
     lualine_c = { require('auto-session-library').current_session_name }
   }
 })
-vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'black', fg = 'black' })
-vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'black' })
+-- vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'black', fg = 'black' })
+-- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'black' })
