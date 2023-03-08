@@ -119,6 +119,9 @@ vim.opt.undodir = VIM_HOME .. '/undofiles'
 vim.opt.undofile = true
 vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 
+-- Whitespace remover
+require('spaceless').setup()
+
 -- FzF
 vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
 

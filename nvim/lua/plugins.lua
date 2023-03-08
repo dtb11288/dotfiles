@@ -70,12 +70,11 @@ return require('packer').startup({
     use 'mg979/vim-visual-multi'
     use 'kylechui/nvim-surround'
     use 'junegunn/vim-easy-align'
-    use 'ntpeters/vim-better-whitespace'
+    use 'lewis6991/spaceless.nvim'
     use 'djoshea/vim-autoread'
     use 'Chiel92/vim-autoformat'
     use 'moll/vim-bbye'
-    use 'jiangmiao/auto-pairs'
-    use 'neomake/neomake'
+    use 'LunarWatcher/auto-pairs'
     use 'L3MON4D3/LuaSnip'
 
     -- History & Session
