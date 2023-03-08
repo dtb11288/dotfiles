@@ -71,7 +71,6 @@ return require('packer').startup({
     use 'kylechui/nvim-surround'
     use 'junegunn/vim-easy-align'
     use 'lewis6991/spaceless.nvim'
-    use 'djoshea/vim-autoread'
     use 'Chiel92/vim-autoformat'
     use 'moll/vim-bbye'
     use 'LunarWatcher/auto-pairs'

@@ -55,6 +55,9 @@ o.expandtab = true
 -- Hightlight current line
 o.cursorline = true
 
+-- Update external change to the buffer
+o.autoread = true
+
 -- Clipboard support
 vim.keymap.set({'n', 'v'}, '<leader>y', '"+y')
 vim.keymap.set({'n', 'v'}, '<leader>p', '"+p')
