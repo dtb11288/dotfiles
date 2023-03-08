@@ -17,13 +17,13 @@ sign({ name = 'DiagnosticSignInfo', text = '' })
 
 vim.diagnostic.config({
   float = {
-    border = 'single',
+    border = BORDER,
   },
 })
 
 -- Cmp config
 local cmp = require('cmp')
-local select_opts = { behavior = cmp.SelectBehavior.Select }
+local select_opts = { behavior = cmp.SelectBehavior.Insert }
 local luasnip = require('luasnip')
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.shortmess = vim.opt.shortmess + { c = true }
@@ -35,10 +35,10 @@ cmp.setup({
   },
   window = {
     completion = {
-      border = 'single',
+      border = BORDER,
     },
     documentation = {
-      border = 'single',
+      border = BORDER,
     },
   },
   formatting = {
@@ -61,7 +61,7 @@ cmp.setup({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
     ['<C-f>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then

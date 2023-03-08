@@ -90,7 +90,7 @@ return require('packer').startup({
     -- Theme
     use 'nvim-lualine/lualine.nvim'
     use 'nvim-tree/nvim-web-devicons'
-    use "mcchrish/zenbones.nvim"
+    use 'mcchrish/zenbones.nvim'
 
     if PACKER_BOOTSTRAP then
       require("packer").sync()

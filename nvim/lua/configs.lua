@@ -15,6 +15,16 @@ vim.keymap.set('n', '<F2>', '<cmd>NvimTreeToggle<cr>')
 vim.keymap.set('n', '<leader><F2>', '<cmd>NvimTreeFindFile<cr>')
 
 -- Theme
+BORDER = {
+  { '╔', 'CmpBorder' },
+  { '═', 'CmpBorder' },
+  { '╗', 'CmpBorder' },
+  { '║', 'CmpBorder' },
+  { '╝', 'CmpBorder' },
+  { '═', 'CmpBorder' },
+  { '╚', 'CmpBorder' },
+  { '║', 'CmpBorder' },
+}
 require('./configs/theme')
 
 -- Surround
@@ -27,6 +37,9 @@ require("toggleterm").setup({
 
 -- Gitsigns
 require('gitsigns').setup({
+  preview_config = {
+    border = BORDER,
+  },
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
@@ -74,7 +87,7 @@ local lazygit  = Terminal:new({
   dir = "git_dir",
   direction = "float",
   float_opts = {
-    border = "double",
+    border = BORDER,
   },
   on_open = function(term)
     vim.cmd("startinsert!")
