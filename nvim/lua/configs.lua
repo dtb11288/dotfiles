@@ -17,9 +17,8 @@ vim.keymap.set('n', '<leader><F2>', '<cmd>NvimTreeFindFile<cr>')
 -- Theme
 vim.opt.background = 'dark'
 vim.opt.showmode = false
-require('noirbuddy').setup {
-  preset = 'slate',
-}
+vim.g.zenbones_compat = 1
+vim.cmd[[colorscheme zenbones]]
 require('nvim-web-devicons').setup()
 require('lualine').setup({
   options = {
@@ -128,10 +127,32 @@ vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 -- FzF
 vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
 
--- Search
+-- CtrlSF search
+vim.g.ctrlsf_auto_focus = {
+  at = "start"
+}
 vim.keymap.set('n', '<leader>/', '<Plug>CtrlSFPrompt', { noremap = true })
 vim.keymap.set('v', '<leader>/', '<Plug>CtrlSFVwordPath', { noremap = true })
 vim.keymap.set('n', '<F3>', '<cmd>CtrlSFToggle<cr>', { noremap = true, silent = true })
+
+-- Spectre search
+require('spectre').setup({
+  default = {
+    find = {
+      cmd = "ag",
+      options = {"ignore-case"}
+    },
+    replace={
+      cmd = "sed"
+    }
+  },
+})
+vim.cmd[[nnoremap <leader>S <cmd>lua require('spectre').open()<CR>]]
+-- search current word
+vim.cmd[[nnoremap <leader>sw <cmd>lua require('spectre').open_visual({select_word=true})<CR>]]
+vim.cmd[[vnoremap <leader>s <esc>:lua require('spectre').open_visual()<CR>]]
+-- search in current file
+vim.cmd[[nnoremap <leader>sp viw:lua require('spectre').open_file_search()<cr>]]
 
 -- Autocomplete cmp
 require('./configs/autocomplete')

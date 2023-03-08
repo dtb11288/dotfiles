@@ -63,9 +63,9 @@ return require('packer').startup({
     use 'MunifTanjim/eslint.nvim'
 
     -- Control
-    use 'nvim-lualine/lualine.nvim'
     use 'ibhagwan/fzf-lua'
     use 'dyng/ctrlsf.vim'
+    use 'windwp/nvim-spectre'
 
     -- Editor
     use 'tomtom/tcomment_vim'
@@ -88,9 +88,9 @@ return require('packer').startup({
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
     -- Theme
-    use 'tjdevries/colorbuddy.nvim'
-    use 'jesseleite/nvim-noirbuddy'
+    use 'nvim-lualine/lualine.nvim'
     use 'nvim-tree/nvim-web-devicons'
+    use "mcchrish/zenbones.nvim"
 
     if PACKER_BOOTSTRAP then
       require("packer").sync()
