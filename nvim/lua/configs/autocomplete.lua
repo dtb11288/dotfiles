@@ -10,16 +10,22 @@ local sign = function(opts)
   })
 end
 
-sign({name = 'DiagnosticSignError', text = ''})
-sign({name = 'DiagnosticSignWarn', text = ''})
-sign({name = 'DiagnosticSignHint', text = ''})
-sign({name = 'DiagnosticSignInfo', text = ''})
+sign({ name = 'DiagnosticSignError', text = '' })
+sign({ name = 'DiagnosticSignWarn', text = '' })
+sign({ name = 'DiagnosticSignHint', text = '' })
+sign({ name = 'DiagnosticSignInfo', text = '' })
+
+vim.diagnostic.config({
+  float = {
+    border = 'single',
+  },
+})
 
 -- Cmp config
 local cmp = require('cmp')
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 local luasnip = require('luasnip')
-vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.shortmess = vim.opt.shortmess + { c = true }
 cmp.setup({
   snippet = {
@@ -28,13 +34,17 @@ cmp.setup({
     end,
   },
   window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+    completion = {
+      border = 'single',
+    },
+    documentation = {
+      border = 'single',
+    },
   },
   formatting = {
-    fields = {'menu', 'abbr', 'kind'},
+    fields = { 'menu', 'abbr', 'kind' },
     format = function(entry, item)
-      local menu_icon ={
+      local menu_icon = {
         nvim_lsp = 'λ',
         luasnip = '⋗',
         buffer = 'Ω',
@@ -59,24 +69,21 @@ cmp.setup({
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
     ['<C-b>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
   }),
   sources = cmp.config.sources({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'buffer' },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
+    { name = 'luasnip' },
   }, {
     { name = 'buffer' },
   })
@@ -141,6 +148,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
   capabilities
 )
 
+-- Rust
 local rust_tools = require('rust-tools')
 rust_tools.setup()
 rust_tools.inlay_hints.enable()
@@ -157,6 +165,7 @@ lspconfig.lua_ls.setup {
   }
 }
 
+-- Javascript
 require("null-ls").setup()
 require("eslint").setup({
   bin = 'eslint', -- or `eslint_d`

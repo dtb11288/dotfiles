@@ -1,6 +1,5 @@
 -- Define global variables
-local g = vim.g
-g.vim_home = vim.fn.expand('~/.config/nvim')
+vim.g.vim_home = vim.fn.expand('~/.config/nvim')
 
 require('settings')
 require('plugins')

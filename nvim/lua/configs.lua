@@ -15,19 +15,7 @@ vim.keymap.set('n', '<F2>', '<cmd>NvimTreeToggle<cr>')
 vim.keymap.set('n', '<leader><F2>', '<cmd>NvimTreeFindFile<cr>')
 
 -- Theme
-vim.opt.background = 'dark'
-vim.opt.showmode = false
-vim.g.zenbones_compat = 1
-vim.cmd[[colorscheme zenbones]]
-require('nvim-web-devicons').setup()
-require('lualine').setup({
-  options = {
-    disabled_filetypes = { 'NvimTree', 'packer', 'Mundo', 'ctrlsf' }
-  },
-  sections = {
-    lualine_c = { require('auto-session-library').current_session_name }
-  }
-})
+require('./configs/theme')
 
 -- Surround
 require('nvim-surround').setup()
