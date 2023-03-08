@@ -125,6 +125,9 @@ require('spaceless').setup()
 -- FzF
 vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
 
+-- Comment
+require('Comment').setup()
+
 -- CtrlSF search
 vim.g.ctrlsf_auto_focus = {
   at = "start"

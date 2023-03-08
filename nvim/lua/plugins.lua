@@ -66,7 +66,7 @@ return require('packer').startup({
     use 'windwp/nvim-spectre'
 
     -- Editor
-    use 'tomtom/tcomment_vim'
+    use 'numToStr/Comment.nvim'
     use 'mg979/vim-visual-multi'
     use 'kylechui/nvim-surround'
     use 'junegunn/vim-easy-align'
