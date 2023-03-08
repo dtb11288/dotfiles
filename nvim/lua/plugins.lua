@@ -73,7 +73,7 @@ return require('packer').startup({
     use 'lewis6991/spaceless.nvim'
     use 'Chiel92/vim-autoformat'
     use 'moll/vim-bbye'
-    use 'LunarWatcher/auto-pairs'
+    use 'jiangmiao/auto-pairs'
     use 'L3MON4D3/LuaSnip'
 
     -- History & Session
