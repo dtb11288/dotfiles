@@ -132,9 +132,10 @@ vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 require('spaceless').setup()
 
 -- FzF
-vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>sf', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true, desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sd', "<cmd>lua require('fzf-lua').diagnostics_document()<CR>", { noremap = true, silent = true, desc = '[S]earch [D]iagnostics' })
+local fzf = require('fzf-lua')
+vim.keymap.set('n', '<leader>sf', fzf.files, { noremap = true, silent = true, desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sb', fzf.buffers, { noremap = true, silent = true, desc = '[S]earch [B]uffers' })
+vim.keymap.set('n', '<leader>sd', fzf.diagnostics_document, { noremap = true, silent = true, desc = '[S]earch [D]iagnostics' })
 
 -- Comment
 require('Comment').setup()
