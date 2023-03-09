@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   command = 'source <afile> | PackerCompile',
 })
 
-if (vim.fn.empty(vim.fn.glob(packer_path))) > 0 then
+if not vim.loop.fs_stat(packer_path) then
   print('Packer not found, clone repository...')
   vim.fn.system({ 'mkdir', '-p', bundle_home })
   PACKER_BOOTSTRAP = vim.fn.system({
@@ -52,6 +52,7 @@ return require('packer').startup({
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use 'saadparwaiz1/cmp_luasnip'
+    use 'j-hui/fidget.nvim'
 
     -- Rust
     use 'simrat39/rust-tools.nvim'
@@ -75,6 +76,7 @@ return require('packer').startup({
     use 'moll/vim-bbye'
     use 'jiangmiao/auto-pairs'
     use 'L3MON4D3/LuaSnip'
+    use 'folke/which-key.nvim'
 
     -- History & Session
     use 'rmagatti/auto-session'

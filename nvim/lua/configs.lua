@@ -1,4 +1,3 @@
-
 -- Neovim tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -21,6 +20,9 @@ require('./configs/autocomplete')
 -- Theme
 require('./configs/theme')
 
+-- Key helper
+require('which-key').setup()
+
 -- Surround
 require('nvim-surround').setup()
 
@@ -33,6 +35,13 @@ require("toggleterm").setup({
 require('gitsigns').setup({
   preview_config = {
     border = BORDER,
+  },
+  signs = {
+    add = { text = '+' },
+    change = { text = '~' },
+    delete = { text = '_' },
+    topdelete = { text = '‾' },
+    changedelete = { text = '~' },
   },
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
@@ -124,6 +133,7 @@ require('spaceless').setup()
 
 -- FzF
 vim.keymap.set('n', '<c-P>', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>sf', "<cmd>lua require('fzf-lua').files()<CR>", { noremap = true, silent = true, desc = '[S]earch [F]iles' })
 
 -- Comment
 require('Comment').setup()
