@@ -6,7 +6,7 @@ require('nvim-web-devicons').setup()
 require('lualine').setup({
   options = {
     disabled_filetypes = { 'NvimTree', 'packer', 'Mundo', 'ctrlsf' },
-    icons_enabled = true,
+    icons_enabled = false,
     theme = 'zenbones',
     component_separators = '|',
     section_separators = '',
