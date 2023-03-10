@@ -44,7 +44,7 @@
     auto_derive_workspaces: true,
     keybind: [
         (command: Execute, value: "rofi -show run", modifier: ["modkey"], key: "p"),
-        (command: Execute, value: "alacritty", modifier: ["modkey", "Shift"], key: "Return"),
+        (command: Execute, value: "alacritty -e zellij", modifier: ["modkey", "Shift"], key: "Return"),
         (command: CloseWindow, value: "", modifier: ["modkey", "Shift"], key: "q"),
         (command: SoftReload, value: "", modifier: ["modkey", "Shift"], key: "r"),
         (command: Execute, value: "loginctl kill-session $XDG_SESSION_ID", modifier: ["modkey", "Shift"], key: "x"),
