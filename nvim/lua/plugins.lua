@@ -77,18 +77,17 @@ return require('packer').startup({
     use 'jiangmiao/auto-pairs'
     use 'L3MON4D3/LuaSnip'
     use 'folke/which-key.nvim'
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
     -- History & Session
     use 'rmagatti/auto-session'
     use 'simnalamburt/vim-mundo'
 
-    -- Post-install/update hook with neovim command
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
     -- Theme
     use 'nvim-lualine/lualine.nvim'
     -- use 'nvim-tree/nvim-web-devicons'
     use 'mcchrish/zenbones.nvim'
+    use 'shaunsingh/nord.nvim'
 
     if PACKER_BOOTSTRAP then
       require("packer").sync()
