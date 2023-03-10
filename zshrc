@@ -34,7 +34,7 @@ zplug "plugins/web-search", from:oh-my-zsh
 zplug "plugins/rust", from:oh-my-zsh
 
 # theme
-zplug "themes/kardan", from:oh-my-zsh
+zplug "themes/gentoo", from:oh-my-zsh
 
 # others
 zplug "chisui/zsh-nix-shell"
