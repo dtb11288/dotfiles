@@ -133,6 +133,11 @@ require('spaceless').setup()
 
 -- FzF
 local fzf = require('fzf-lua')
+fzf.setup({
+  winopts = {
+    border = BORDER
+  }
+})
 vim.keymap.set('n', '<leader>sf', fzf.files, { noremap = true, silent = true, desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sb', fzf.buffers, { noremap = true, silent = true, desc = '[S]earch [B]uffers' })
 vim.keymap.set('n', '<leader>sd', fzf.diagnostics_document, { noremap = true, silent = true, desc = '[S]earch [D]iagnostics' })
