@@ -6,6 +6,32 @@ require("nvim-tree").setup({
     open_file = {
       quit_on_open = true
     }
+  },
+  renderer = {
+    icons = {
+      show = {
+        git = true,
+        file = false,
+        folder = false,
+      },
+      glyphs = {
+        folder = {
+          arrow_closed = '>',
+          arrow_open = '>>>',
+          symlink = '~>',
+          symlink_open = '~>>>',
+        },
+        git = {
+          unstaged = '*',
+          staged = '+',
+          unmerged = '^',
+          renamed = '&',
+          untracked = '#',
+          deleted = '-',
+          ignored = '!',
+        },
+      }
+    }
   }
 })
 vim.api.nvim_create_autocmd({ "QuitPre" }, {
