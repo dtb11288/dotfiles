@@ -61,6 +61,12 @@ return require('packer').startup({
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'MunifTanjim/eslint.nvim'
 
+    -- KDL
+    use 'imsnif/kdl.vim'
+
+    -- Ron
+    use 'ron-rs/ron.vim'
+
     -- Control
     use 'ibhagwan/fzf-lua'
     use 'dyng/ctrlsf.vim'
