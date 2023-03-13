@@ -64,6 +64,9 @@ return require('packer').startup({
     -- KDL
     use 'imsnif/kdl.vim'
 
+    -- Liquid template
+    use 'tpope/vim-liquid'
+
     -- Ron
     use 'ron-rs/ron.vim'
 
