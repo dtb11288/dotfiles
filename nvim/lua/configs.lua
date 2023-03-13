@@ -7,6 +7,9 @@ require("nvim-tree").setup({
       quit_on_open = true
     }
   },
+  git = {
+    ignore = false,
+  },
   renderer = {
     icons = {
       show = {
