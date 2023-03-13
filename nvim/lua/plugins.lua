@@ -94,6 +94,7 @@ return require('packer').startup({
     -- use 'nvim-tree/nvim-web-devicons'
     use 'mcchrish/zenbones.nvim'
     use 'shaunsingh/nord.nvim'
+    use 'norcalli/nvim-colorizer.lua'
 
     if PACKER_BOOTSTRAP then
       require("packer").sync()
