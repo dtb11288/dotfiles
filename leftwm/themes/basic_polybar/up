@@ -8,6 +8,10 @@ if [ -f "/tmp/leftwm-theme-down" ]; then
 fi
 ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 
+# sxhkdrc
+if [ -x "$(command -v sxhkd)" ]; then
+  sxhkd &
+fi
 
 #set the theme.ron config
 leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"

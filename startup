@@ -14,9 +14,6 @@ if [ -x "$(command -v feh)" ]; then
   feh --bg-fill "$HOME/.wallpaper"
 fi
 
-" sxhkdrc
-sxhkdrc
-
 # filter screen
 redshift-gtk &> /dev/null &
 
