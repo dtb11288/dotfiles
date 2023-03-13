@@ -8,9 +8,13 @@ if [ -f "/tmp/leftwm-theme-down" ]; then
 fi
 ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 
+if [ -x "$(command -v picom)" ]; then
+  picom &> /dev/null &
+fi
+
 # sxhkdrc
 if [ -x "$(command -v sxhkd)" ]; then
-  sxhkd -c $SCRIPTPATH/sxhkdrc &
+  sxhkd -c $SCRIPTPATH/sxhkdrc &> /dev/null &
 fi
 
 #set the theme.ron config
