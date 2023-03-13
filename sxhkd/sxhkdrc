@@ -1,0 +1,31 @@
+#Raises volume
+XF86AudioRaiseVolume
+  pamixer -u -i 5
+
+#Lowers volume
+XF86AudioLowerVolume
+  pamixer -d 5
+
+#Mute
+XF86AudioMute
+  pamixer -t
+
+#Audio previeous
+XF86AudioPrev
+  playerctl previous
+
+#Audio next
+XF86AudioNext
+  playerctl next
+
+#Audio play
+XF86AudioPlay
+  playerctl play-pause
+
+#Brightness up
+XF86MonBrightnessUp
+  ddcutil setvcp 10 + 10
+
+#Brightness down
+XF86MonBrightnessDown
+  ddcutil setvcp 10 - 10
