@@ -18,8 +18,6 @@ require("nvim-tree").setup({
         folder = {
           arrow_closed = '>',
           arrow_open = '>>>',
-          symlink = '~>',
-          symlink_open = '~>>>',
         },
         git = {
           unstaged = '+',
