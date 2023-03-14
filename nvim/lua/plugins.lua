@@ -87,6 +87,7 @@ return require('packer').startup({
     use 'L3MON4D3/LuaSnip'
     use 'folke/which-key.nvim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use 'djoshea/vim-autoread'
 
     -- History & Session
     use 'rmagatti/auto-session'
