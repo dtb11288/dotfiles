@@ -72,7 +72,7 @@ prompt_nix_shell_setup
 
 # change title bar
 function precmd() {
-    print -Pn "\e]2;%~\a"
+  print -Pn "\e]2;%~\a"
 }
 
 # load env source
@@ -88,3 +88,6 @@ fi
 # set timeout key for zsh
 export KEYTIMEOUT=1
 
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  exec ssh-agent startx
+fi

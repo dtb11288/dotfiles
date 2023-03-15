@@ -12,7 +12,7 @@ export QT_IM_MODULE=fcitx
 export VISUAL=nvim
 
 # ssh-agent
-alias startx='ssh-agent startx'
+# alias startx='ssh-agent startx'
 
 # feh
 alias feh='feh -Z -.'
