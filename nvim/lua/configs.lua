@@ -161,9 +161,8 @@ fzf.setup({
     border = BORDER
   }
 })
-vim.keymap.set('n', '<leader>sf', fzf.files, { noremap = true, silent = true, desc = 'Search Files' })
-vim.keymap.set('n', '<leader>sb', fzf.buffers, { noremap = true, silent = true, desc = 'Search Buffers' })
-vim.keymap.set('n', '<leader>sd', fzf.diagnostics_document, { noremap = true, silent = true, desc = 'Search Diagnostics' })
+vim.keymap.set('n', '<leader>f', fzf.files, { noremap = true, silent = true, desc = 'Search Files' })
+vim.keymap.set('n', '<leader>b', fzf.buffers, { noremap = true, silent = true, desc = 'Search Buffers' })
 
 -- Comment
 require('Comment').setup()
