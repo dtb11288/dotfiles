@@ -94,17 +94,17 @@ require('gitsigns').setup({
     end, { expr = true, desc = 'Jump To Previous Hunk' })
 
     -- Actions
-    map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>', { desc = 'Stage Hunk' })
-    map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>', { desc = 'Reset Hunk' })
-    map('n', '<leader>hS', gs.stage_buffer, { desc = 'Stage Current Buffer' })
-    map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'Undo Stage Hunk' })
-    map('n', '<leader>hR', gs.reset_buffer, { desc = 'Reset Buffer' })
-    map('n', '<leader>hp', gs.preview_hunk, { desc = 'Preview Hunk' })
-    map('n', '<leader>hb', function() gs.blame_line { full = true } end, { desc = 'Lines Blame' })
-    map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'Toggle Current Line Blame' })
-    map('n', '<leader>hd', gs.diffthis, { desc = 'Current Diff Preview' })
-    map('n', '<leader>hD', function() gs.diffthis('~') end, { desc = 'Previous Diff Preview' })
-    map('n', '<leader>td', gs.toggle_deleted, { desc = 'Toggle Deleted Hunk' })
+    map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>', { desc = 'Stage hunk' })
+    map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>', { desc = 'Reset hunk' })
+    map('n', '<leader>hS', gs.stage_buffer, { desc = 'Stage current buffer' })
+    map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'Undo stage hunk' })
+    map('n', '<leader>hR', gs.reset_buffer, { desc = 'Reset buffer' })
+    map('n', '<leader>hp', gs.preview_hunk, { desc = 'Preview hunk' })
+    map('n', '<leader>hb', function() gs.blame_line { full = true } end, { desc = 'Lines blame' })
+    map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'Toggle current line blame' })
+    map('n', '<leader>hd', gs.diffthis, { desc = 'Current diff preview' })
+    map('n', '<leader>hD', function() gs.diffthis('~') end, { desc = 'Previous diff preview' })
+    map('n', '<leader>td', gs.toggle_deleted, { desc = 'Toggle deleted hunk' })
 
     -- Text object
     map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
