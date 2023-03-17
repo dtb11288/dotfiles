@@ -165,6 +165,7 @@ require('fidget').setup()
 local rust_tools = require('rust-tools')
 rust_tools.setup()
 rust_tools.inlay_hints.enable()
+vim.keymap.set('n', '<leader>me', require'rust-tools'.expand_macro.expand_macro, { desc = 'Expand macro' })
 
 lspconfig.lua_ls.setup {}
 lspconfig.tsserver.setup {}
