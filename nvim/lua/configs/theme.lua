@@ -4,7 +4,7 @@ vim.g.zenbones_compat = 1
 vim.cmd [[colorscheme zenbones]]
 require('lualine').setup({
   options = {
-    disabled_filetypes = { 'NvimTree', 'packer', 'Mundo', 'ctrlsf' },
+    disabled_filetypes = { 'NvimTree', 'packer', 'Mundo', 'ctrlsf', 'toggleterm' },
     icons_enabled = false,
     theme = 'nord',
     component_separators = '|',
