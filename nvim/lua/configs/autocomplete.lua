@@ -49,7 +49,8 @@ cmp.setup({
         luasnip = '[S]',
         buffer = '[B]',
         path = '[P]',
-        cmdline = '[C]'
+        cmdline = '[C]',
+        ['vim-dadbod-completion'] = '[D]',
       }
       item.menu = menu_icon[entry.source.name]
       return item
@@ -84,6 +85,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
+    { name = "vim-dadbod-completion" },
     { name = 'buffer' },
   }, {
     { name = 'buffer' },

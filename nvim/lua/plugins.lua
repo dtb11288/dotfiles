@@ -53,6 +53,7 @@ return require('packer').startup({
     use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use 'saadparwaiz1/cmp_luasnip'
     use 'j-hui/fidget.nvim'
+    use 'kristijanhusak/vim-dadbod-completion'
 
     -- Rust
     use 'simrat39/rust-tools.nvim'
@@ -63,6 +64,10 @@ return require('packer').startup({
 
     -- KDL
     use 'imsnif/kdl.vim'
+
+    -- Database
+    use 'tpope/vim-dadbod'
+    use 'kristijanhusak/vim-dadbod-ui'
 
     -- Liquid template
     use 'tpope/vim-liquid'
@@ -95,7 +100,7 @@ return require('packer').startup({
 
     -- Theme
     use 'nvim-lualine/lualine.nvim'
-    -- use 'nvim-tree/nvim-web-devicons'
+    use 'nvim-tree/nvim-web-devicons'
     use 'mcchrish/zenbones.nvim'
     use 'shaunsingh/nord.nvim'
     use 'norcalli/nvim-colorizer.lua'
