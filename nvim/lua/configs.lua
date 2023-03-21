@@ -36,7 +36,10 @@ require("nvim-tree").setup({
   }
 })
 vim.api.nvim_create_autocmd({ "QuitPre" }, {
-  callback = function() vim.cmd("NvimTreeClose") end,
+  callback = function()
+    vim.cmd('DBUIClose')
+    vim.cmd('NvimTreeClose')
+  end,
 })
 vim.keymap.set('n', '<F2>', function () require('nvim-tree.api').tree.toggle({ focus = true }) end)
 vim.keymap.set('n', '<leader><F2>', function () require('nvim-tree.api').tree.toggle({ find_file = true, focus = true }) end)
@@ -57,6 +60,19 @@ require('nvim-surround').setup()
 require("toggleterm").setup({
   open_mapping = [[<c-\>]],
 })
+
+-- Dadbod
+vim.g.db_ui_execute_on_save = 0
+vim.g.db_ui_icons = {
+  expanded = '>>>',
+  collapsed = '>',
+  saved_query = '*',
+  new_query = '+',
+  tables = '~',
+  buffers = '**',
+  connection_ok = '(ok)',
+  connection_error = '(err)',
+}
 
 -- Gitsigns
 require('gitsigns').setup({
@@ -155,6 +171,10 @@ vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
 -- Close buffers
 vim.keymap.set('n', '<leader>cb', ':Bdelete<cr>', { noremap = true, silent = true, desc = 'Close current buffer' })
 vim.keymap.set('n', '<leader>cab', ':bufdo Bdelete<cr>', { noremap = true, silent = true, desc = 'Close all buffers' })
+
+-- Tab
+vim.keymap.set('n', '<leader>ct', ':tabclose<cr>', { noremap = true, silent = true, desc = 'Close current tab' })
+vim.keymap.set('n', '<leader>tn', ':tabnew<cr>', { noremap = true, silent = true, desc = 'Open new tab' })
 
 -- Whitespace remover
 require('spaceless').setup()
