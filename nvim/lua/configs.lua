@@ -202,6 +202,7 @@ vim.keymap.set('n', '<F3>', '<cmd>CtrlSFToggle<cr>', { noremap = true, silent = 
 
 -- Spectre search
 require('spectre').setup({
+  color_devicons = false,
   default = {
     find = {
       cmd = "ag",
