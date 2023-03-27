@@ -85,7 +85,7 @@ return require('packer').startup({
     use 'mg979/vim-visual-multi'
     use 'kylechui/nvim-surround'
     use 'junegunn/vim-easy-align'
-    use 'lewis6991/spaceless.nvim'
+    use 'cappyzawa/trim.nvim'
     use 'Chiel92/vim-autoformat'
     use 'moll/vim-bbye'
     use 'jiangmiao/auto-pairs'

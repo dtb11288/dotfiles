@@ -177,7 +177,7 @@ vim.keymap.set('n', '<leader>ct', ':tabclose<cr>', { noremap = true, silent = tr
 vim.keymap.set('n', '<leader>tn', ':tabnew<cr>', { noremap = true, silent = true, desc = 'Open new tab' })
 
 -- Whitespace remover
-require('spaceless').setup()
+require('trim').setup()
 
 -- FzF
 local fzf = require('fzf-lua')
