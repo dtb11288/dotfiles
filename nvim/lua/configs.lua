@@ -57,8 +57,12 @@ require('which-key').setup()
 require('nvim-surround').setup()
 
 -- Terminal
-require("toggleterm").setup({
+require('toggleterm').setup({
   open_mapping = [[<c-\>]],
+  direction = "float",
+  float_opts = {
+    border = BORDER,
+  }
 })
 
 -- Dadbod
