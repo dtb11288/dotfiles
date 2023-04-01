@@ -13,5 +13,11 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
+[editor.soft-wrap]
+enable = true
+
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
+
+[editor.lsp]
+display-inlay-hints = true
