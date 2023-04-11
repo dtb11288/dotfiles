@@ -206,16 +206,7 @@ vim.keymap.set('n', '<F3>', '<cmd>CtrlSFToggle<cr>', { noremap = true, silent = 
 
 -- Spectre search
 require('spectre').setup({
-  color_devicons = false,
-  default = {
-    find = {
-      cmd = "ag",
-      options = {"ignore-case"}
-    },
-    replace={
-      cmd = "sed"
-    }
-  },
+  color_devicons = false
 })
 vim.cmd[[nnoremap <leader>S <cmd>lua require('spectre').open()<CR>]]
 -- search current word
