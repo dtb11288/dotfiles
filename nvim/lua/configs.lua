@@ -25,7 +25,7 @@ require("nvim-tree").setup({
         git = {
           unstaged = '+',
           staged = '*',
-          unmerged = '^',
+          unmerged = '%',
           renamed = '&',
           untracked = '?',
           deleted = '-',
