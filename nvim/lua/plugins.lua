@@ -95,7 +95,7 @@ return require('packer').startup({
     use 'djoshea/vim-autoread'
 
     -- History & Session
-    use 'rmagatti/auto-session'
+    use { 'rmagatti/auto-session', requires = 'nvim-telescope/telescope.nvim' }
     use 'simnalamburt/vim-mundo'
 
     -- Theme

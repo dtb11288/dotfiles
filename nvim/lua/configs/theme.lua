@@ -11,7 +11,7 @@ require('lualine').setup({
     section_separators = '',
   },
   sections = {
-    lualine_c = { require('auto-session-library').current_session_name }
+    lualine_c = { require('auto-session.lib').current_session_name }
   }
 })
 require('colorizer').setup()
