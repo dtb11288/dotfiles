@@ -36,7 +36,7 @@
     neovim
     file
     coreutils
-    tmux
+    zellij
     htop
     wget
     curl
