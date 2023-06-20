@@ -112,7 +112,6 @@
     pulse.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
   services.openssh = {
     enable = true;
     # Forbid root login through SSH.
