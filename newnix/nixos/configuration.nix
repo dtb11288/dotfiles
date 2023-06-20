@@ -115,7 +115,7 @@
   services.openssh = {
     enable = true;
     # Forbid root login through SSH.
-    permitRootLogin = "no";
+    settings.PermitRootLogin = "no";
   };
   services.printing.enable = true;
   services.ntp.enable = true;
