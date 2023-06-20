@@ -19,7 +19,7 @@
     pavucontrol
     blueman
     networkmanagerapplet
-    networkmanager_openvpn
+    networkmanager-openvpn
     xdg_utils
     slock
     cbatticon
@@ -44,14 +44,16 @@
   services.redshift = {
     enable = true;
     temperature = {
-      day = 4100;
-      night = 3100;
+      day = 5000;
+      night = 4000;
     };
   };
 
   i18n.inputMethod = {
-    enabled = "fcitx";
-    fcitx.engines = with pkgs.fcitx-engines; [ unikey ];
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-unikey
+    ];
   };
 
   services.picom.enable = true;
@@ -68,14 +70,8 @@
       touchpad.disableWhileTyping = true;
     };
 
-    windowManager.xmonad = {
+    windowManager.leftwm = {
       enable = true;
-      enableContribAndExtras = true;
-      extraPackages = hp: with hp; [
-        dbus
-        monad-logger
-        xmonad-contrib
-      ];
     };
 
     desktopManager = {
@@ -83,7 +79,7 @@
     };
 
     displayManager = {
-      defaultSession = "none+xmonad";
+      defaultSession = "none+leftwm";
       lightdm = {
         enable = true;
       };
@@ -105,7 +101,7 @@
         ${blueman}/bin/blueman-applet &
         ${libinput-gestures}/bin/libinput-gestures &
         ${caffeine-ng}/bin/caffeine &
-        ${rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive" --config "$HOME/.config/rclone/config.conf" &
+        # ${rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive" --config "$HOME/.config/rclone/config.conf" &
       '';
     };
   };
@@ -119,8 +115,8 @@
     #  "$HOME/.icons"
     #  "$HOME/.nix-profile/share/icons/"
     # ];
-    GTK_DATA_PREFIX = [
-     "${config.system.path}"
-    ];
+    # GTK_DATA_PREFIX = [
+    #  "${config.system.path}"
+    # ];
   };
 }

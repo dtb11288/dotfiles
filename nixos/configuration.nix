@@ -16,17 +16,9 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "zfs" ];
 
   # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.wlp2s0.useDHCP = true;
-  networking.hostId = "8556b001";
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -42,6 +34,9 @@
     curl
     git
     alsaUtils
+    fzf
+    lazygit
+    ripgrep
   ];
 
   hardware.logitech.wireless = {
@@ -50,7 +45,6 @@
   };
 
   hardware.cpu.intel.updateMicrocode = true;
-
   hardware.bluetooth.enable = true;
 
   hardware.opengl = {
@@ -83,11 +77,17 @@
   services.ntp.enable = true;
   virtualisation.docker = {
     enable = true;
-    storageDriver = "zfs";
   };
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
-  #services.flatpak.enable = true;
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal
+      xdg-desktop-portal-gtk
+    ];
+  };
 
   networking = {
     hostName = "nixos";
@@ -98,7 +98,7 @@
     networkmanager = {
       enable = true;
       insertNameservers = [ "8.8.8.8" "8.8.4.4" ];
-      packages = [ pkgs.networkmanager_openvpn ];
+      plugins = with pkgs; [ networkmanager-openvpn ];
     };
   };
 
@@ -110,7 +110,7 @@
 
   environment.variables = {
     VISUAL = "nvim";
-    PATH = "$PATH:$HOME/opt/bin:$HOME/.cargo/bin";
+    PATH = "$PATH:$HOME/opt/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin";
   };
 
   programs.zsh.enable = true;
@@ -130,5 +130,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.05"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 }
