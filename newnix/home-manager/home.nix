@@ -41,6 +41,8 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
+    nodejs-18_x
+    gnumake
     gcc
     rustup
     silver-searcher
@@ -58,6 +60,7 @@
     openssl
     libreoffice
     flameshot
+    zip
     unzip
     unrar
     nomacs
