@@ -30,6 +30,7 @@
     xdotool
     playerctl
     feh
+    sxhkd
 
     # for libinput-gestures
     python3
