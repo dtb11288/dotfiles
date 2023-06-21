@@ -31,9 +31,7 @@
     playerctl
     feh
     sxhkd
-
-    # for libinput-gestures
-    python3
+    libinput-gestures
   ];
 
   location = {
