@@ -9,7 +9,7 @@
   environment.systemPackages = with pkgs; [
     rofi
     rofi-rbw
-    pinentry-gnome
+    pinentry-gtk2
     polybar
     xmonad-log
     rxvt_unicode
@@ -60,7 +60,6 @@
   };
 
   services.picom.enable = true;
-  services.dbus.packages = [ pkgs.gcr ];
 
   services.xserver = {
     dpi = 192;
