@@ -43,6 +43,8 @@
   home.packages = with pkgs; [
     gcc
     rustup
+    rbw
+    rofi-rbw
   ];
 
   # Enable home-manager and git

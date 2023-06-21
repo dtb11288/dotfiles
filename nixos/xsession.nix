@@ -8,8 +8,8 @@
 
   environment.systemPackages = with pkgs; [
     rofi
+    rofi-rbw
     polybar
-    xmonad-log
     rxvt_unicode
     xss-lock
     xautolock
@@ -101,7 +101,7 @@
         ${blueman}/bin/blueman-applet &
         ${libinput-gestures}/bin/libinput-gestures &
         ${caffeine-ng}/bin/caffeine &
-        # ${rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive" --config "$HOME/.config/rclone/config.conf" &
+        ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
       '';
     };
   };
