@@ -68,6 +68,8 @@
     mpv
     gimp
     kodi
+    telegram-desktop
+    lazydocker
   ];
 
   services.spotifyd = {
