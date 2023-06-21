@@ -43,9 +43,48 @@
   home.packages = with pkgs; [
     gcc
     rustup
-    rbw
-    rofi-rbw
+    silver-searcher
+    ripgrep
+    firefox
+    google-chrome
+    thunderbird
+    lm_sensors
+    pciutils
+    slack
+    dbeaver
+    lshw
+    gimp
+    spotify-tui
+    openssl
+    libreoffice
+    flameshot
+    unzip
+    unrar
+    nomacs
+    darktable
+    (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
+    postman
+    zathura
+    mpv
+    gimp
+    kodi
   ];
+
+  services.spotifyd = {
+    enable = true;
+    settings = {
+      global = {
+        username_cmd = "spotify_username";
+        password_cmd = "spotify_password";
+        device_name = "spotifyd";
+        device_type = "computer";
+        bitrate = 320;
+        no_audio_cache = true;
+        initial_volume = "100";
+        backend = "pulseaudio";
+      };
+    };
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

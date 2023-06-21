@@ -8,6 +8,8 @@
 
   environment.systemPackages = with pkgs; [
     rofi
+    rofi-rbw
+    pinentry-gnome
     polybar
     xmonad-log
     rxvt_unicode
@@ -57,6 +59,7 @@
   };
 
   services.picom.enable = true;
+  services.dbus.packages = [ pkgs.gcr ];
 
   services.xserver = {
     dpi = 192;
@@ -101,7 +104,7 @@
         ${blueman}/bin/blueman-applet &
         ${libinput-gestures}/bin/libinput-gestures &
         ${caffeine-ng}/bin/caffeine &
-        # ${rclone}/bin/rclone mount --daemon gdrive: "$HOME/gdrive" --config "$HOME/.config/rclone/config.conf" &
+        ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
       '';
     };
   };

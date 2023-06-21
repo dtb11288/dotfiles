@@ -79,7 +79,6 @@
     alsaUtils
     fzf
     lazygit
-    ripgrep
   ];
 
   hardware.logitech.wireless = {
