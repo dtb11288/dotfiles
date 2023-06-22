@@ -10,7 +10,7 @@
     rofi
     rofi-rbw
     polybar
-    rxvt_unicode
+    alacritty
     xss-lock
     xautolock
     xsel

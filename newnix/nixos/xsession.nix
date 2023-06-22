@@ -12,7 +12,7 @@
     pinentry-gtk2
     polybar
     xmonad-log
-    rxvt_unicode
+    alacritty
     xss-lock
     xautolock
     xsel
