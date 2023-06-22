@@ -56,7 +56,7 @@
     dbeaver
     lshw
     gimp
-    spotify-tui
+    spotify-player
     openssl
     libreoffice
     flameshot
@@ -74,22 +74,6 @@
     telegram-desktop
     lazydocker
   ];
-
-  services.spotifyd = {
-    enable = true;
-    settings = {
-      global = {
-        username_cmd = "spotify_username";
-        password_cmd = "spotify_password";
-        device_name = "spotifyd";
-        device_type = "computer";
-        bitrate = 320;
-        no_audio_cache = true;
-        initial_volume = "100";
-        backend = "pulseaudio";
-      };
-    };
-  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
