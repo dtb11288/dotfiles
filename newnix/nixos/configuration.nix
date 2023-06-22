@@ -149,6 +149,7 @@
 
   services.blueman.enable = true;
   services.tlp.enable = true;
+  services.thermald.enable = true;
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;
