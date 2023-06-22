@@ -75,6 +75,10 @@
     lazydocker
     nodePackages.typescript-language-server
     nil
+    mariadb-client
+    sqlite
+    lxtask
+    lxappearance
   ];
 
   # Enable home-manager and git
