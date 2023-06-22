@@ -54,6 +54,8 @@ return require('packer').startup({
     use 'saadparwaiz1/cmp_luasnip'
     use 'j-hui/fidget.nvim'
     use 'kristijanhusak/vim-dadbod-completion'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
 
     -- Rust
     use 'simrat39/rust-tools.nvim'

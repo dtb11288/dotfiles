@@ -115,6 +115,11 @@ vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, { noremap = true, silent = t
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = 'Jump To Next Diagnostic' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, silent = true, desc = 'Open Diagnostic List' })
 
+require('mason').setup()
+require('mason-lspconfig').setup {
+  ensure_installed = { 'lua_ls', 'rust_analyzer', 'nil_ls', 'tsserver' },
+}
+
 local fzf = require('fzf-lua')
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
@@ -169,6 +174,7 @@ rust_tools.setup()
 rust_tools.inlay_hints.enable()
 vim.keymap.set('n', '<leader>me', require'rust-tools'.expand_macro.expand_macro, { desc = 'Expand macro' })
 
+lspconfig.nil_ls.setup {}
 lspconfig.lua_ls.setup {}
 lspconfig.tsserver.setup {}
 lspconfig.lua_ls.setup {
@@ -182,14 +188,14 @@ lspconfig.lua_ls.setup {
 }
 
 -- Javascript
-require("null-ls").setup()
-require("eslint").setup({
+require('null-ls').setup()
+require('eslint').setup({
   bin = 'eslint', -- or `eslint_d`
   code_actions = {
     enable = true,
     apply_on_save = {
       enable = true,
-      types = { "directive", "problem", "suggestion", "layout" },
+      types = { 'directive', 'problem', 'suggestion', 'layout' },
     },
     disable_rule_comment = {
       enable = true,
@@ -199,6 +205,6 @@ require("eslint").setup({
   diagnostics = {
     enable = true,
     report_unused_disable_directives = false,
-    run_on = "type", -- or `save`
+    run_on = 'type', -- or `save`
   },
 })
