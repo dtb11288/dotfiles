@@ -41,7 +41,7 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
-    nodejs-18_x
+    nodejs
     gnumake
     gcc
     rustup
@@ -73,6 +73,8 @@
     kodi
     telegram-desktop
     lazydocker
+    nodePackages.typescript-language-server
+    nil
   ];
 
   # Enable home-manager and git
