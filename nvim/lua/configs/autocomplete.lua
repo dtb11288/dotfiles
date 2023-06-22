@@ -115,11 +115,6 @@ vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, { noremap = true, silent = t
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = 'Jump To Next Diagnostic' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, silent = true, desc = 'Open Diagnostic List' })
 
-require('mason').setup()
-require('mason-lspconfig').setup {
-  ensure_installed = { 'lua_ls', 'rust_analyzer', 'nil_ls', 'tsserver' },
-}
-
 local fzf = require('fzf-lua')
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
