@@ -91,3 +91,5 @@ export KEYTIMEOUT=1
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec ssh-agent startx
 fi
+
+eval "$(direnv hook zsh)"

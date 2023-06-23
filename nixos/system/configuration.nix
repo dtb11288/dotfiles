@@ -79,6 +79,7 @@
     alsaUtils
     fzf
     lazygit
+    direnv
   ];
 
   hardware.logitech.wireless = {
