@@ -33,4 +33,3 @@ nvim/luacache_chunks
 nvim/luacache_modpaths
 lazygit/state.yml
 .direnv
-flake.lock
