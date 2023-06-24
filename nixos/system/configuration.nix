@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{inputs, lib, config, pkgs, hostname, ... }: {
   imports = [
     ./user.nix
     ./font.nix
@@ -123,7 +123,7 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "${hostname}";
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
     extraHosts = ''
       127.0.0.1  biits.lambda

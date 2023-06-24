@@ -1,7 +1,7 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, lib, config, pkgs, ... }: {
+{ username, pkgs, ... }: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
@@ -34,16 +34,13 @@
   };
 
   home = {
-    username = "binh";
-    homeDirectory = "/home/binh";
+    username = "${username}";
+    homeDirectory = "/home/${username}";
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
-    nodejs
-    gnumake
-    gcc
     rustup
     silver-searcher
     ripgrep
@@ -73,7 +70,6 @@
     kodi
     telegram-desktop
     lazydocker
-    nodePackages.typescript-language-server
     nil
     mariadb-client
     sqlite

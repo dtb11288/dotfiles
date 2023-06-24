@@ -22,12 +22,20 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       xps15 = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        specialArgs = {
+          inherit inputs;
+          hostname = "xps15";
+          username = "binh";
+        }; # Pass flake inputs to our config
         # > Our main nixos configuration file <
         modules = [ ./system/xps15.nix ];
       };
       pc = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        specialArgs = {
+          inherit inputs;
+          hostname = "pc";
+          username = "binh";
+        }; # Pass flake inputs to our config
         # > Our main nixos configuration file <
         modules = [ ./system/pc.nix ];
       };
@@ -36,9 +44,23 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "binh@nixos" = home-manager.lib.homeManagerConfiguration {
+      "binh@xps15" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        extraSpecialArgs = {
+          inherit inputs;
+          hostname = "xps15";
+          username = "binh";
+        }; # Pass flake inputs to our config
+        # > Our main home-manager configuration file <
+        modules = [ ./home/home.nix ];
+      };
+      "binh@pc" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {
+          inherit inputs;
+          hostname = "pc";
+          username = "binh";
+        }; # Pass flake inputs to our config
         # > Our main home-manager configuration file <
         modules = [ ./home/home.nix ];
       };

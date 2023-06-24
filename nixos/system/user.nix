@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
-  users.extraUsers.binh = {
+  users.extraUsers.${username} = {
     createHome = true;
     home = "/home/binh";
     group = "users";
