@@ -1,11 +1,6 @@
 { pkgs, config, ... }:
 
 {
-  imports =
-    [
-      ./nvidia-xps-15.nix
-    ];
-
   environment.systemPackages = with pkgs; [
     rofi
     rofi-rbw
