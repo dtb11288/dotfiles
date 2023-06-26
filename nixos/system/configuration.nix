@@ -143,6 +143,7 @@
   services.tumbler.enable = true;
 
   environment.variables = {
+    EDITOR = "nvim";
     VISUAL = "nvim";
     PATH = "$PATH:$HOME/opt/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin";
   };
