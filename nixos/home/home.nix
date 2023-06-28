@@ -75,6 +75,7 @@
     sqlite
     lxtask
     lxappearance
+    tree
   ];
 
   # Enable home-manager and git
