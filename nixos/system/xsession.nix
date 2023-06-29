@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -6,7 +6,6 @@
     rofi-rbw
     pinentry-gtk2
     polybar
-    xmonad-log
     alacritty
     xss-lock
     xautolock
@@ -19,14 +18,12 @@
     networkmanager-openvpn
     xdg_utils
     slock
-    cbatticon
     volumeicon
     parcellite
     xdotool
     playerctl
     feh
     sxhkd
-    libinput-gestures
   ];
 
   location = {
@@ -34,8 +31,6 @@
     latitude = 21.0;
     longitude = 105.0;
   };
-
-  programs.light.enable = true;
 
   services.redshift = {
     enable = true;
@@ -55,7 +50,6 @@
   services.picom.enable = true;
 
   services.xserver = {
-    dpi = 192;
     enable = true;
     layout = "us";
     # videoDrivers = [ "intel" ];
