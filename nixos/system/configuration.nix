@@ -69,30 +69,6 @@
     direnv
   ];
 
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
-  };
-
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.bluetooth.enable = true;
-
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiIntel
-      libvdpau-va-gl
-      vaapiVdpau
-    ];
-    extraPackages32 = with pkgs.pkgsi686Linux; [
-      vaapiIntel
-      libvdpau-va-gl
-      vaapiVdpau
-    ];
-  };
-
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

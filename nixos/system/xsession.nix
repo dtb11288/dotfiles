@@ -87,7 +87,6 @@
         ${networkmanagerapplet}/bin/nm-applet &
         ${volumeicon}/bin/volumeicon &
         ${parcellite}/bin/parcellite &
-        ${cbatticon}/bin/cbatticon &
         ${blueman}/bin/blueman-applet &
         ${libinput-gestures}/bin/libinput-gestures &
         ${caffeine-ng}/bin/caffeine &
