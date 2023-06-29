@@ -56,4 +56,6 @@ in
   programs.light.enable = true;
 
   services.xserver.displayManager.sessionCommands = ''${pkgs.cbatticon}/bin/cbatticon &'';
+
+  console.font = "sun12x22";
 }
