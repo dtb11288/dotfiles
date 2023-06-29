@@ -55,6 +55,5 @@ in
 
   programs.light.enable = true;
 
-
-  displayManager.sessionCommands = ''${pkgs.cbatticon}/bin/cbatticon &'';
+  services.xserver.displayManager.sessionCommands = ''${pkgs.cbatticon}/bin/cbatticon &'';
 }
