@@ -13,6 +13,7 @@
     ./lazygit.nix
     ./zellij.nix
     ./rofi.nix
+    ./dunst.nix
   ];
 
   nixpkgs = {

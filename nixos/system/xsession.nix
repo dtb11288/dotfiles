@@ -12,6 +12,7 @@
     xsel
     dunst
     libnotify
+    glib
     pavucontrol
     blueman
     networkmanagerapplet
