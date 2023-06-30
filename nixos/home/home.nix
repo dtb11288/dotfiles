@@ -12,6 +12,7 @@
     ./alacritty.nix
     ./lazygit.nix
     ./zellij.nix
+    ./rofi.nix
   ];
 
   nixpkgs = {
