@@ -54,12 +54,12 @@
     enable = true;
     layout = "us";
 
+    excludePackages = with pkgs; [
+      xterm
+    ];
+
     windowManager.leftwm = {
       enable = true;
-    };
-
-    desktopManager = {
-      xterm.enable = false;
     };
 
     displayManager = {

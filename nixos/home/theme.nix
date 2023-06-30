@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
 
   home.pointerCursor = {
     x11.enable = true;
@@ -30,6 +30,13 @@
       Settings = ''
         gtk-application-prefer-dark-theme=1
       '';
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      scaling-factor = lib.hm.gvariant.mkUint32 2;
     };
   };
 

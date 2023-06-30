@@ -44,4 +44,9 @@
   ];
 
   services.xserver.dpi = 144;
+
+  environment.variables = {
+    QT_AUTO_SCREEN_SCALE_FACTOR = "0";
+    QT_SCALE_FACTOR = "1.5";
+  };
 }
