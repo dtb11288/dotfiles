@@ -30,4 +30,3 @@ do
   monitor=$monitor offset=$x width=$width polybar -c $SCRIPTPATH/polybar.config $barname &> /dev/null &
   let index=indextemp
 done
-

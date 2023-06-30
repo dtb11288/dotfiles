@@ -28,7 +28,7 @@
   ];
 
   location = {
-    provider = "geoclue2";
+    provider = "manual"; #"geoclue2";
     latitude = 21.0;
     longitude = 105.0;
   };

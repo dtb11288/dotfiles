@@ -16,5 +16,6 @@
     corefonts
     dejavu_fonts
     liberation_ttf
+    siji
   ];
 }

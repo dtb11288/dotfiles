@@ -14,6 +14,7 @@
     ./zellij.nix
     ./rofi.nix
     ./dunst.nix
+    ./fzf.nix
   ];
 
   nixpkgs = {

@@ -112,6 +112,7 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     PATH = "$PATH:$HOME/opt/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin";
+    KEYTIMEOUT = "1";
   };
 
   programs.zsh.enable = true;
