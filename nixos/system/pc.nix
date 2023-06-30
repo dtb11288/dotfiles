@@ -17,11 +17,9 @@
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
-      libvdpau-va-gl
       vaapiVdpau
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
-      libvdpau-va-gl
       vaapiVdpau
     ];
   };

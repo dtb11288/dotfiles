@@ -29,12 +29,10 @@ in
     extraPackages = with pkgs; [
       intel-media-driver
       vaapiIntel
-      libvdpau-va-gl
       vaapiVdpau
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
       vaapiIntel
-      libvdpau-va-gl
       vaapiVdpau
     ];
   };
