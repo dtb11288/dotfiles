@@ -1,4 +1,12 @@
 { pkgs, ... }: {
+
+  home.pointerCursor = {
+    x11.enable = true;
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+    size = 32;
+  };
+
   gtk = {
     enable = true;
 
@@ -9,11 +17,6 @@
 
     theme = {
       name = "Adwaita-dark";
-      package = pkgs.gnome.adwaita-icon-theme;
-    };
-
-    cursorTheme = {
-      name = "Adwaita";
       package = pkgs.gnome.adwaita-icon-theme;
     };
 
@@ -29,5 +32,6 @@
       '';
     };
   };
+
   home.sessionVariables.GTK_THEME = "Adwaita";
 }
