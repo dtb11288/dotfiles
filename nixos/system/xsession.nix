@@ -25,6 +25,7 @@
     playerctl
     feh
     sxhkd
+    caffeine-ng
   ];
 
   location = {
