@@ -11,6 +11,7 @@
     ./zsh.nix
     ./alacritty.nix
     ./lazygit.nix
+    ./zellij.nix
   ];
 
   nixpkgs = {
