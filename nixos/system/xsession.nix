@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -52,13 +52,6 @@
   services.xserver = {
     enable = true;
     layout = "us";
-    # videoDrivers = [ "intel" ];
-
-    libinput = {
-      enable = true;
-      touchpad.naturalScrolling = true;
-      touchpad.disableWhileTyping = true;
-    };
 
     windowManager.leftwm = {
       enable = true;
@@ -74,21 +67,18 @@
         enable = true;
       };
       autoLogin.enable = true;
-      autoLogin.user = "binh";
+      autoLogin.user = username;
 
       sessionCommands = with pkgs; ''
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
         ${xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
-        ${xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
         ${xss-lock}/bin/xss-lock -- "slock" &
         ${xautolock}/bin/xautolock -detectsleep -locker "slock" &
-        ${feh}/bin/feh --bg-fill "$HOME/.wallpaper"
         ${networkmanagerapplet}/bin/nm-applet &
         ${volumeicon}/bin/volumeicon &
         ${parcellite}/bin/parcellite &
         ${blueman}/bin/blueman-applet &
-        ${libinput-gestures}/bin/libinput-gestures &
         ${caffeine-ng}/bin/caffeine &
         ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
       '';

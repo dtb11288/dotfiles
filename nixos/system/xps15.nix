@@ -39,6 +39,15 @@ in
   };
 
   services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.libinput-gestures}/bin/libinput-gestures &
+    ${pkgs.cbatticon}/bin/cbatticon &
+  '';
+  services.xserver.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = true;
+    touchpad.disableWhileTyping = true;
+  };
 
   hardware.nvidia.prime = {
     offload.enable = true;
@@ -59,8 +68,6 @@ in
   services.xserver.dpi = 192;
 
   programs.light.enable = true;
-
-  services.xserver.displayManager.sessionCommands = ''${pkgs.cbatticon}/bin/cbatticon &'';
 
   console.font = "sun12x22";
 }
