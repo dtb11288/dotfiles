@@ -73,6 +73,7 @@
       sessionCommands = with pkgs; ''
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
+        ${xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
         ${xss-lock}/bin/xss-lock -- "slock" &
         ${xautolock}/bin/xautolock -detectsleep -locker "slock" &
         ${networkmanagerapplet}/bin/nm-applet &
