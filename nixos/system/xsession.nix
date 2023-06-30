@@ -73,7 +73,6 @@
       sessionCommands = with pkgs; ''
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
-        ${xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
         ${xss-lock}/bin/xss-lock -- "slock" &
         ${xautolock}/bin/xautolock -detectsleep -locker "slock" &
         ${networkmanagerapplet}/bin/nm-applet &
@@ -87,16 +86,4 @@
   };
 
   programs.slock.enable = true;
-
-  environment.variables = {
-    # XCURSOR_SIZE = "64";
-    # XCURSOR_PATH = [
-    #  "${config.system.path}/share/icons"
-    #  "$HOME/.icons"
-    #  "$HOME/.nix-profile/share/icons/"
-    # ];
-    # GTK_DATA_PREFIX = [
-    #  "${config.system.path}"
-    # ];
-  };
 }
